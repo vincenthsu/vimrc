@@ -1,0 +1,17 @@
+!.gitignore
+bundle/
+tmp/
+viminfo
+tags
+.netrwhist
+.DS_Store
+*.log
+*.tmp
+*.swp
+*.old
+*.bkp
+*.zip
+*.rar
+*.arj
+*.[t]gz
+*.[t]bz2

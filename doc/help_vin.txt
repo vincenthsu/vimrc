@@ -1,0 +1,97 @@
+*help_vin.txt*  Vincent's help File
+
+==============================================================================
+Contents                                        *help_vin* *help_vin-contents*
+|help_vin-key-mapping|   Key mapping
+|help_vin-cscope|        cscope
+|help_vin-vimdiff|       vimdiff
+|help_vin-folder|        Folder 
+|help_vin-word_repeat|   Word repeat 
+|help_vin-auto_complete| Auto complete   
+|help_vin-pager|         Pager 
+|help_vin-source_help|   Source help doc changed              
+
+==============================================================================
+Key mapping                                             *help_vin-key-mapping*
+map <F2> :NERDTreeToggle<CR>
+map <F3> :TagbarToggle<CR>
+map <F4> :wincmd p<CR>
+map <F5> :BufExplorer<CR>
+map <F7> :call RTrailing()<CR>
+map <F8> :set list!<CR>
+map <F9> :set nu!<CR>
+map <F10> :tab ball<CR>
+map <F11> :mks! ~/.vimfiles/session.vim<CR>
+map <F12> :source ~/.vimfiles/session.vim<CR>
+map <leader>1 :NERDTreeToggle<CR>
+map <leader>2 :TagbarToggle<CR>
+map <leader>3 :wincmd p<CR>
+map <leader>4 :BufExplorer<CR>
+nmap <leader>g :Gtags<CR>
+nmap <leader>n :cn<CR>
+nmap <leader>p :cp<CR>
+nmap <leader>s :Gtags -s<CR>
+nmap <leader>r :Gtags -r<CR>
+nmap <leader>d :TDiffSaved<CR> "Diff file with current modify
+nmap <leader>w :w !sudo tee %<CR> "Force Save
+map <C-left> :tabprevious<CR>
+map <C-right> :tabnext<CR>
+map <C-up> :tabnew<CR>
+map <C-down> :bdelete<CR>
+noremap <C-H> <C-W>h<C-W>_
+noremap <C-L> <C-W>l<C-W>_
+noremap <C-J> <C-W>j<C-W>_
+noremap <C-K> <C-W>k<C-W>_
+
+==============================================================================
+vimdiff                                                     *help_vin-vimdiff*
+do: o for "obtain" 。
+dp: p for "put"。
+
+==============================================================================
+Folder                                                       *help_vin-folder*
+zo: open
+zO: open all
+zc: close
+zC: close all
+
+==============================================================================
+Word repeat                                             *help_vin-word_repeat*
+In insert mode:
+<C-y>: repeat up line
+<C-e>: repeat down line
+
+numbers:
+<C-a>: n++
+<C-x>: n--
+
+==============================================================================
+Auto complete                                         *help_vin-auto_complete*
+<C-p>: previous
+<C-n>: next
+<C-i>: singal line
+<C-f>: file name
+    
+==============================================================================
+Pager                                                         *help_vin-pager*
+<C-u>: up half page
+<C-d>: down half page
+<C-f>: forward one page
+<C-b>: backup on page
+
+==============================================================================
+cscope                                                       *help_vin-cscope*
+:cs add {cscope.out path}
+:cs Usage Tip
+Ctrl+\ c: Find functions calling this function
+Ctrl+\ d: Find functions called by this function
+Ctrl+\ e: Find this egrep pattern
+Ctrl+\ f: Find this file
+Ctrl+\ g: Find this definition
+Ctrl+\ i: Find files #including this file
+Ctrl+\ s: Find this C symbol
+Ctrl+\ t: Find assignments to
+
+==============================================================================
+Source help doc changed                                 *help_vin-source_help*
+:helptags ~/.vim/doc
