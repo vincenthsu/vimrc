@@ -328,6 +328,53 @@
     noremap <C-MouseDown> l
     noremap <C-MouseUp> h
 
+" Vundle plugin manager
+    filetype off " required!
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+
+    " Bundles source:
+        " File Manager
+            Bundle 'The-NERD-tree'
+            Bundle 'ctrlp.vim'
+            Bundle 'bufexplorer.zip'
+        " Tracing code
+            "Bundle 'taglist.vim'
+            Bundle 'Tagbar'
+            Bundle 'gtags.vim'
+            "Bundle 'cscope.vim'
+            Bundle 'chazy/cscope_maps'
+            Bundle 'matchit.zip'
+        " Auto code completion
+            " Snipmate dependency
+                Bundle 'honza/snipmate-snippets'
+                Bundle 'MarcWeber/vim-addon-mw-utils'
+                Bundle 'tomtom/tlib_vim'
+                Bundle 'garbas/vim-snipmate'
+            Bundle 'ervandew/supertab'
+            Bundle 'OmniCppComplete'
+            "Bundle 'Rip-Rip/clang_complete'
+            "Bundle 'http://cx4a.org/repo/gccsense.git'
+            Bundle 'Townk/vim-autoclose'
+            "Bundle 'pope/vim-surround'
+        " Syntax
+            "Bundle 'b4winckler/vim-objc'
+            "Bundle 'plasticboy/vim-markdown'
+            "Bundle 'suan/vim-instant-markdown'
+            "Bundle 'vim-pandoc/vim-pandoc'
+        " Color Scheme
+            Bundle 'flazz/vim-colorschemes'
+            "Bundle 'rickharris/vim-blackboard'
+            "Bundle 'altercation/vim-colors-solarized'
+            "Bundle 'tomasr/molokai'
+            "Bundle 'tpope/vim-vividchalk'
+            "Bundle 'Lokaltog/vim-distinguished'
+        " Others
+            Bundle 'gmarik/vundle'
+            Bundle 'YankRing.vim'
+
+    filetype plugin indent on " required!
+
 " Plugin Settings
     "let b:match_ignorecase = 1 " case is stupid
     "let perl_extended_vars=1 " highlight advanced perl vars
@@ -373,42 +420,7 @@
     " YankRing
         let g:yankring_history_dir = '$HOME/.vim/tmp'
 
-" Vundle plugin manager
-    filetype off " required!
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
+    " vim-colors-solarized
+        set t_Co=256
+        colorscheme desert
 
-    " Bundles source:
-        " File Manager
-            Bundle 'The-NERD-tree'
-            Bundle 'ctrlp.vim'
-            Bundle 'bufexplorer.zip'
-        " Tracing code
-            "Bundle 'taglist.vim'
-            Bundle 'Tagbar'
-            Bundle 'gtags.vim'
-            "Bundle 'cscope.vim'
-            Bundle 'chazy/cscope_maps'
-            Bundle 'matchit.zip'
-        " Auto code completion
-            " Snipmate dependency
-                Bundle 'honza/snipmate-snippets'
-                Bundle 'MarcWeber/vim-addon-mw-utils'
-                Bundle 'tomtom/tlib_vim'
-                Bundle 'garbas/vim-snipmate'
-            Bundle 'ervandew/supertab'
-            Bundle 'OmniCppComplete'
-            "Bundle 'Rip-Rip/clang_complete'
-            "Bundle 'http://cx4a.org/repo/gccsense.git'
-            Bundle 'Townk/vim-autoclose'
-            "Bundle 'pope/vim-surround'
-        " Syntax
-            "Bundle 'b4winckler/vim-objc'
-            "Bundle 'plasticboy/vim-markdown'
-            "Bundle 'suan/vim-instant-markdown'
-            "Bundle 'vim-pandoc/vim-pandoc'
-        " Others
-            Bundle 'gmarik/vundle'
-            Bundle 'YankRing.vim'
-
-    filetype plugin indent on " required!
