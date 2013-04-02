@@ -115,7 +115,7 @@
 " Text Formatting/Layout
     "let $LANG="zh_TW.UTF-8"
     set encoding=utf8
-    set fileencodings=utf-8,big5,latin1,gbk
+    set fileencodings=utf-8,big5,latin1,gbk,cp932,iso-2022-jp,euc-jp
     "set termencoding=utf8
     "set guifont=Monaco:h14
     "set completeopt=0 " don't use a pop up menu for completions
@@ -327,6 +327,9 @@
     noremap <MouseUp> <C-E>
     noremap <C-MouseDown> l
     noremap <C-MouseUp> h
+
+    " File encodings
+    map <leader>j :e ++enc=cp932<CR>
 
 " Vundle plugin manager
     filetype off " required!
