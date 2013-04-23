@@ -354,7 +354,7 @@
                 Bundle 'MarcWeber/vim-addon-mw-utils'
                 Bundle 'tomtom/tlib_vim'
                 Bundle 'garbas/vim-snipmate'
-            Bundle 'ervandew/supertab'
+            "Bundle 'ervandew/supertab'
             Bundle 'OmniCppComplete'
             "Bundle 'Rip-Rip/clang_complete'
             "Bundle 'http://cx4a.org/repo/gccsense.git'
@@ -362,7 +362,7 @@
             "Bundle 'pope/vim-surround'
         " Syntax
             "Bundle 'b4winckler/vim-objc'
-            "Bundle 'plasticboy/vim-markdown'
+            Bundle 'plasticboy/vim-markdown'
             "Bundle 'suan/vim-instant-markdown'
             "Bundle 'vim-pandoc/vim-pandoc'
         " Color Scheme
@@ -375,6 +375,7 @@
         " Others
             Bundle 'gmarik/vundle'
             Bundle 'YankRing.vim'
+            "Bundle 'godlygeek/tabular'
 
     filetype plugin indent on " required!
 
