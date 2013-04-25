@@ -350,7 +350,7 @@
             Bundle 'matchit.zip'
         " Auto code completion
             " Snipmate dependency
-                Bundle 'honza/snipmate-snippets'
+                Bundle 'snipmate-snippets'
                 Bundle 'MarcWeber/vim-addon-mw-utils'
                 Bundle 'tomtom/tlib_vim'
                 Bundle 'garbas/vim-snipmate'
