@@ -96,7 +96,7 @@
     set showmatch " show matching brackets
     "set sidescrolloff=10 " Keep 5 lines at the size
     set laststatus=2 " always show the status line
-    set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+    "set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
     "              | | | | |  |   |      |  |     |    |
     "              | | | | |  |   |      |  |     |    + current
     "              | | | | |  |   |      |  |     |       column
@@ -303,14 +303,14 @@
     nmap <leader>w :w !sudo tee %<CR>
 
     " Switch tab
-    map <C-left> :tabprevious<CR>
-    map <C-right> :tabnext<CR>
-    map <C-up> :tabnew<CR>
+    "map <C-left> :tabprevious<CR>
+    "map <C-right> :tabnext<CR>
+    "map <C-up> :tabnew<CR>
     "map <C-W> :tabclose<CR>
 
     " Switch buffer
-    "map <C-left> :bprevious<CR>
-    "map <C-right> :bnext<CR>
+    map <C-left> :bprevious<CR>
+    map <C-right> :bnext<CR>
     map <C-down> :bdelete<CR>
 
     " Switch between windows, maximizing the current window
@@ -341,6 +341,8 @@
             Bundle 'The-NERD-tree'
             Bundle 'ctrlp.vim'
             Bundle 'bufexplorer.zip'
+            "Bundle 'fholgado/minibufexpl.vim'
+            Bundle 'zefei/buftabs'
         " Tracing code
             "Bundle 'taglist.vim'
             Bundle 'Tagbar'
@@ -424,7 +426,9 @@
     " YankRing
         let g:yankring_history_dir = '$HOME/.vim/tmp'
 
+    " BufTabs
+        set statusline=\ #{buftabs}%=\ [%f]\ L%-5l
+
     " vim-colors-solarized
         set t_Co=256
         colorscheme desert
-
