@@ -2,17 +2,21 @@
 
 ==============================================================================
 Contents                                        *help_vin* *help_vin-contents*
+
 |help_vin-key-mapping|   Key mapping
-|help_vin-cscope|        cscope
+|help_vin-split_window|  Split window
+|help_vin-folder|        Folder
+|help_vin-word_repeat|   Word repeat
+|help_vin-auto_complete| Auto complete
+|help_vin-pager|         Pager
 |help_vin-vimdiff|       vimdiff
-|help_vin-folder|        Folder 
-|help_vin-word_repeat|   Word repeat 
-|help_vin-auto_complete| Auto complete   
-|help_vin-pager|         Pager 
-|help_vin-source_help|   Source help doc changed              
+|help_vin-yankring|      YankRing
+|help_vin-cscope|        CScope
+|help_vin-source_help|   Source help doc changed
 
 ==============================================================================
 Key mapping                                             *help_vin-key-mapping*
+
 map <F2> :NERDTreeToggle<CR>
 map <F3> :TagbarToggle<CR>
 map <F4> :wincmd p<CR>
@@ -44,12 +48,18 @@ noremap <C-J> <C-W>j<C-W>_
 noremap <C-K> <C-W>k<C-W>_
 
 ==============================================================================
-vimdiff                                                     *help_vin-vimdiff*
-do: o for "obtain" 。
-dp: p for "put"。
+Split window                                            *help_vin-split_window*
+
+sp: Split current window in two.
+vsp: Split vertically.
+<C-w> [+|-]: resize windows
+<C-w> [<|>]: resize windows with a vertical split
+<C-w> _: maximize current window
+<C-w> =: make all equal size
 
 ==============================================================================
 Folder                                                       *help_vin-folder*
+
 zo: open
 zO: open all
 zc: close
@@ -57,6 +67,7 @@ zC: close all
 
 ==============================================================================
 Word repeat                                             *help_vin-word_repeat*
+
 In insert mode:
 <C-y>: repeat up line
 <C-e>: repeat down line
@@ -67,31 +78,51 @@ numbers:
 
 ==============================================================================
 Auto complete                                         *help_vin-auto_complete*
+
 <C-p>: previous
 <C-n>: next
 <C-i>: singal line
 <C-f>: file name
-    
+
 ==============================================================================
 Pager                                                         *help_vin-pager*
+
 <C-u>: up half page
 <C-d>: down half page
 <C-f>: forward one page
 <C-b>: backup on page
 
 ==============================================================================
-cscope                                                       *help_vin-cscope*
+vimdiff                                                     *help_vin-vimdiff*
+
+do: o for "obtain"
+dp: p for "put"
+
+==============================================================================
+YankRing                                                   *help_vin-yankring*
+
+<C-p>: (P for previous) to replace the text last pasted
+<C-n>: (N for next) to replace the previous pasted
+
+Tips:
+yiw: Copy the current word
+viwp: Replace the current word with the clipboard contents
+
+==============================================================================
+CScope                                                       *help_vin-cscope*
+
 :cs add {cscope.out path}
 :cs Usage Tip
-Ctrl+\ c: Find functions calling this function
-Ctrl+\ d: Find functions called by this function
-Ctrl+\ e: Find this egrep pattern
-Ctrl+\ f: Find this file
-Ctrl+\ g: Find this definition
-Ctrl+\ i: Find files #including this file
-Ctrl+\ s: Find this C symbol
-Ctrl+\ t: Find assignments to
+<C-\> c: Find functions calling this function
+<C-\> d: Find functions called by this function
+<C-\> e: Find this egrep pattern
+<C-\> f: Find this file
+<C-\> g: Find this definition
+<C-\> i: Find files #including this file
+<C-\> s: Find this C symbol
+<C-\> t: Find assignments to
 
 ==============================================================================
 Source help doc changed                                 *help_vin-source_help*
+
 :helptags ~/.vim/doc
