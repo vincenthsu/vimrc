@@ -378,6 +378,7 @@
             Bundle 'gmarik/vundle'
             Bundle 'YankRing.vim'
             "Bundle 'godlygeek/tabular'
+            Bundle 'sjl/gundo.vim'
 
     filetype plugin indent on " required!
 
