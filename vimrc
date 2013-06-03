@@ -423,6 +423,10 @@
     " bufexplorer
         let g:bufExplorerSplitBelow = 1
 
+    " AutoClose
+        autocmd FileType * :AutoCloseOff
+        " Disable at startup. It's a little annoying.
+
     " YankRing
         let g:yankring_history_dir = '$HOME/.vim/tmp'
 
