@@ -432,7 +432,9 @@
         let g:yankring_history_dir = '$HOME/.vim/tmp'
 
     " BufTabs
-        set statusline=\ #{buftabs}%=\ [%f]\ L%-5l
+        let g:buftabs_active_highlight_group="DiffAdd"
+        let g:buftabs_other_components_length=20
+        set statusline=\ #{buftabs}%=\ L%-5l
 
     " vim-colors-solarized
         set t_Co=256
