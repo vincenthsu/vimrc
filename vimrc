@@ -379,6 +379,7 @@
             Bundle 'YankRing.vim'
             "Bundle 'godlygeek/tabular'
             Bundle 'sjl/gundo.vim'
+            Bundle 'terryma/vim-multiple-cursors'
 
     filetype plugin indent on " required!
 
