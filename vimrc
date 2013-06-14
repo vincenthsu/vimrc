@@ -431,6 +431,9 @@
     " YankRing
         let g:yankring_history_dir = '$HOME/.vim/tmp'
 
+    " ctrlp: default bindings conflict with yankring bindings
+        nnoremap <leader>p :CtrlP<CR>
+
     " BufTabs
         let g:buftabs_active_highlight_group="DiffAdd"
         let g:buftabs_other_components_length=20
