@@ -1,7 +1,6 @@
 !.gitignore
 bundle/
 tmp/
-viminfo
 tags
 .netrwhist
 .DS_Store
