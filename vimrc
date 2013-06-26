@@ -269,6 +269,9 @@
         noremap <C-MouseUp> h
     " File encodings to JP
         map <leader>j :e ++enc=cp932<CR>
+    " Force line ending conversion
+        noremap <leader>u :set ff=unix<CR>
+        noremap <leader>d :set ff=dos<CR>
 
 " Use Vundle plugin to manage all other plugins
     filetype off " required!
@@ -331,7 +334,7 @@
     " BufTabs
         let g:buftabs_active_highlight_group="DiffAdd"
         let g:buftabs_other_components_length=20
-        set statusline=\ #{buftabs}%=\ L%-5l
+        set statusline=\ #{buftabs}%=%{&ff!='unix'?'['.&ff.']':''}\ L%-5l
     " Vim-colors-solarized
         set t_Co=256
         colorscheme desert
