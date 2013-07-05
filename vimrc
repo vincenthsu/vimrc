@@ -315,6 +315,7 @@
         Bundle 'YankRing.vim'
         Bundle 'sjl/gundo.vim'
         Bundle 'terryma/vim-multiple-cursors'
+        Bundle 'tpope/vim-fugitive'
     filetype plugin indent on " required!
 
 " Plugin Settings
