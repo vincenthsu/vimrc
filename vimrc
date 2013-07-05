@@ -334,8 +334,15 @@
     " BufTabs
         let g:buftabs_active_highlight_group="DiffAdd"
         let g:buftabs_other_components_length=20
-        set statusline=\ #{buftabs}%=%{&ff!='unix'?'['.&ff.']':''}\ L%-5l
+        let g:buftabs_show_number=0
+        let g:buftabs_marker_start=" "
+        let g:buftabs_marker_end=" "
+        "set statusline=
+        "set statusline+=\ #{buftabs}
+        "set statusline+=%=
+        "set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}
+        "set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+        "set statusline+=\ L%-5.5l
     " Vim-colors-solarized
         set t_Co=256
         colorscheme desert
-
