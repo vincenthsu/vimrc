@@ -22,6 +22,7 @@
     set noerrorbells " don't make noise
     set autochdir "always switch to the current file directory
     set hidden " you can change buffers without saving
+    set sessionoptions-=options " don't persist options in sessions
 
 " Vim UI
     set cursorline " highlight current line
