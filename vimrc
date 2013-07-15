@@ -162,7 +162,7 @@
         "let &backupdir=g:tempdir " directory to put backup files
         "let &directory=g:tempdir " directory to place swap files in
     " History file
-        set viminfo+=n$HOME/.vim/tmp/viminfo
+        set viminfo+=n$HOME/.vim/tmp/viminfo.txt
     " Jump to the last position when reopening a file
         autocmd BufReadPost *
                 \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -222,12 +222,13 @@
         map <F3> :TagbarToggle<CR>
         map <F4> :wincmd p<CR>
         map <F5> :BufExplorer<CR>
+        map <F6> :GitGutterToggle<CR>
         map <F7> :call RTrailing()<CR>
         map <F8> :set list!<CR>
         map <F9> :set nu!<CR>
         map <F10> :tab ball<CR>
-        map <F11> :mks! ~/.vim/tmp/session.vim<CR>
-        map <F12> :source ~/.vim/tmp/session.vim<CR>
+        map <F11> :mks! ~/.vim/tmp/session.txt<CR>
+        map <F12> :source ~/.vim/tmp/session.txt<CR>
         map <leader>1 :NERDTreeToggle<CR>
         map <leader>2 :TagbarToggle<CR>
         map <leader>3 :wincmd p<CR>
@@ -271,8 +272,9 @@
     " File Manager
         Bundle 'The-NERD-tree'
         Bundle 'ctrlp.vim'
-        Bundle 'bufexplorer.zip'
         Bundle 'zefei/buftabs'
+        Bundle 'bufexplorer.zip'
+        "Bundle 'mihaifm/bufstop'
     " Tracing code
         Bundle 'Tagbar'
         Bundle 'gtags.vim'
@@ -286,8 +288,8 @@
             Bundle 'tomtom/tlib_vim'
             Bundle 'garbas/vim-snipmate'
         Bundle 'OmniCppComplete'
-        Bundle 'Townk/vim-autoclose'
-        "Bundle 'ervandew/supertab'
+        Bundle 'ervandew/supertab'
+        "Bundle 'Townk/vim-autoclose'
         "Bundle 'Rip-Rip/clang_complete'
         "Bundle 'http://cx4a.org/repo/gccsense.git'
         "Bundle 'pope/vim-surround'
@@ -298,12 +300,16 @@
         "Bundle 'b4winckler/vim-objc'
     " Color Scheme
         Bundle 'flazz/vim-colorschemes'
+    " Version control
+        Bundle 'tpope/vim-fugitive'
+        Bundle 'airblade/vim-gitgutter'
     " Others
         Bundle 'gmarik/vundle'
         Bundle 'YankRing.vim'
         Bundle 'sjl/gundo.vim'
         Bundle 'terryma/vim-multiple-cursors'
-        Bundle 'tpope/vim-fugitive'
+        Bundle 'terryma/vim-expand-region'
+
     filetype plugin indent on " required!
 
 " Plugin Settings
@@ -311,15 +317,12 @@
         set tags=tags;
     " Tagbar
         let tagbar_width=30 " default: 40
-    " Bufexplorer
-        let g:bufExplorerSplitBelow=1
-    " AutoClose
-        autocmd FileType * :AutoCloseOff
-        " Disable at startup. It's a little annoying.
     " YankRing
         let g:yankring_history_dir=g:tempdir
     " Ctrlp: default bindings conflict with yankring bindings
         nnoremap <leader>p :CtrlP<CR>
+    " Vim Git Gutter
+        let g:gitgutter_enabled=0 " Disable at startup.
     " BufTabs
         let g:buftabs_other_components_length=20
         let g:buftabs_show_number=0
