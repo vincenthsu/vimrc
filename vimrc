@@ -137,15 +137,6 @@
     "set foldtext=SimpleFoldText() " Custom fold text function
                                    " (cleaner than default)
 
-" Tab Layout
-    " each tab
-    highlight TabLine cterm=bold,underline ctermbg=lightgray ctermfg=black
-    " select tab
-    highlight TabLineSel cterm=none ctermbg=blue ctermfg=white
-    " background
-    "highlight TabLineFill cterm=none ctermbg=lightgray ctermfg=black
-    "set showtabline=2 "always tab
-
 " Screen fixing
     " tmux will send xterm-style keys when its xterm-keys option is on
     if &term=~'^screen'
@@ -307,9 +298,6 @@
         "Bundle 'b4winckler/vim-objc'
     " Color Scheme
         Bundle 'flazz/vim-colorschemes'
-        "Bundle 'altercation/vim-colors-solarized'
-        "Bundle 'rickharris/vim-blackboard'
-        "Bundle 'tomasr/molokai'
     " Others
         Bundle 'gmarik/vundle'
         Bundle 'YankRing.vim'
@@ -333,17 +321,26 @@
     " Ctrlp: default bindings conflict with yankring bindings
         nnoremap <leader>p :CtrlP<CR>
     " BufTabs
-        let g:buftabs_active_highlight_group="DiffAdd"
         let g:buftabs_other_components_length=20
         let g:buftabs_show_number=0
         let g:buftabs_marker_start=" "
         let g:buftabs_marker_end=" "
-        "set statusline=
-        "set statusline+=\ #{buftabs}
-        "set statusline+=%=
-        "set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}
-        "set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-        "set statusline+=\ L%-5.5l
-    " Vim-colors-solarized
+        set statusline=
+        set statusline+=\ #{buftabs}
+        set statusline+=%=
+        set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}
+        set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+        set statusline+=\ L%-5.5l
+
+" Color Theme: sequence-related
+    " Enable xterm 256 color
         set t_Co=256
+    " Plugin: Vim-colors-solarized
         colorscheme desert
+    " Plugin: BufTabs
+        highlight BufTabs term=standout ctermbg=4 ctermfg=7
+        let g:buftabs_active_highlight_group="BufTabs"
+    " Popup menu
+        highlight Pmenu ctermbg=234 ctermfg=7
+        highlight PmenuSel ctermbg=8 ctermfg=7
+
