@@ -69,9 +69,10 @@
     set iskeyword+=_,$,@,%,# " none of these are word dividers
     set wildmenu "enable ctrl-n and ctrl-p to scroll thru matches
     set wildmode=list:longest " turn on wild mode huge list
-    set wildignore=*.o,*.obj " stuff to ignore when tab completing
+    set wildignore+=*.o,*.obj " stuff to ignore when tab completing
     set wildignore+=*.exe,*.dll,*.pyc
     set wildignore+=*.jpg,*.gif,*.png,*DS_Store*
+    set wildignore+=*.bin,*.so,*.swp,*.zip
     set encoding=utf8
     set fileencodings=utf-8,big5,latin1,gbk,cp932,iso-2022-jp,euc-jp
     set formatoptions=mtcql " m: also break at a multi-byte character
@@ -320,7 +321,17 @@
     " YankRing
         let g:yankring_history_dir=g:tempdir
     " Ctrlp: default bindings conflict with yankring bindings
-        nnoremap <leader>p :CtrlP<CR>
+        nnoremap <leader>p :CtrlPMixed<CR>
+        let g:ctrlp_working_path_mode = 'ra'
+        let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+        let g:ctrlp_follow_symlinks=1
+        let g:ctrlp_user_command = {
+            \ 'types': {
+                \ 1: ['.git', 'cd %s && git ls-files'],
+                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+            \ },
+            \ 'fallback': 'find %s -type f'
+        \ }
     " Vim Git Gutter
         let g:gitgutter_enabled=0 " Disable at startup.
     " BufTabs
@@ -346,4 +357,3 @@
     " Popup menu
         highlight Pmenu ctermbg=234 ctermfg=7
         highlight PmenuSel ctermbg=8 ctermfg=7
-
