@@ -312,7 +312,7 @@
         Bundle 'terryma/vim-multiple-cursors'
         Bundle 'terryma/vim-expand-region'
 
-    filetype plugin indent on " required!
+    filetype plugin on " required!
 
 " Plugin Settings
     " Ctags
