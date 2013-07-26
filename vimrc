@@ -220,52 +220,55 @@
 
 " Keymap
     " Normal Mappings
-        map <F2> :NERDTreeToggle<CR>
-        map <F3> :TagbarToggle<CR>
-        map <F4> :wincmd p<CR>
-        map <F5> :BufExplorer<CR>
-        map <F6> :GitGutterToggle<CR>
-        map <F7> :call RTrailing()<CR>
-        map <F8> :set list!<CR>
-        map <F9> :set nu!<CR>
-        map <F10> :tab ball<CR>
-        map <F11> :mks! ~/.vim/tmp/session.txt<CR>
-        map <F12> :source ~/.vim/tmp/session.txt<CR>
-        map <leader>1 :NERDTreeToggle<CR>
-        map <leader>2 :TagbarToggle<CR>
-        map <leader>3 :wincmd p<CR>
-        map <leader>4 :BufExplorer<CR>
-    " Gtags
-        nmap <leader>g :Gtags<CR>
-        nmap <leader>n :cn<CR>
-        nmap <leader>p :cp<CR>
-        nmap <leader>s :Gtags -s<CR>
-        nmap <leader>r :Gtags -r<CR>
-    " Diff file with current modify
-        nmap <leader>d :TDiffSaved<CR>
-    " Force Save
-        nmap <leader>w :w !sudo tee %<CR>
+        noremap <F2> :NERDTreeToggle<CR>
+        noremap <F3> :TagbarToggle<CR>
+        noremap <F4> :BufExplorer<CR>
+        noremap <F5> :set nu!<CR>
+        noremap <F6> :set list!<CR>
+        noremap <F7> :GitGutterToggle<CR>
+        noremap <F8> :call RTrailing()<CR>
+        noremap <F9> :mks! ~/.vim/tmp/session1.txt<CR>
+        noremap <F10> :source ~/.vim/tmp/session1.txt<CR>
+        noremap <F11> :mks! ~/.vim/tmp/session2.txt<CR>
+        noremap <F12> :source ~/.vim/tmp/session2.txt<CR>
+        noremap <leader>1 do
+        noremap <leader>2 dp
+        noremap <leader>3 <C-A>
+        noremap <leader>4 <C-X>
     " Switch buffer
-        map <C-left> :bprevious<CR>
-        map <C-right> :bnext<CR>
-        map <C-down> :bdelete<CR>
-    " Switch between windows, maximizing the current window
-        noremap <C-H> <C-W>h<C-W>_
-        noremap <C-L> <C-W>l<C-W>_
-        noremap <C-J> <C-W>j<C-W>_
-        noremap <C-K> <C-W>k<C-W>_
-    " Split windows
-        noremap <C-\> :vsp<CR>
+        noremap <C-left> :bprevious<CR>
+        noremap <C-right> :bnext<CR>
+        noremap <C-down> :bdelete<CR>
+    " Switch between windows
+        noremap <C-H> <C-W>h
+        noremap <C-L> <C-W>l
+        noremap <C-J> <C-W>j
+        noremap <C-K> <C-W>k
+    " Split windows
+        nnoremap <C-\> :vsp<CR>
     " Mouse scrolling
         noremap <MouseDown> <C-Y>
         noremap <MouseUp> <C-E>
         noremap <C-MouseDown> l
         noremap <C-MouseUp> h
-    " File encodings to JP
-        map <leader>j :e ++enc=cp932<CR>
+    " Force Save
+        noremap <leader>w :w !sudo tee %<CR>
+    " Diff file with current modify
+        noremap <leader>d :TDiffSaved<CR>
     " Force line ending conversion
         noremap <leader>u :set ff=unix<CR>
         noremap <leader>d :set ff=dos<CR>
+    " File encodings to JIS
+        noremap <leader>j :e ++enc=cp932<CR>
+    " Plugin: Gtags
+        noremap <leader>g :Gtags<CR>
+        noremap <leader>s :Gtags -s<CR>
+        noremap <leader>r :Gtags -r<CR>
+        noremap <leader>z :cp<CR>
+        noremap <leader>x :cn<CR>
+    " Plunoregin: Ctrlp
+        " default bindings conflict with yankring bindings
+        noremap <leader>p :CtrlPMixed<CR>
 
 " Use Vundle plugin to manage all other plugins
     filetype off " required!
@@ -321,8 +324,7 @@
         let tagbar_width=30 " default: 40
     " YankRing
         let g:yankring_history_dir=g:tempdir
-    " Ctrlp: default bindings conflict with yankring bindings
-        nnoremap <leader>p :CtrlPMixed<CR>
+    " Ctrlp
         let g:ctrlp_working_path_mode = 'ra'
         let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
         let g:ctrlp_follow_symlinks=1
