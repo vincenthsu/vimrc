@@ -235,6 +235,7 @@
         noremap <leader>2 dp
         noremap <leader>3 <C-A>
         noremap <leader>4 <C-X>
+        noremap <leader>l :set colorcolumn=80<CR>
     " Switch buffer
         noremap <C-left> :bprevious<CR>
         noremap <C-right> :bnext<CR>
