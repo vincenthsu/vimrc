@@ -109,8 +109,8 @@
                                    " to match current settings when saving
     "autocmd BufWritePre * :retab
     autocmd FileType make setlocal noexpandtab " To turn off expandtab for editing makefiles
-    set cindent
-    set cinoptions=l1,t0,+0,(s,j1,C1 " cindent fixed: l: case, t: function return
+    "set cindent
+    "set cinoptions=l1,t0,+0,(s,j1,C1 " cindent fixed: l: case, t: function return
                                      " +: continuation line, (: unclosed parentheses,
                                      " j: java
     " Notice! Following have been loaded in vundles.vim
