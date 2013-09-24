@@ -353,8 +353,8 @@
 " Color Theme: sequence-related
     " Enable xterm 256 color
         set t_Co=256
-    " Plugin: Vim-colors-solarized
-        colorscheme desert
+    " Plugin: vim-colorschemes
+        colorscheme blackboard
     " Plugin: BufTabs
         highlight BufTabs term=standout ctermbg=4 ctermfg=7
         let g:buftabs_active_highlight_group="BufTabs"
