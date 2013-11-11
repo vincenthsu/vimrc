@@ -94,7 +94,7 @@
     "             | | +-- "h" Normal and Visual (not recommended)
     "             | +-- <Space> Normal and Visual
     "             +-- <BS> Normal and Visual
-    "set list " show tabs and trailing
+    set list " show tabs and trailing
     set listchars=trail:¬,tab:→· " define tabs and trailing chars
     set shiftround " when at 3 spaces, and I hit > ... go to 4, not 5
     set expandtab " no real tabs please!
@@ -105,9 +105,9 @@
                   " set list on
     set shiftwidth=4 " auto-indent amount when using cindent,
                      " >>, << and stuff like that
-    "autocmd FileWritePre * :retab " affect the existing tab characters
+    autocmd FileWritePre * :retab " affect the existing tab characters
                                    " to match current settings when saving
-    "autocmd BufWritePre * :retab
+    autocmd BufWritePre * :retab
     autocmd FileType make setlocal noexpandtab " To turn off expandtab for editing makefiles
     "set cindent
     "set cinoptions=l1,t0,+0,(s,j1,C1 " cindent fixed: l: case, t: function return
