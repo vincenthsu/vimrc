@@ -259,7 +259,7 @@
 
 " Keymap
     " Normal Mappings
-        noremap <F2> :NERDTreeToggle<CR>
+        noremap <F2> :NERDTreeTabsToggle<CR>
         noremap <F3> :TagbarToggle<CR>
         noremap <F4> :BufExplorer<CR>
         noremap <F5> :set nu!<CR>
@@ -280,15 +280,16 @@
         noremap <leader>8 <C-X>
         noremap <leader>l :set colorcolumn=80<CR>
     " Switch buffer
-        noremap <C-left> :bprevious<CR>
-        noremap <C-right> :bnext<CR>
+        noremap <C-left> :tabprevious<CR>
+        noremap <C-right> :tabnext<CR>
+        noremap <C-up> :tabnew<CR>
         noremap <C-down> :bdelete<CR>
     " Switch between windows
         noremap <C-H> <C-W>h
         noremap <C-L> <C-W>l
         noremap <C-J> <C-W>j
         noremap <C-K> <C-W>k
-    " Split windows
+    " Split windows
         nnoremap <C-\> :vsp<CR>
     " Mouse scrolling
         noremap <MouseDown> <C-Y>
@@ -321,8 +322,9 @@
     " File Manager
         Bundle 'The-NERD-tree'
         Bundle 'ctrlp.vim'
-        Bundle 'zefei/buftabs'
         Bundle 'bufexplorer.zip'
+        Bundle 'jistr/vim-nerdtree-tabs'
+        "Bundle 'zefei/buftabs'
         "Bundle 'mihaifm/bufstop'
     " Tracing code
         Bundle 'Tagbar'
@@ -349,6 +351,7 @@
         "Bundle 'b4winckler/vim-objc'
     " Color Scheme
         Bundle 'flazz/vim-colorschemes'
+        Bundle 'bling/vim-airline'
     " Version control
         Bundle 'tpope/vim-fugitive'
         Bundle 'airblade/vim-gitgutter'
@@ -381,17 +384,21 @@
         \ }
     " Vim Git Gutter
         let g:gitgutter_enabled=0 " Disable at startup.
+    " Airline
+        let g:airline_powerline_fonts = 0
+        let g:airline_left_sep=''
+        let g:airline_right_sep=''
     " BufTabs
-        let g:buftabs_other_components_length=20
-        let g:buftabs_show_number=0
-        let g:buftabs_marker_start=" "
-        let g:buftabs_marker_end=" "
-        set statusline=
-        set statusline+=\ #{buftabs}
-        set statusline+=%=
-        set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}
-        set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-        set statusline+=\ L%-5.5l
+        "let g:buftabs_other_components_length=20
+        "let g:buftabs_show_number=0
+        "let g:buftabs_marker_start=" "
+        "let g:buftabs_marker_end=" "
+        "set statusline=
+        "set statusline+=\ #{buftabs}
+        "set statusline+=%=
+        "set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}
+        "set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+        "set statusline+=\ L%-5.5l
 
 " Color Theme: sequence-related
     " Enable xterm 256 color

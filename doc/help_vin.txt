@@ -18,7 +18,7 @@ Contents                                        *help_vin* *help_vin-contents*
 Key mapping                                             *help_vin-key-mapping*
 
 Normal Mappings
-  noremap <F2> :NERDTreeToggle<CR>
+  noremap <F2> :NERDTreeTabsToggle<CR>
   noremap <F3> :TagbarToggle<CR>
   noremap <F4> :BufExplorer<CR>
   noremap <F5> :set nu!<CR>
@@ -29,20 +29,26 @@ Normal Mappings
   noremap <F10> :source ~/.vim/tmp/session1.txt<CR>
   noremap <F11> :mks! ~/.vim/tmp/session2.txt<CR>
   noremap <F12> :source ~/.vim/tmp/session2.txt<CR>
-  noremap <leader>1 do
-  noremap <leader>2 dp
-  noremap <leader>3 <C-A>
-  noremap <leader>4 <C-X>
+  noremap <leader>1 :call ReadMode()<CR>
+  noremap <leader>2 :call EditMode()<CR>
+  noremap <leader>3 :call KernelMode()<CR>
+  noremap <leader>4 :retab<CR>
+  noremap <leader>5 do<CR>
+  noremap <leader>6 dp<CR>
+  noremap <leader>7 <C-A>
+  noremap <leader>8 <C-X>
+  noremap <leader>l :set colorcolumn=80<CR>
 Switch buffer
-  noremap <C-left> :bprevious<CR>
-  noremap <C-right> :bnext<CR>
+  noremap <C-left> :tabprevious<CR>
+  noremap <C-right> :tabnext<CR>
+  noremap <C-up> :tabnew<CR>
   noremap <C-down> :bdelete<CR>
 Switch between windows
   noremap <C-H> <C-W>h
   noremap <C-L> <C-W>l
   noremap <C-J> <C-W>j
   noremap <C-K> <C-W>k
-Split windows
+Split windows
   nnoremap <C-\> :vsp<CR>
 Mouse scrolling
   noremap <MouseDown> <C-Y>
