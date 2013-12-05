@@ -108,11 +108,16 @@
     "autocmd FileWritePre * :retab " affect the existing tab characters
                                    " to match current settings when saving
     "autocmd BufWritePre * :retab
-    autocmd FileType make setlocal noexpandtab " To turn off expandtab for editing makefiles
-    "set cindent
-    "set cinoptions=l1,t0,+0,(s,j1,C1 " cindent fixed: l: case, t: function return
-                                     " +: continuation line, (: unclosed parentheses,
-                                     " j: java
+    autocmd FileType make setlocal noexpandtab " To turn off expandtab for
+                                               " editing makefiles
+    "set smartindent " like autoindent but also recognizes some C syntax
+    "set cindent " automatic C program indenting
+    set cinoptions=:0,l1,t0,g0  " cindent for kernel style:
+                                " :: switch, l: case
+                                " t: function return, g: C++ scope
+                                " +: continuation line
+                                " j: java, J: javascript
+                                " N for chars, or Ns for shifts
     " Notice! Following have been loaded in vundles.vim
         "filetype plugin indent on " load filetype plugins/indent settings
         "autocmd FileType python,perl filetype plugin indent on
