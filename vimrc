@@ -377,10 +377,10 @@
     " YankRing
         let g:yankring_history_dir=g:tempdir
     " Ctrlp
-        let g:ctrlp_working_path_mode = 'ra'
-        let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+        let g:ctrlp_working_path_mode='ra'
+        let g:ctrlp_custom_ignore='\v[\/]\.(git|hg|svn)$'
         let g:ctrlp_follow_symlinks=1
-        let g:ctrlp_user_command = {
+        let g:ctrlp_user_command={
             \ 'types': {
                 \ 1: ['.git', 'cd %s && git ls-files'],
                 \ 2: ['.hg', 'hg --cwd %s locate -I .'],
@@ -390,9 +390,11 @@
     " Vim Git Gutter
         let g:gitgutter_enabled=0 " Disable at startup.
     " Airline
-        let g:airline_powerline_fonts = 0
+        let g:airline_powerline_fonts=0
         let g:airline_left_sep=''
         let g:airline_right_sep=''
+        let g:airline_section_x='%{getcwd()}'
+        let g:airline_section_z='%l/%L'
     " BufTabs
         "let g:buftabs_other_components_length=20
         "let g:buftabs_show_number=0
