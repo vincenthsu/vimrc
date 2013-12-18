@@ -225,7 +225,7 @@
     " A mapping to make a backup session of the current file.
         function! WriteSession()
             let l:fname = strftime('%Y%m%d-%H%M%S') . '_' . expand('%:t')
-            silent execute 'SaveSession ' . l:fname
+            silent execute 'SaveSession! ' . l:fname
             echomsg 'Saved Session: ' . l:fname
         endfunction
         command! SaveSessionQuickly call WriteSession()
@@ -280,8 +280,8 @@
         noremap <F8> :call RTrailing()<CR>
         noremap <F9> :DeleteSession<CR>
         noremap <F10> :SaveSessionQuickly<CR>
-        noremap <F11> :SaveSession
-        noremap <F12> :OpenSession<CR>
+        noremap <F11> :SaveSession!
+        noremap <F12> :OpenSession!<CR>
         noremap <leader>1 :call ReadMode()<CR>
         noremap <leader>2 :call EditMode()<CR>
         noremap <leader>3 :call KernelMode()<CR>
