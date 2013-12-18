@@ -172,9 +172,9 @@
         set viminfo+=n$HOME/.vim/tmp/viminfo.txt
     " Jump to the last position when reopening a file
         autocmd BufReadPost *
-                \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                \ exe "normal g'\"" |
-                \ endif ""'")
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   execute "normal g'\"" |
+            \ endif ""'")
     " Vim 7.3 feature: infinite undo
         if version >= 703
             set undofile
@@ -204,11 +204,11 @@
                 diffthis
                 vnew diffbuf| r # | normal! | ggdd
                 diffthis
-                exe "setlocal bt=nofile bh=wipe ro noswf ft=" . filetype
+                execute "setlocal bt=nofile bh=wipe ro noswf ft=" . filetype
                 let b:diffbuf=1
             endif
         endfunction
-        com! TDiffSaved call s:DiffWithSaved()
+        command! TDiffSaved call s:DiffWithSaved()
     " QuickFix Toggle
         function! QFToggle()
             redir => ls_output
@@ -222,7 +222,14 @@
                 execute ':cclose'
             endif
         endfunction
-
+    " A mapping to make a backup session of the current file.
+        function! WriteSession()
+            let l:fname = strftime('%Y%m%d-%H%M%S') . '_' . expand('%:t')
+            silent execute 'SaveSession ' . l:fname
+            echomsg 'Saved Session: ' . l:fname
+        endfunction
+        command! SaveSessionQuickly call WriteSession()
+    " Quickly change layouts
         function! ReadMode()
             set nolist " show tabs and trailing
             set noexpandtab " use real tabs
@@ -271,10 +278,10 @@
         noremap <F6> :set list!<CR>
         noremap <F7> :GitGutterToggle<CR>
         noremap <F8> :call RTrailing()<CR>
-        noremap <F9> :mks! ~/.vim/tmp/session1.txt<CR>
-        noremap <F10> :source ~/.vim/tmp/session1.txt<CR>
-        noremap <F11> :mks! ~/.vim/tmp/session2.txt<CR>
-        noremap <F12> :source ~/.vim/tmp/session2.txt<CR>
+        noremap <F9> :DeleteSession<CR>
+        noremap <F10> :SaveSessionQuickly<CR>
+        noremap <F11> :SaveSession
+        noremap <F12> :OpenSession<CR>
         noremap <leader>1 :call ReadMode()<CR>
         noremap <leader>2 :call EditMode()<CR>
         noremap <leader>3 :call KernelMode()<CR>
@@ -329,6 +336,8 @@
         Bundle 'ctrlp.vim'
         Bundle 'bufexplorer.zip'
         Bundle 'jistr/vim-nerdtree-tabs'
+        Bundle 'xolox/vim-misc'
+        Bundle 'xolox/vim-session'
         "Bundle 'zefei/buftabs'
         "Bundle 'mihaifm/bufstop'
     " Tracing code
@@ -389,6 +398,13 @@
         \ }
     " Vim Git Gutter
         let g:gitgutter_enabled=0 " Disable at startup.
+    " vim-session
+        let g:session_directory='~/.vim/tmp/sessions'
+        let g:session_autoload='yes'
+        let g:session_autosave='yes'
+        let g:session_default_to_last=1
+        let g:session_default_overwrite=1
+        let g:session_command_aliases = 1
     " Airline
         let g:airline_powerline_fonts=0
         let g:airline_left_sep=''
