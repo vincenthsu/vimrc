@@ -22,7 +22,7 @@
     set noerrorbells " don't make noise
     set autochdir "always switch to the current file directory
     set hidden " you can change buffers without saving
-    set sessionoptions-=options " don't persist options in sessions
+    set sessionoptions=buffers,curdir,folds,tabpages " customize what to save
 
 " Vim UI
     set cursorline " highlight current line
@@ -187,12 +187,11 @@
             %s/\s*$//
             ''
         :endfunction
-        "auto remove when saving
-        "set list listchars=trail:.,extends:>
-        autocmd FileWritePre * :call RTrailing()
-        autocmd FileAppendPre * :call RTrailing()
-        autocmd FilterWritePre * :call RTrailing()
-        autocmd BufWritePre * :call RTrailing()
+        " Auto remove when saving
+        "autocmd FileWritePre * :call RTrailing()
+        "autocmd FileAppendPre * :call RTrailing()
+        "autocmd FilterWritePre * :call RTrailing()
+        "autocmd BufWritePre * :call RTrailing()
     " Diff file with current modify
         function! s:DiffWithSaved()
             if exists("b:diffbuf")
@@ -271,31 +270,37 @@
 
 " Keymap
     " Normal Mappings
-        noremap <F2> :NERDTreeTabsToggle<CR>
+        noremap <F2> :NERDTreeToggle<CR>
         noremap <F3> :TagbarToggle<CR>
-        noremap <F4> :BufExplorer<CR>
+        noremap <F4> :MBEToggle<CR>
         noremap <F5> :set nu!<CR>
         noremap <F6> :set list!<CR>
-        noremap <F7> :GitGutterToggle<CR>
-        noremap <F8> :call RTrailing()<CR>
-        noremap <F9> :DeleteSession<CR>
-        noremap <F10> :SaveSessionQuickly<CR>
-        noremap <F11> :SaveSession!
-        noremap <F12> :OpenSession!<CR>
+        noremap <F7> :set colorcolumn=80<CR>
+        noremap <F8> :GitGutterToggle<CR>
+        noremap <F11> :retab<CR>
+        noremap <F12> :call RTrailing()<CR>
         noremap <leader>1 :call ReadMode()<CR>
         noremap <leader>2 :call EditMode()<CR>
         noremap <leader>3 :call KernelMode()<CR>
-        noremap <leader>4 :retab<CR>
-        noremap <leader>5 do<CR>
-        noremap <leader>6 dp<CR>
-        noremap <leader>7 <C-A>
-        noremap <leader>8 <C-X>
-        noremap <leader>l :set colorcolumn=80<CR>
+    " Rebind the C-X
+        noremap <C-X> <NOP>
+        " obtain/pull difference
+        noremap <C-X>. do
+        noremap <C-X>, dp
+        " number add/sub 1
+        noremap <C-X>= <C-A>
+        noremap <C-X>- <C-X>
+    " Sessions
+        noremap <C-S> <NOP>
+        noremap <C-S>d :DeleteSession<CR>
+        noremap <C-S>n :SaveSessionQuickly<CR>
+        noremap <C-S>s :SaveSession!
+        noremap <C-S>o :OpenSession!<CR>
     " Switch buffer
-        noremap <C-left> :tabprevious<CR>
-        noremap <C-right> :tabnext<CR>
-        noremap <C-up> :tabnew<CR>
-        noremap <C-down> :bdelete<CR>
+        noremap <C-left> :bprevious<CR>
+        noremap <C-right> :bnext<CR>
+        noremap <C-up> :BufExplorer<CR>
+        noremap <C-down> :MBEbd<CR>
     " Switch between windows
         noremap <C-H> <C-W>h
         noremap <C-L> <C-W>l
@@ -311,7 +316,7 @@
     " Force Save
         noremap <leader>w :w !sudo tee %<CR>
     " Diff file with current modify
-        noremap <leader>d :TDiffSaved<CR>
+        noremap <leader>0 :TDiffSaved<CR>
     " Force line ending conversion
         noremap <leader>u :set ff=unix<CR>
         noremap <leader>d :set ff=dos<CR>
@@ -335,11 +340,12 @@
         Bundle 'The-NERD-tree'
         Bundle 'ctrlp.vim'
         Bundle 'bufexplorer.zip'
-        Bundle 'jistr/vim-nerdtree-tabs'
+        Bundle 'fholgado/minibufexpl.vim'
         Bundle 'xolox/vim-misc'
         Bundle 'xolox/vim-session'
         "Bundle 'zefei/buftabs'
         "Bundle 'mihaifm/bufstop'
+        "Bundle 'jistr/vim-nerdtree-tabs'
     " Tracing code
         Bundle 'Tagbar'
         Bundle 'gtags.vim'
@@ -375,7 +381,6 @@
         Bundle 'sjl/gundo.vim'
         Bundle 'terryma/vim-multiple-cursors'
         Bundle 'terryma/vim-expand-region'
-
     filetype plugin on " required!
 
 " Plugin Settings
@@ -401,7 +406,7 @@
     " vim-session
         let g:session_directory='~/.vim/tmp/sessions'
         let g:session_autoload='yes'
-        let g:session_autosave='yes'
+        let g:session_autosave='no'
         let g:session_default_to_last=1
         let g:session_default_overwrite=1
         let g:session_command_aliases = 1
