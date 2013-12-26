@@ -221,6 +221,38 @@
                 execute ':cclose'
             endif
         endfunction
+    " Set encoding
+        function! SetEncoding()
+            echomsg "Set line encoding to: 1)unix, 2)dos, 3)mac,"
+            echomsg "Set file encoding to: 4)utf-8, 5)big5, 6)latin1,
+                \ 7)gbk, 8)JIS."
+            let en=input('? ')
+            if en==1
+                execute ':set ff=unix'
+            endif
+            if en==2
+                execute ':set ff=dos'
+            endif
+            if en==3
+                execute ':set ff=mac'
+            endif
+            if en==4
+                execute ':e ++enc=utf-8'
+            endif
+            if en==5
+                execute ':e ++enc=big5'
+            endif
+            if en==6
+                execute ':e ++enc=latin1'
+            endif
+            if en==7
+                execute ':e ++enc=gbk'
+            endif
+            if en==8
+                execute ':e ++enc=cp932'
+            endif
+        endfunction
+        command! SetEncoding call SetEncoding()
     " A mapping to make a backup session of the current file.
         function! WriteSession()
             let l:fname = strftime('%Y%m%d-%H%M%S') . '_' . expand('%:t')
@@ -282,6 +314,8 @@
         noremap <leader>1 :call ReadMode()<CR>
         noremap <leader>2 :call EditMode()<CR>
         noremap <leader>3 :call KernelMode()<CR>
+        noremap <leader>4 :call SetEncoding()<CR>
+        noremap <leader>e :call SetEncoding()<CR>
     " Rebind the C-X
         noremap <C-X> <NOP>
         " obtain/pull difference
@@ -317,11 +351,6 @@
         noremap <leader>w :w !sudo tee %<CR>
     " Diff file with current modify
         noremap <leader>0 :TDiffSaved<CR>
-    " Force line ending conversion
-        noremap <leader>u :set ff=unix<CR>
-        noremap <leader>d :set ff=dos<CR>
-    " File encodings to JIS
-        noremap <leader>j :e ++enc=cp932<CR>
     " Plugin: Gtags
         noremap <leader>g :Gtags<CR>
         noremap <leader>s :Gtags -s<CR>
