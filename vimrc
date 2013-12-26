@@ -193,7 +193,7 @@
         "autocmd FilterWritePre * :call RTrailing()
         "autocmd BufWritePre * :call RTrailing()
     " Diff file with current modify
-        function! s:DiffWithSaved()
+        function! DiffWithSaved()
             if exists("b:diffbuf")
                 unlet b:diffbuf
                 bdelete diffbuf
@@ -207,20 +207,7 @@
                 let b:diffbuf=1
             endif
         endfunction
-        command! TDiffSaved call s:DiffWithSaved()
-    " QuickFix Toggle
-        function! QFToggle()
-            redir => ls_output
-            execute ':silent! ls'
-            redir END
-
-            let exists=match(ls_output, "Quickfix List")
-            if exists == -1
-                execute ':copen'
-            else
-                execute ':cclose'
-            endif
-        endfunction
+        command! DiffSaved call DiffWithSaved()
     " Set encoding
         function! SetEncoding()
             echomsg "Set line encoding to: 1)unix, 2)dos, 3)mac,"
@@ -252,7 +239,6 @@
                 execute ':e ++enc=cp932'
             endif
         endfunction
-        command! SetEncoding call SetEncoding()
     " A mapping to make a backup session of the current file.
         function! WriteSession()
             let l:fname = strftime('%Y%m%d-%H%M%S') . '_' . expand('%:t')
@@ -273,7 +259,6 @@
             set colorcolumn=
             set nonumber
         endfunction
-
         function! EditMode()
             set list " show tabs and trailing
             set expandtab " no real tabs please!
@@ -286,7 +271,6 @@
             set colorcolumn=
             set number
         endfunction
-
         function! KernelMode()
             set nolist " show tabs and trailing
             set noexpandtab " use real tabs
@@ -301,36 +285,34 @@
         endfunction
 
 " Keymap
-    " Normal Mappings
-        noremap <F2> :NERDTreeToggle<CR>
-        noremap <F3> :TagbarToggle<CR>
-        noremap <F4> :MBEToggle<CR>
-        noremap <F5> :set nu!<CR>
-        noremap <F6> :set list!<CR>
-        noremap <F7> :set colorcolumn=80<CR>
-        noremap <F8> :GitGutterToggle<CR>
-        noremap <F11> :retab<CR>
-        noremap <F12> :call RTrailing()<CR>
+    " Hotkeys
+        noremap <F1> :NERDTreeToggle<CR>
+        noremap <F2> :TagbarToggle<CR>
+        noremap <F3> :MBEToggle<CR>
+        noremap <F4> :GitGutterToggle<CR>
+        noremap <F5> :OpenSession!<CR>
+        noremap <F6> :SaveSession!
+        noremap <F7> :SaveSessionQuickly<CR>
+        noremap <F8> :DeleteSession<CR>
+        noremap <F9> :call SetEncoding()<CR>
+        noremap <F10> :retab<CR> :call RTrailing()<CR>
+        noremap <F11> :helptags ~/.vim/doc<CR> 
+        noremap <F12> :help_hotkeys<CR>
+    " Rebind the vim help file 
+        inoremap <F1> <ESC> :NERDTree <CR>
+        noremap <leader>h :help<CR>
+        noremap <leader>k :help_hotkeys<CR>
+    " Switch indent modes
         noremap <leader>1 :call ReadMode()<CR>
         noremap <leader>2 :call EditMode()<CR>
         noremap <leader>3 :call KernelMode()<CR>
-        noremap <leader>4 :call SetEncoding()<CR>
+    " Set line/file encodings
         noremap <leader>e :call SetEncoding()<CR>
-    " Rebind the C-X
-        noremap <C-X> <NOP>
-        " obtain/pull difference
-        noremap <C-X>. do
-        noremap <C-X>, dp
-        " number add/sub 1
-        noremap <C-X>= <C-A>
-        noremap <C-X>- <C-X>
-    " Sessions
-        noremap <C-S> <NOP>
-        noremap <C-S>d :DeleteSession<CR>
-        noremap <C-S>n :SaveSessionQuickly<CR>
-        noremap <C-S>s :SaveSession!
-        noremap <C-S>o :OpenSession!<CR>
-    " Switch buffer
+    " Force save the file by sudo privieges
+        noremap <leader>w :w !sudo tee %<CR>
+    " Diff file with current modify
+        noremap <leader>d :DiffSaved<CR>
+    " Switch buffers
         noremap <C-left> :bprevious<CR>
         noremap <C-right> :bnext<CR>
         noremap <C-up> :BufExplorer<CR>
@@ -342,22 +324,27 @@
         noremap <C-K> <C-W>k
     " Split windows
         nnoremap <C-\> :vsp<CR>
-    " Mouse scrolling
-        noremap <MouseDown> <C-Y>
-        noremap <MouseUp> <C-E>
-        noremap <C-MouseDown> l
-        noremap <C-MouseUp> h
-    " Force Save
-        noremap <leader>w :w !sudo tee %<CR>
-    " Diff file with current modify
-        noremap <leader>0 :TDiffSaved<CR>
-    " Plugin: Gtags
+    " Unbind the C-X for other usages
+        noremap <C-X> <NOP>
+        " obtain/pull difference
+        noremap <C-X>. do
+        noremap <C-X>, dp
+        " number add/sub 1
+        noremap <C-X>= <C-A>
+        noremap <C-X>- <C-X>
+    " Plugin: vim-session
+        noremap <C-S> <NOP>
+        noremap <C-S>d :DeleteSession<CR>
+        noremap <C-S>n :SaveSessionQuickly<CR>
+        noremap <C-S>s :SaveSession!
+        noremap <C-S>o :OpenSession!<CR>
+    " Plugin: gtags
         noremap <leader>g :Gtags<CR>
         noremap <leader>s :Gtags -s<CR>
         noremap <leader>r :Gtags -r<CR>
         noremap <leader>z :cp<CR>
         noremap <leader>x :cn<CR>
-    " Plunoregin: Ctrlp
+    " Plugin: ctrlp
         " default bindings conflict with yankring bindings
         noremap <leader>p :CtrlPMixed<CR>
 
@@ -413,13 +400,13 @@
     filetype plugin on " required!
 
 " Plugin Settings
-    " Ctags
+    " ctags
         set tags=tags;
     " Tagbar
         let tagbar_width=30 " default: 40
     " YankRing
         let g:yankring_history_dir=g:tempdir
-    " Ctrlp
+    " ctrlp
         let g:ctrlp_working_path_mode='ra'
         let g:ctrlp_custom_ignore='\v[\/]\.(git|hg|svn)$'
         let g:ctrlp_follow_symlinks=1
@@ -430,7 +417,7 @@
             \ },
             \ 'fallback': 'find %s -type f'
         \ }
-    " Vim Git Gutter
+    " vim-gitgutter
         let g:gitgutter_enabled=0 " Disable at startup.
     " vim-session
         let g:session_directory='~/.vim/tmp/sessions'
@@ -439,13 +426,13 @@
         let g:session_default_to_last=1
         let g:session_default_overwrite=1
         let g:session_command_aliases = 1
-    " Airline
+    " vim-airline
         let g:airline_powerline_fonts=0
         let g:airline_left_sep=''
         let g:airline_right_sep=''
         let g:airline_section_x='%{getcwd()}'
         let g:airline_section_z='%l/%L'
-    " BufTabs
+    " buftabs
         "let g:buftabs_other_components_length=20
         "let g:buftabs_show_number=0
         "let g:buftabs_marker_start=" "
