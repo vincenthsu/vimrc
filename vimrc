@@ -245,7 +245,7 @@
             silent execute 'SaveSession! ' . l:fname
             echomsg 'Saved Session: ' . l:fname
         endfunction
-        command! SaveSessionQuickly call WriteSession()
+        command! NewSession call WriteSession()
     " Quickly change layouts
         function! ReadMode()
             set nolist " show tabs and trailing
@@ -289,16 +289,16 @@
         noremap <F1> :NERDTreeToggle<CR>
         noremap <F2> :TagbarToggle<CR>
         noremap <F3> :MBEToggle<CR>
-        noremap <F4> :GitGutterToggle<CR>
+        noremap <F4> :SignifyToggle<CR>
         noremap <F5> :OpenSession!<CR>
-        noremap <F6> :SaveSession!
-        noremap <F7> :SaveSessionQuickly<CR>
+        noremap <F6> :SaveSession!<CR>
+        noremap <F7> :NewSession<CR>
         noremap <F8> :DeleteSession<CR>
         noremap <F9> :call SetEncoding()<CR>
         noremap <F10> :retab<CR> :call RTrailing()<CR>
-        noremap <F11> :helptags ~/.vim/doc<CR> 
+        noremap <F11> :helptags ~/.vim/doc<CR>
         noremap <F12> :help_hotkeys<CR>
-    " Rebind the vim help file 
+    " Rebind the vim help file
         inoremap <F1> <ESC> :NERDTree <CR>
         noremap <leader>h :help<CR>
         noremap <leader>k :help_hotkeys<CR>
@@ -335,7 +335,7 @@
     " Plugin: vim-session
         noremap <C-S> <NOP>
         noremap <C-S>d :DeleteSession<CR>
-        noremap <C-S>n :SaveSessionQuickly<CR>
+        noremap <C-S>n :NewSession<CR>
         noremap <C-S>s :SaveSession!
         noremap <C-S>o :OpenSession!<CR>
     " Plugin: gtags
@@ -347,6 +347,8 @@
     " Plugin: ctrlp
         " default bindings conflict with yankring bindings
         noremap <leader>p :CtrlPMixed<CR>
+    " Plugin: gundo
+        noremap <leader>u :GundoToggle<CR>
 
 " Use Vundle plugin to manage all other plugins
     filetype off " required!
@@ -357,8 +359,8 @@
         Bundle 'ctrlp.vim'
         Bundle 'bufexplorer.zip'
         Bundle 'fholgado/minibufexpl.vim'
-        Bundle 'xolox/vim-misc'
         Bundle 'xolox/vim-session'
+            Bundle 'xolox/vim-misc'
         "Bundle 'zefei/buftabs'
         "Bundle 'mihaifm/bufstop'
         "Bundle 'jistr/vim-nerdtree-tabs'
@@ -369,34 +371,38 @@
         Bundle 'matchit.zip'
         "Bundle 'taglist.vim'
     " Auto code completion
-        " Snipmate dependency
-            Bundle 'snipmate-snippets'
-            Bundle 'MarcWeber/vim-addon-mw-utils'
-            Bundle 'tomtom/tlib_vim'
-            Bundle 'garbas/vim-snipmate'
         Bundle 'OmniCppComplete'
         Bundle 'ervandew/supertab'
+        Bundle 'garbas/vim-snipmate'
+            Bundle 'MarcWeber/vim-addon-mw-utils'
+            Bundle 'tomtom/tlib_vim'
+            Bundle 'snipmate-snippets'
         "Bundle 'Townk/vim-autoclose'
         "Bundle 'Rip-Rip/clang_complete'
         "Bundle 'http://cx4a.org/repo/gccsense.git'
-        "Bundle 'pope/vim-surround'
-    " Syntax
+    " Editing
+        Bundle 'YankRing.vim'
+        Bundle 'sjl/gundo.vim'
+        Bundle 'tpope/vim-surround'
+        Bundle 'tpope/vim-repeat'
+        Bundle 'tpope/vim-commentary'
+        Bundle 'chrisbra/NrrwRgn'
+        Bundle 'terryma/vim-multiple-cursors'
+            Bundle 'terryma/vim-expand-region'
+    " Syntaxes & colors
         Bundle 'plasticboy/vim-markdown'
-        "Bundle 'suan/vim-instant-markdown'
-        "Bundle 'vim-pandoc/vim-pandoc'
-        "Bundle 'b4winckler/vim-objc'
-    " Color Scheme
         Bundle 'flazz/vim-colorschemes'
         Bundle 'bling/vim-airline'
     " Version control
         Bundle 'tpope/vim-fugitive'
-        Bundle 'airblade/vim-gitgutter'
+        Bundle 'mhinz/vim-signify'
+        Bundle 'gregsexton/gitv'
+        "Bundle 'airblade/vim-gitgutter'
     " Others
         Bundle 'gmarik/vundle'
-        Bundle 'YankRing.vim'
-        Bundle 'sjl/gundo.vim'
-        Bundle 'terryma/vim-multiple-cursors'
-        Bundle 'terryma/vim-expand-region'
+        Bundle 'mattn/webapi-vim'
+        Bundle 'mattn/gist-vim'
+        Bundle 'starleoda/vim-vookmark'
     filetype plugin on " required!
 
 " Plugin Settings
@@ -417,8 +423,6 @@
             \ },
             \ 'fallback': 'find %s -type f'
         \ }
-    " vim-gitgutter
-        let g:gitgutter_enabled=0 " Disable at startup.
     " vim-session
         let g:session_directory='~/.vim/tmp/sessions'
         let g:session_autoload='yes'
@@ -432,17 +436,15 @@
         let g:airline_right_sep=''
         let g:airline_section_x='%{getcwd()}'
         let g:airline_section_z='%l/%L'
-    " buftabs
-        "let g:buftabs_other_components_length=20
-        "let g:buftabs_show_number=0
-        "let g:buftabs_marker_start=" "
-        "let g:buftabs_marker_end=" "
-        "set statusline=
-        "set statusline+=\ #{buftabs}
-        "set statusline+=%=
-        "set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}
-        "set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-        "set statusline+=\ L%-5.5l
+    " vim-signify
+        let g:signify_disable_by_default=1
+    " vim-markdown
+        let g:vim_markdown_folding_disabled=1
+    " vim-vookmark
+        let g:vookmark_savepath=$HOME.'/.vim/tmp/bookmark'
+    " gist-vim
+        let g:gist_show_privates = 1
+        let g:gist_post_private = 1
 
 " Color Theme: sequence-related
     " Enable xterm 256 color

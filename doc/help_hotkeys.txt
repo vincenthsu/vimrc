@@ -1,5 +1,5 @@
 *help_hotkeys.txt*  VIM hotkeys cheet sheet
-:q
+
 ==============================================================================
 Contents                                *help_hotkeys* *help_hotkeys-contents*
 
@@ -17,69 +17,70 @@ Contents                                *help_hotkeys* *help_hotkeys-contents*
 ==============================================================================
 User defined keys                                     *help_hotkeys-user_keys*
 
-" Keymap
-    " Hotkeys
-        noremap <F1> :NERDTreeToggle<CR>
-        noremap <F2> :TagbarToggle<CR>
-        noremap <F3> :MBEToggle<CR>
-        noremap <F4> :GitGutterToggle<CR>
-        noremap <F5> :OpenSession!<CR>
-        noremap <F6> :SaveSession!
-        noremap <F7> :SaveSessionQuickly<CR>
-        noremap <F8> :DeleteSession<CR>
-        noremap <F9> :call SetEncoding()<CR>
-        noremap <F10> :retab<CR> :call RTrailing()<CR>
-        noremap <F11> :helptags ~/.vim/doc<CR>
-        noremap <F12> :help_hotkeys<CR>
-    " Rebind the vim help file
-        inoremap <F1> <ESC> :NERDTree <CR>
-        noremap <leader>h :help<CR>
-        noremap <leader>k :help_hotkeys<CR>
-    " Switch indent modes
-        noremap <leader>1 :call ReadMode()<CR>
-        noremap <leader>2 :call EditMode()<CR>
-        noremap <leader>3 :call KernelMode()<CR>
-    " Set line/file encodings
-        noremap <leader>e :call SetEncoding()<CR>
-    " Force save the file by sudo privieges
-        noremap <leader>w :w !sudo tee %<CR>
-    " Diff file with current modify
-        noremap <leader>d :DiffSaved<CR>
-    " Switch buffers
-        noremap <C-left> :bprevious<CR>
-        noremap <C-right> :bnext<CR>
-        noremap <C-up> :BufExplorer<CR>
-        noremap <C-down> :MBEbd<CR>
-    " Switch between windows
-        noremap <C-H> <C-W>h
-        noremap <C-L> <C-W>l
-        noremap <C-J> <C-W>j
-        noremap <C-K> <C-W>k
-    " Split windows
-        nnoremap <C-\> :vsp<CR>
-    " Unbind the C-X for other usages
-        noremap <C-X> <NOP>
-        " obtain/pull difference
-        noremap <C-X>. do
-        noremap <C-X>, dp
-        " number add/sub 1
-        noremap <C-X>= <C-A>
-        noremap <C-X>- <C-X>
-    " Plugin: vim-session
-        noremap <C-S> <NOP>
-        noremap <C-S>d :DeleteSession<CR>
-        noremap <C-S>n :SaveSessionQuickly<CR>
-        noremap <C-S>s :SaveSession!
-        noremap <C-S>o :OpenSession!<CR>
-    " Plugin: gtags
-        noremap <leader>g :Gtags<CR>
-        noremap <leader>s :Gtags -s<CR>
-        noremap <leader>r :Gtags -r<CR>
-        noremap <leader>z :cp<CR>
-        noremap <leader>x :cn<CR>
-    " Plugin: ctrlp
-        " default bindings conflict with yankring bindings
-        noremap <leader>p :CtrlPMixed<CR>
+" Hotkeys
+    noremap <F1> :NERDTreeToggle<CR>
+    noremap <F2> :TagbarToggle<CR>
+    noremap <F3> :MBEToggle<CR>
+    noremap <F4> :SignifyToggle<CR>
+    noremap <F5> :OpenSession!<CR>
+    noremap <F6> :SaveSession!<CR>
+    noremap <F7> :NewSession<CR>
+    noremap <F8> :DeleteSession<CR>
+    noremap <F9> :call SetEncoding()<CR>
+    noremap <F10> :retab<CR> :call RTrailing()<CR>
+    noremap <F11> :helptags ~/.vim/doc<CR>
+    noremap <F12> :help_hotkeys<CR>
+" Rebind the vim help file
+    inoremap <F1> <ESC> :NERDTree <CR>
+    noremap <leader>h :help<CR>
+    noremap <leader>k :help_hotkeys<CR>
+" Switch indent modes
+    noremap <leader>1 :call ReadMode()<CR>
+    noremap <leader>2 :call EditMode()<CR>
+    noremap <leader>3 :call KernelMode()<CR>
+" Set line/file encodings
+    noremap <leader>e :call SetEncoding()<CR>
+" Force save the file by sudo privieges
+    noremap <leader>w :w !sudo tee %<CR>
+" Diff file with current modify
+    noremap <leader>d :DiffSaved<CR>
+" Switch buffers
+    noremap <C-left> :bprevious<CR>
+    noremap <C-right> :bnext<CR>
+    noremap <C-up> :BufExplorer<CR>
+    noremap <C-down> :MBEbd<CR>
+" Switch between windows
+    noremap <C-H> <C-W>h
+    noremap <C-L> <C-W>l
+    noremap <C-J> <C-W>j
+    noremap <C-K> <C-W>k
+" Split windows
+    nnoremap <C-\> :vsp<CR>
+" Unbind the C-X for other usages
+    noremap <C-X> <NOP>
+    " obtain/pull difference
+    noremap <C-X>. do
+    noremap <C-X>, dp
+    " number add/sub 1
+    noremap <C-X>= <C-A>
+    noremap <C-X>- <C-X>
+" Plugin: vim-session
+    noremap <C-S> <NOP>
+    noremap <C-S>d :DeleteSession<CR>
+    noremap <C-S>n :NewSession<CR>
+    noremap <C-S>s :SaveSession!
+    noremap <C-S>o :OpenSession!<CR>
+" Plugin: gtags
+    noremap <leader>g :Gtags<CR>
+    noremap <leader>s :Gtags -s<CR>
+    noremap <leader>r :Gtags -r<CR>
+    noremap <leader>z :cp<CR>
+    noremap <leader>x :cn<CR>
+" Plugin: ctrlp
+    " default bindings conflict with yankring bindings
+    noremap <leader>p :CtrlPMixed<CR>
+" Plugin: gundo
+    noremap <leader>u :GundoToggle<CR>
 
 ==============================================================================
 Split window                                        *help_hotkeys-split_window*
