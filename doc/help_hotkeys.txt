@@ -45,8 +45,8 @@ User defined keys                                     *help_hotkeys-user_keys*
 " Diff file with current modify
     noremap <leader>d :DiffSaved<CR>
 " Switch buffers
-    noremap <C-left> :bprevious<CR>
-    noremap <C-right> :bnext<CR>
+    noremap <C-left> :MBEbp<CR>
+    noremap <C-right> :MBEbn<CR>
     noremap <C-up> :BufExplorer<CR>
     noremap <C-down> :MBEbd<CR>
 " Switch between windows

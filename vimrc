@@ -313,8 +313,8 @@
     " Diff file with current modify
         noremap <leader>d :DiffSaved<CR>
     " Switch buffers
-        noremap <C-left> :bprevious<CR>
-        noremap <C-right> :bnext<CR>
+        noremap <C-left> :MBEbp<CR>
+        noremap <C-right> :MBEbn<CR>
         noremap <C-up> :BufExplorer<CR>
         noremap <C-down> :MBEbd<CR>
     " Switch between windows
@@ -445,6 +445,8 @@
     " gist-vim
         let g:gist_show_privates = 1
         let g:gist_post_private = 1
+    " minibufexpl
+        let g:miniBufExplCycleArround = 1
 
 " Color Theme: sequence-related
     " Enable xterm 256 color
