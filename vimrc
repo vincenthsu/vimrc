@@ -387,6 +387,7 @@
         Bundle 'tpope/vim-repeat'
         Bundle 'tpope/vim-commentary'
         Bundle 'chrisbra/NrrwRgn'
+        Bundle 'jayflo/vim-skip'
         Bundle 'terryma/vim-multiple-cursors'
             Bundle 'terryma/vim-expand-region'
     " Syntaxes & colors
