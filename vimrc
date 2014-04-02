@@ -25,7 +25,7 @@
     set sessionoptions=buffers,curdir,folds,tabpages " customize what to save
 
 " Vim UI
-    set cursorline " highlight current line
+    "set cursorline " highlight current line
     set lazyredraw " do not redraw while running macros
     set linespace=0 " don't insert any extra pixel lines
                      " betweens rows
@@ -272,7 +272,7 @@
             set number
         endfunction
         function! KernelMode()
-            set nolist " show tabs and trailing
+            set list " show tabs and trailing
             set noexpandtab " use real tabs
             set softtabstop=8 " when hitting tab or backspace, how many spaces
                               " should a tab be (see expandtab)
@@ -460,3 +460,5 @@
     " Popup menu
         highlight Pmenu ctermbg=234 ctermfg=7
         highlight PmenuSel ctermbg=8 ctermfg=7
+    " Tabs and trailing
+        highlight SpecialKey ctermfg=236 ctermbg=0
