@@ -435,7 +435,7 @@
         let g:airline_powerline_fonts=0
         let g:airline_left_sep=''
         let g:airline_right_sep=''
-        let g:airline_section_x='%{getcwd()}'
+        "let g:airline_section_x='%{getcwd()}'
         let g:airline_section_z='%l/%L'
     " vim-signify
         let g:signify_disable_by_default=1
