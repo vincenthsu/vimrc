@@ -349,6 +349,8 @@
         noremap <leader>p :CtrlPMixed<CR>
     " Plugin: gundo
         noremap <leader>u :GundoToggle<CR>
+    " Plugin: YouCompleteMe
+        noremap <C-j> :YcmCompleter GoTo<CR>
 
 " Use Vundle plugin to manage all other plugins
     filetype off " required!
@@ -369,14 +371,18 @@
         Bundle 'gtags.vim'
         Bundle 'chazy/cscope_maps'
         Bundle 'matchit.zip'
+        "Bundle 'scrooloose/syntastic'
         "Bundle 'taglist.vim'
     " Auto code completion
-        Bundle 'OmniCppComplete'
-        Bundle 'ervandew/supertab'
-        Bundle 'garbas/vim-snipmate'
-            Bundle 'MarcWeber/vim-addon-mw-utils'
-            Bundle 'tomtom/tlib_vim'
-            Bundle 'snipmate-snippets'
+        Bundle 'Valloric/YouCompleteMe'
+        Bundle 'SirVer/ultisnips'
+            Bundle 'vincenthsu/vim-snippets'
+        "Bundle 'OmniCppComplete'
+        "Bundle 'ervandew/supertab'
+        "Bundle 'garbas/vim-snipmate'
+        "    Bundle 'MarcWeber/vim-addon-mw-utils'
+        "    Bundle 'tomtom/tlib_vim'
+        "    Bundle 'honza/vim-snippets'
         "Bundle 'Townk/vim-autoclose'
         "Bundle 'Rip-Rip/clang_complete'
         "Bundle 'http://cx4a.org/repo/gccsense.git'
@@ -448,6 +454,14 @@
         let g:gist_post_private = 1
     " minibufexpl
         let g:miniBufExplCycleArround = 1
+    " UltiSnips
+        let g:UltiSnipsExpandTrigger="<Tab>"
+        let g:UltiSnipsJumpForwardTrigger="<Tab>"
+    " YouCompleteMe
+        let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+        let g:ycm_key_list_select_completion=['<Down>']
+        let g:ycm_key_list_previous_completion=['<Up>']
+        let g:ycm_show_diagnostics_ui=0
 
 " Color Theme: sequence-related
     " Enable xterm 256 color
