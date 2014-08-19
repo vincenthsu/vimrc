@@ -4,12 +4,14 @@
 Contents                                *help_hotkeys* *help_hotkeys-contents*
 
 |help_hotkeys-user_keys|     User defined keys
-|help_hotkeys-split_window|  Split window
 |help_hotkeys-folder|        Folder
+|help_hotkeys-jumps|         Jumps
 |help_hotkeys-word_repeat|   Word repeat
 |help_hotkeys-auto_complete| Auto complete
 |help_hotkeys-pager|         Pager
+|help_hotkeys-split_window|  Split window
 |help_hotkeys-vimdiff|       VimDiff
+|help_hotkeys-surround|      Surround
 |help_hotkeys-yankring|      YankRing
 |help_hotkeys-cscope|        CScope
 |help_hotkeys-source_help|   Source help doc changed
@@ -21,14 +23,14 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <F1> :NERDTreeToggle<CR>
     noremap <F2> :TagbarToggle<CR>
     noremap <F3> :MBEToggle<CR>
-    noremap <F4> :SignifyToggle<CR>
-    noremap <F5> :OpenSession!<CR>
-    noremap <F6> :SaveSession!<CR>
-    noremap <F7> :NewSession<CR>
+    set pastetoggle=<F4>
+    noremap <F5> :SaveSession!<CR>
+    noremap <F6> :NewSession<CR>
+    noremap <F7> :OpenSession!<CR>
     noremap <F8> :DeleteSession<CR>
-    noremap <F9> :call SetEncoding()<CR>
-    noremap <F10> :retab<CR> :call RTrailing()<CR>
-    noremap <F11> :helptags ~/.vim/doc<CR>
+    noremap <F9> :GundoToggle<CR>
+    noremap <F10> :call SetEncoding()<CR>
+    noremap <F11> :retab<CR> :call RTrailing()<CR>
     noremap <F12> :help_hotkeys<CR>
 " Rebind the vim help file
     inoremap <F1> <ESC> :NERDTree <CR>
@@ -38,6 +40,8 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <leader>1 :call ReadMode()<CR>
     noremap <leader>2 :call EditMode()<CR>
     noremap <leader>3 :call KernelMode()<CR>
+" Gen help docs
+    noremap <leader>t :helptags ~/.vim/doc<CR>
 " Set line/file encodings
     noremap <leader>e :call SetEncoding()<CR>
 " Force save the file by sudo privieges
@@ -49,6 +53,10 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <C-right> :MBEbn<CR>
     noremap <C-up> :BufExplorer<CR>
     noremap <C-down> :MBEbd<CR>
+    noremap <leader><left> :MBEbp<CR>
+    noremap <leader><right> :MBEbn<CR>
+    noremap <leader><up> :BufExplorer<CR>
+    noremap <leader><down> :MBEbd<CR>
 " Switch between windows
     noremap <C-H> <C-W>h
     noremap <C-L> <C-W>l
@@ -56,14 +64,26 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <C-K> <C-W>k
 " Split windows
     nnoremap <C-\> :vsp<CR>
+    nnoremap <C-_> :sp<CR>
+" Split windows size
+    noremap <C-W>+ :resize +10<CR>
+    noremap <C-W>- :resize -10<CR>
+    noremap <C-W>> :vertical resize +10<CR>
+    noremap <C-W>< :vertical resize -10<CR>
+    noremap <C-W>. :vertical resize +20<CR>
+    noremap <C-W>, :vertical resize -20<CR>
 " Unbind the C-X for other usages
     noremap <C-X> <NOP>
     " obtain/pull difference
     noremap <C-X>. do
     noremap <C-X>, dp
+    noremap <C-X>> do
+    noremap <C-X>< dp
     " number add/sub 1
     noremap <C-X>= <C-A>
+    noremap <C-X>+ <C-A>
     noremap <C-X>- <C-X>
+    noremap <C-X>_ <C-X>
 " Plugin: vim-session
     noremap <C-S> <NOP>
     noremap <C-S>d :DeleteSession<CR>
@@ -81,16 +101,10 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <leader>p :CtrlPMixed<CR>
 " Plugin: gundo
     noremap <leader>u :GundoToggle<CR>
-
-==============================================================================
-Split window                                        *help_hotkeys-split_window*
-
-sp: Split current window in two.
-vsp: Split vertically.
-<C-w> [+|-]: resize windows
-<C-w> [<|>]: resize windows with a vertical split
-<C-w> _: maximize current window
-<C-w> =: make all equal size
+" Plugin: YouCompleteMe
+    noremap <C-j> :YcmCompleter GoTo<CR>
+" Plugin: SignifyToggle
+    noremap <leader>4 :SignifyToggle<CR>
 
 ==============================================================================
 Folder                                                   *help_hotkeys-folder*
@@ -99,6 +113,20 @@ zo: open
 zO: open all
 zc: close
 zC: close all
+
+==============================================================================
+Jumps                                                     *help_hotkeys-jumps*
+
+<C-O>: jump back to the previous (older) location
+<C-I>: jump forward to the next (newer) location
+
+[{: jump to the beginning of a C code block (while, switch, if etc)
+]}: jump to the end of a C code block (while, switch, if etc)
+[(: jump to the beginning of a parenthesis
+}): jump to the end of a parenthesis
+[[: sections backward or to the previous '{' in the first column.
+]]: sections forward or to the next '{' in the first column.
+[]: sections backward or to the previous '}' in the first column.
 
 ==============================================================================
 Word repeat                                         *help_hotkeys-word_repeat*
@@ -128,10 +156,47 @@ Pager                                                     *help_hotkeys-pager*
 <C-b>: backup on page
 
 ==============================================================================
+Split window                                        *help_hotkeys-split_window*
+
+sp: Split current window in two.
+vsp: Split vertically.
+<C-w> [+|-]: resize windows
+<C-w> [<|>]: resize windows with a vertical split
+<C-w> _: maximize current window
+<C-w> =: make all equal size
+
+==============================================================================
 VimDiff                                                 *help_hotkeys-vimdiff*
 
 do: o for "obtain"
 dp: p for "put"
+
+==============================================================================
+Surround                                               *help_hotkeys-surround*
+
+Normal mode
+-----------
+ds: delete a surrounding
+cs: change a surrounding
+ys: add a surrounding
+yS: add a surrounding and place the surrounded text on a new line + indent it
+yss: add a surrounding to the whole line
+ySs: add a surrounding to the whole line, place it on a new line + indent it
+ySS: same as ySs
+
+Visual mode
+-----------
+s: in visual mode, add a surrounding
+S: in visual mode, add a surrounding but place text on new line + indent it
+
+Insert mode
+-----------
+<C-s>: in insert mode, add a surrounding
+<C-s><C-s>: in insert mode, add a new line + surrounding + indent
+<C-g>s: same as <CTRL-s>
+<C-g>S: same as <CTRL-s><CTRL-s>
+
+The . command will work with ds, cs, and yss if you install repeat.vim.
 
 ==============================================================================
 YankRing                                               *help_hotkeys-yankring*

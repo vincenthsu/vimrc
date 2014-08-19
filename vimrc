@@ -110,8 +110,8 @@
     "autocmd BufWritePre * :retab
     autocmd FileType make setlocal noexpandtab " To turn off expandtab for
                                                " editing makefiles
-    "set smartindent " like autoindent but also recognizes some C syntax
-    "set cindent " automatic C program indenting
+    set smartindent " like autoindent but also recognizes some C syntax
+    set cindent " automatic C program indenting
     set cinoptions=:0,l1,t0,g0  " cindent for kernel style:
                                 " :: switch, l: case
                                 " t: function return, g: C++ scope
@@ -241,7 +241,7 @@
         endfunction
     " A mapping to make a backup session of the current file.
         function! WriteSession()
-            let l:fname = strftime('%Y%m%d-%H%M%S') . '_' . expand('%:t')
+            let l:fname=strftime('%Y%m%d-%H%M%S') . '_' . expand('%:t')
             silent execute 'SaveSession! ' . l:fname
             echomsg 'Saved Session: ' . l:fname
         endfunction
@@ -289,14 +289,14 @@
         noremap <F1> :NERDTreeToggle<CR>
         noremap <F2> :TagbarToggle<CR>
         noremap <F3> :MBEToggle<CR>
-        noremap <F4> :SignifyToggle<CR>
-        noremap <F5> :OpenSession!<CR>
-        noremap <F6> :SaveSession!<CR>
-        noremap <F7> :NewSession<CR>
+		set pastetoggle=<F4>
+        noremap <F5> :SaveSession!<CR>
+        noremap <F6> :NewSession<CR>
+        noremap <F7> :OpenSession!<CR>
         noremap <F8> :DeleteSession<CR>
-        noremap <F9> :call SetEncoding()<CR>
-        noremap <F10> :retab<CR> :call RTrailing()<CR>
-        noremap <F11> :helptags ~/.vim/doc<CR>
+        noremap <F9> :GundoToggle<CR>
+        noremap <F10> :call SetEncoding()<CR>
+        noremap <F11> :retab<CR> :call RTrailing()<CR>
         noremap <F12> :help_hotkeys<CR>
     " Rebind the vim help file
         inoremap <F1> <ESC> :NERDTree <CR>
@@ -306,6 +306,8 @@
         noremap <leader>1 :call ReadMode()<CR>
         noremap <leader>2 :call EditMode()<CR>
         noremap <leader>3 :call KernelMode()<CR>
+    " Gen help docs
+        noremap <leader>t :helptags ~/.vim/doc<CR>
     " Set line/file encodings
         noremap <leader>e :call SetEncoding()<CR>
     " Force save the file by sudo privieges
@@ -317,6 +319,10 @@
         noremap <C-right> :MBEbn<CR>
         noremap <C-up> :BufExplorer<CR>
         noremap <C-down> :MBEbd<CR>
+        noremap <leader><left> :MBEbp<CR>
+        noremap <leader><right> :MBEbn<CR>
+        noremap <leader><up> :BufExplorer<CR>
+        noremap <leader><down> :MBEbd<CR>
     " Switch between windows
         noremap <C-H> <C-W>h
         noremap <C-L> <C-W>l
@@ -324,14 +330,26 @@
         noremap <C-K> <C-W>k
     " Split windows
         nnoremap <C-\> :vsp<CR>
+        nnoremap <C-_> :sp<CR>
+    " Split windows size
+        noremap <C-W>+ :resize +10<CR>
+        noremap <C-W>- :resize -10<CR>
+        noremap <C-W>> :vertical resize +10<CR>
+        noremap <C-W>< :vertical resize -10<CR>
+        noremap <C-W>. :vertical resize +20<CR>
+        noremap <C-W>, :vertical resize -20<CR>
     " Unbind the C-X for other usages
         noremap <C-X> <NOP>
         " obtain/pull difference
         noremap <C-X>. do
         noremap <C-X>, dp
+        noremap <C-X>> do
+        noremap <C-X>< dp
         " number add/sub 1
         noremap <C-X>= <C-A>
+        noremap <C-X>+ <C-A>
         noremap <C-X>- <C-X>
+        noremap <C-X>_ <C-X>
     " Plugin: vim-session
         noremap <C-S> <NOP>
         noremap <C-S>d :DeleteSession<CR>
@@ -350,7 +368,9 @@
     " Plugin: gundo
         noremap <leader>u :GundoToggle<CR>
     " Plugin: YouCompleteMe
-        noremap <C-j> :YcmCompleter GoTo<CR>
+        noremap <leader>j :YcmCompleter GoTo<CR>
+    " Plugin: SignifyToggle
+        noremap <leader>4 :SignifyToggle<CR>
 
 " Use Vundle plugin to manage all other plugins
     filetype off " required!
@@ -436,7 +456,7 @@
         let g:session_autosave='no'
         let g:session_default_to_last=1
         let g:session_default_overwrite=1
-        let g:session_command_aliases = 1
+        let g:session_command_aliases=1
     " vim-airline
         let g:airline_powerline_fonts=0
         let g:airline_left_sep=''
@@ -450,10 +470,10 @@
     " vim-vookmark
         let g:vookmark_savepath=$HOME.'/.vim/tmp/bookmark'
     " gist-vim
-        let g:gist_show_privates = 1
-        let g:gist_post_private = 1
+        let g:gist_show_privates=1
+        let g:gist_post_private=1
     " minibufexpl
-        let g:miniBufExplCycleArround = 1
+        let g:miniBufExplCycleArround=1
     " UltiSnips
         let g:UltiSnipsExpandTrigger="<Tab>"
         let g:UltiSnipsJumpForwardTrigger="<Tab>"
