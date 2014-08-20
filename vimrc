@@ -437,6 +437,14 @@
         set tags=tags;
     " Tagbar
         let tagbar_width=30 " default: 40
+        let g:tagbar_type_css = {
+            \ 'ctagstype' : 'Css',
+            \ 'kinds'     : [
+                \ 'c:classes',
+                \ 's:selectors',
+                \ 'i:identities'
+            \ ]
+        \ }
     " YankRing
         let g:yankring_history_dir=g:tempdir
     " ctrlp
@@ -491,7 +499,7 @@
             \ 'text' : 1,
             \ 'vimwiki' : 1,
             \ 'gitcommit' : 1,
-            \}
+        \ }
 
 " Color Theme: sequence-related
     " Enable xterm 256 color
