@@ -490,15 +490,32 @@
         let g:ycm_key_list_select_completion=['<Down>']
         let g:ycm_key_list_previous_completion=['<Up>']
         let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-        let g:ycm_filetype_blacklist = {
-            \ 'tagbar' : 1,
-            \ 'qf' : 1,
-            \ 'notes' : 1,
-            \ 'markdown' : 1,
-            \ 'unite' : 1,
-            \ 'text' : 1,
-            \ 'vimwiki' : 1,
-            \ 'gitcommit' : 1,
+        let g:ycm_confirm_extra_conf=0
+        let g:ycm_collect_identifiers_from_tags_files=1
+        " :h filetype - vim filetypes
+        " :set ft? - get the filetype of the current file
+        "let g:ycm_filetype_blacklist = {
+        "    \ 'nerdtree' : 1,
+        "    \ 'tagbar' : 1,
+        "    \ 'minibufexpl' : 1,
+        "    \ 'gundo' : 1,
+        "    \ 'vundle' : 1,
+        "    \ 'qf' : 1,
+        "    \ 'notes' : 1,
+        "    \ 'markdown' : 1,
+        "    \ 'mkd' : 1,
+        "    \ 'unite' : 1,
+        "    \ 'text' : 1,
+        "    \ 'vimwiki' : 1,
+        "    \ 'gitcommit' : 1,
+        "\ }
+        let g:ycm_filetype_whitelist = {
+            \ 'c': 1,
+            \ 'cpp': 1,
+            \ 'sh': 1,
+            \ 'java': 1,
+            \ 'python': 1,
+            \ 'ruby': 1,
         \ }
 
 " Color Theme: sequence-related
