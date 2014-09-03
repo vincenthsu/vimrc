@@ -395,17 +395,10 @@
         "Bundle 'taglist.vim'
     " Auto code completion
         Bundle 'Valloric/YouCompleteMe'
+        Bundle 'Townk/vim-autoclose'
         Bundle 'SirVer/ultisnips'
             Bundle 'vincenthsu/vim-snippets'
-        "Bundle 'OmniCppComplete'
-        "Bundle 'ervandew/supertab'
-        "Bundle 'garbas/vim-snipmate'
-        "    Bundle 'MarcWeber/vim-addon-mw-utils'
-        "    Bundle 'tomtom/tlib_vim'
         "    Bundle 'honza/vim-snippets'
-        "Bundle 'Townk/vim-autoclose'
-        "Bundle 'Rip-Rip/clang_complete'
-        "Bundle 'http://cx4a.org/repo/gccsense.git'
     " Editing
         Bundle 'YankRing.vim'
         Bundle 'sjl/gundo.vim'
@@ -430,7 +423,8 @@
         Bundle 'mattn/webapi-vim'
         Bundle 'mattn/gist-vim'
         Bundle 'starleoda/vim-vookmark'
-    filetype plugin on " required!
+    "filetype plugin on " required!
+    filetype plugin indent on " load filetype plugins/indent settings
 
 " Plugin Settings
     " ctags
