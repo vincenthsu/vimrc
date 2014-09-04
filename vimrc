@@ -351,11 +351,10 @@
         noremap <C-X>- <C-X>
         noremap <C-X>_ <C-X>
     " Plugin: vim-session
-        noremap <C-S> <NOP>
-        noremap <C-S>d :DeleteSession<CR>
-        noremap <C-S>n :NewSession<CR>
-        noremap <C-S>s :SaveSession!
-        noremap <C-S>o :OpenSession!<CR>
+        noremap <C-X>d :DeleteSession<CR>
+        noremap <C-X>n :NewSession<CR>
+        noremap <C-X>s :SaveSession!
+        noremap <C-X>o :OpenSession!<CR>
     " Plugin: gtags
         noremap <leader>g :Gtags<CR>
         noremap <leader>s :Gtags -s<CR>
@@ -479,6 +478,7 @@
     " UltiSnips
         let g:UltiSnipsExpandTrigger="<Tab>"
         let g:UltiSnipsJumpForwardTrigger="<Tab>"
+        let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
     " YouCompleteMe
         let g:ycm_show_diagnostics_ui=0
         let g:ycm_key_list_select_completion=['<Down>']
