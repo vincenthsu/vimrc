@@ -394,6 +394,7 @@
         "Bundle 'taglist.vim'
     " Auto code completion
         Bundle 'Valloric/YouCompleteMe'
+        Bundle 'marijnh/tern_for_vim'
         Bundle 'Raimondi/delimitMate'
         Bundle 'SirVer/ultisnips'
             Bundle 'vincenthsu/vim-snippets'
@@ -488,29 +489,29 @@
         let g:ycm_collect_identifiers_from_tags_files=1
         " :h filetype - vim filetypes
         " :set ft? - get the filetype of the current file
-        "let g:ycm_filetype_blacklist = {
-        "    \ 'nerdtree' : 1,
-        "    \ 'tagbar' : 1,
-        "    \ 'minibufexpl' : 1,
-        "    \ 'gundo' : 1,
-        "    \ 'vundle' : 1,
-        "    \ 'qf' : 1,
-        "    \ 'notes' : 1,
-        "    \ 'markdown' : 1,
-        "    \ 'mkd' : 1,
-        "    \ 'unite' : 1,
-        "    \ 'text' : 1,
-        "    \ 'vimwiki' : 1,
-        "    \ 'gitcommit' : 1,
-        "\ }
-        let g:ycm_filetype_whitelist = {
-            \ 'c': 1,
-            \ 'cpp': 1,
-            \ 'sh': 1,
-            \ 'java': 1,
-            \ 'python': 1,
-            \ 'ruby': 1,
+        let g:ycm_filetype_blacklist = {
+            \ 'nerdtree' : 1,
+            \ 'tagbar' : 1,
+            \ 'minibufexpl' : 1,
+            \ 'gundo' : 1,
+            \ 'vundle' : 1,
+            \ 'qf' : 1,
+            \ 'notes' : 1,
+            \ 'markdown' : 1,
+            \ 'mkd' : 1,
+            \ 'unite' : 1,
+            \ 'text' : 1,
+            \ 'vimwiki' : 1,
+            \ 'gitcommit' : 1,
         \ }
+        "let g:ycm_filetype_whitelist = {
+        "    \ 'c': 1,
+        "    \ 'cpp': 1,
+        "    \ 'sh': 1,
+        "    \ 'java': 1,
+        "    \ 'python': 1,
+        "    \ 'ruby': 1,
+        "\ }
 
 " Color Theme: sequence-related
     " Enable xterm 256 color
