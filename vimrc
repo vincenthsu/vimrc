@@ -394,7 +394,7 @@
         "Bundle 'taglist.vim'
     " Auto code completion
         Bundle 'Valloric/YouCompleteMe'
-        Bundle 'Townk/vim-autoclose'
+        Bundle 'Raimondi/delimitMate'
         Bundle 'SirVer/ultisnips'
             Bundle 'vincenthsu/vim-snippets'
         "    Bundle 'honza/vim-snippets'
