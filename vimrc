@@ -286,7 +286,7 @@
 
 " Keymap
     " Hotkeys
-        noremap <F1> :NERDTreeToggle<CR>
+        noremap <F1> :execute 'NERDTreeToggle ' . getcwd()<CR>
         noremap <F2> :TagbarToggle<CR>
         noremap <F3> :MBEToggle<CR>
 		set pastetoggle=<F4>
@@ -299,7 +299,7 @@
         noremap <F11> :retab<CR> :call RTrailing()<CR>
         noremap <F12> :help_hotkeys<CR>
     " Rebind the vim help file
-        inoremap <F1> <ESC> :NERDTree <CR>
+        inoremap <F1> <ESC> :NERDTreeToggle <CR>
         noremap <leader>h :help<CR>
         noremap <leader>k :help_hotkeys<CR>
     " Switch indent modes
