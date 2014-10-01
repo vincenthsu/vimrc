@@ -182,6 +182,22 @@
         endif
 
 " User defined functions
+    " Open NERDTree in current dir 
+        function! NTToggle()
+            "" Check if NERDTree is open
+            if exists("t:NERDTreeBufName")
+                let s:ntree = bufwinnr(t:NERDTreeBufName)
+            else
+                let s:ntree = -1
+            endif
+            if (s:ntree != -1)
+                "" If NERDTree is open, close it.
+                :NERDTreeClose
+            else
+                "" Open NERDTree in the file path
+                :NERDTreeFind
+            endif
+        endfunction
     " Removes trailing spaces
         function RTrailing()
             %s/\s*$//
@@ -208,6 +224,13 @@
             endif
         endfunction
         command! DiffSaved call DiffWithSaved()
+    " A mapping to make a backup session of the current file.
+        function! WriteSession()
+            let l:fname=strftime('%Y%m%d-%H%M%S') . '_' . expand('%:t')
+            silent execute 'SaveSession! ' . l:fname
+            echomsg 'Saved Session: ' . l:fname
+        endfunction
+        command! NewSession call WriteSession()
     " Set encoding
         function! SetEncoding()
             echomsg "Set line encoding to: 1)unix, 2)dos, 3)mac,"
@@ -239,13 +262,6 @@
                 execute ':e ++enc=cp932'
             endif
         endfunction
-    " A mapping to make a backup session of the current file.
-        function! WriteSession()
-            let l:fname=strftime('%Y%m%d-%H%M%S') . '_' . expand('%:t')
-            silent execute 'SaveSession! ' . l:fname
-            echomsg 'Saved Session: ' . l:fname
-        endfunction
-        command! NewSession call WriteSession()
     " Quickly change layouts
         function! ReadMode()
             set nolist " show tabs and trailing
@@ -286,7 +302,7 @@
 
 " Keymap
     " Hotkeys
-        noremap <F1> :execute 'NERDTreeToggle ' . getcwd()<CR>
+        noremap <F1> :call NTToggle()<CR>
         noremap <F2> :TagbarToggle<CR>
         noremap <F3> :MBEToggle<CR>
 		set pastetoggle=<F4>
@@ -298,14 +314,27 @@
         noremap <F10> :call SetEncoding()<CR>
         noremap <F11> :retab<CR> :call RTrailing()<CR>
         noremap <F12> :help_hotkeys<CR>
-    " Rebind the vim help file
-        inoremap <F1> <ESC> :NERDTreeToggle <CR>
-        noremap <leader>h :help<CR>
-        noremap <leader>k :help_hotkeys<CR>
+    " Unbind the C-S, C-X for other usages
+        noremap <C-S> <NOP>
+        noremap <C-X> <NOP>
+        " obtain/pull difference
+        noremap <C-X>. do
+        noremap <C-X>, dp
+        noremap <C-X>> do
+        noremap <C-X>< dp
+        " number add/sub 1
+        noremap <C-X>= <C-A>
+        noremap <C-X>+ <C-A>
+        noremap <C-X>- <C-X>
+        noremap <C-X>_ <C-X>
     " Switch indent modes
         noremap <leader>1 :call ReadMode()<CR>
         noremap <leader>2 :call EditMode()<CR>
         noremap <leader>3 :call KernelMode()<CR>
+    " Rebind the vim help file
+        inoremap <F1> <ESC> :NERDTreeToggle <CR>
+        noremap <leader>0 :help<CR>
+        noremap <leader>9 :help_hotkeys<CR>
     " Gen help docs
         noremap <leader>t :helptags ~/.vim/doc<CR>
     " Set line/file encodings
@@ -319,6 +348,10 @@
         noremap <C-right> :MBEbn<CR>
         noremap <C-up> :BufExplorer<CR>
         noremap <C-down> :MBEbd<CR>
+        noremap <C-X><left> :MBEbp<CR>
+        noremap <C-X><right> :MBEbn<CR>
+        noremap <C-X><up> :BufExplorer<CR>
+        noremap <C-X><down> :MBEbd<CR>
         noremap <leader><left> :MBEbp<CR>
         noremap <leader><right> :MBEbn<CR>
         noremap <leader><up> :BufExplorer<CR>
@@ -338,23 +371,11 @@
         noremap <C-W>< :vertical resize -10<CR>
         noremap <C-W>. :vertical resize +20<CR>
         noremap <C-W>, :vertical resize -20<CR>
-    " Unbind the C-X for other usages
-        noremap <C-X> <NOP>
-        " obtain/pull difference
-        noremap <C-X>. do
-        noremap <C-X>, dp
-        noremap <C-X>> do
-        noremap <C-X>< dp
-        " number add/sub 1
-        noremap <C-X>= <C-A>
-        noremap <C-X>+ <C-A>
-        noremap <C-X>- <C-X>
-        noremap <C-X>_ <C-X>
     " Plugin: vim-session
-        noremap <C-X>d :DeleteSession<CR>
-        noremap <C-X>n :NewSession<CR>
         noremap <C-X>s :SaveSession!
+        noremap <C-X>n :NewSession<CR>
         noremap <C-X>o :OpenSession!<CR>
+        noremap <C-X>d :DeleteSession<CR>
     " Plugin: gtags
         noremap <leader>g :Gtags<CR>
         noremap <leader>s :Gtags -s<CR>
@@ -366,10 +387,10 @@
         noremap <leader>p :CtrlPMixed<CR>
     " Plugin: gundo
         noremap <leader>u :GundoToggle<CR>
-    " Plugin: YouCompleteMe
-        noremap <leader>j :YcmCompleter GoTo<CR>
     " Plugin: SignifyToggle
         noremap <leader>4 :SignifyToggle<CR>
+    " Plugin: YouCompleteMe
+        "noremap <leader>j :YcmCompleter GoTo<CR>
 
 " Use Vundle plugin to manage all other plugins
     filetype off " required!
@@ -424,12 +445,15 @@
         Bundle 'mattn/webapi-vim'
         Bundle 'mattn/gist-vim'
         Bundle 'starleoda/vim-vookmark'
+        Bundle 'LargeFile'
     "filetype plugin on " required!
     filetype plugin indent on " load filetype plugins/indent settings
 
 " Plugin Settings
     " ctags
         set tags=tags;
+    " NerdTree
+        let NERDTreeBookmarksFile=expand("$HOME/.vim/tmp/nerdtree_bookmarks.txt")
     " Tagbar
         let tagbar_width=30 " default: 40
         let g:tagbar_type_css = {

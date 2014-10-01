@@ -11,6 +11,7 @@ Contents                                *help_hotkeys* *help_hotkeys-contents*
 |help_hotkeys-pager|         Pager
 |help_hotkeys-split_window|  Split window
 |help_hotkeys-vimdiff|       VimDiff
+|help_hotkeys-sort|          Sort
 |help_hotkeys-surround|      Surround
 |help_hotkeys-yankring|      YankRing
 |help_hotkeys-cscope|        CScope
@@ -20,7 +21,7 @@ Contents                                *help_hotkeys* *help_hotkeys-contents*
 User defined keys                                     *help_hotkeys-user_keys*
 
 " Hotkeys
-    noremap <F1> :NERDTreeToggle<CR>
+    noremap <F1> :call NTToggle()<CR>
     noremap <F2> :TagbarToggle<CR>
     noremap <F3> :MBEToggle<CR>
     set pastetoggle=<F4>
@@ -32,14 +33,27 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <F10> :call SetEncoding()<CR>
     noremap <F11> :retab<CR> :call RTrailing()<CR>
     noremap <F12> :help_hotkeys<CR>
-" Rebind the vim help file
-    inoremap <F1> <ESC> :NERDTree <CR>
-    noremap <leader>h :help<CR>
-    noremap <leader>k :help_hotkeys<CR>
+" Unbind the C-S, C-X for other usages
+    noremap <C-S> <NOP>
+    noremap <C-X> <NOP>
+    " obtain/pull difference
+    noremap <C-X>. do
+    noremap <C-X>, dp
+    noremap <C-X>> do
+    noremap <C-X>< dp
+    " number add/sub 1
+    noremap <C-X>= <C-A>
+    noremap <C-X>+ <C-A>
+    noremap <C-X>- <C-X>
+    noremap <C-X>_ <C-X>
 " Switch indent modes
     noremap <leader>1 :call ReadMode()<CR>
     noremap <leader>2 :call EditMode()<CR>
     noremap <leader>3 :call KernelMode()<CR>
+" Rebind the vim help file
+    inoremap <F1> <ESC> :NERDTreeToggle <CR>
+    noremap <leader>0 :help<CR>
+    noremap <leader>9 :help_hotkeys<CR>
 " Gen help docs
     noremap <leader>t :helptags ~/.vim/doc<CR>
 " Set line/file encodings
@@ -53,6 +67,10 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <C-right> :MBEbn<CR>
     noremap <C-up> :BufExplorer<CR>
     noremap <C-down> :MBEbd<CR>
+    noremap <C-X><left> :MBEbp<CR>
+    noremap <C-X><right> :MBEbn<CR>
+    noremap <C-X><up> :BufExplorer<CR>
+    noremap <C-X><down> :MBEbd<CR>
     noremap <leader><left> :MBEbp<CR>
     noremap <leader><right> :MBEbn<CR>
     noremap <leader><up> :BufExplorer<CR>
@@ -72,24 +90,11 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <C-W>< :vertical resize -10<CR>
     noremap <C-W>. :vertical resize +20<CR>
     noremap <C-W>, :vertical resize -20<CR>
-" Unbind the C-X for other usages
-    noremap <C-X> <NOP>
-    " obtain/pull difference
-    noremap <C-X>. do
-    noremap <C-X>, dp
-    noremap <C-X>> do
-    noremap <C-X>< dp
-    " number add/sub 1
-    noremap <C-X>= <C-A>
-    noremap <C-X>+ <C-A>
-    noremap <C-X>- <C-X>
-    noremap <C-X>_ <C-X>
 " Plugin: vim-session
-    noremap <C-S> <NOP>
-    noremap <C-S>d :DeleteSession<CR>
-    noremap <C-S>n :NewSession<CR>
-    noremap <C-S>s :SaveSession!
-    noremap <C-S>o :OpenSession!<CR>
+    noremap <C-X>s :SaveSession!
+    noremap <C-X>n :NewSession<CR>
+    noremap <C-X>o :OpenSession!<CR>
+    noremap <C-X>d :DeleteSession<CR>
 " Plugin: gtags
     noremap <leader>g :Gtags<CR>
     noremap <leader>s :Gtags -s<CR>
@@ -101,10 +106,10 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <leader>p :CtrlPMixed<CR>
 " Plugin: gundo
     noremap <leader>u :GundoToggle<CR>
-" Plugin: YouCompleteMe
-    noremap <C-j> :YcmCompleter GoTo<CR>
 " Plugin: SignifyToggle
     noremap <leader>4 :SignifyToggle<CR>
+" Plugin: YouCompleteMe
+    noremap <leader>j :YcmCompleter GoTo<CR>
 
 ==============================================================================
 Folder                                                   *help_hotkeys-folder*
@@ -170,6 +175,11 @@ VimDiff                                                 *help_hotkeys-vimdiff*
 
 do: o for "obtain"
 dp: p for "put"
+
+==============================================================================
+Sort                                                       *help_hotkeys-sort*
+
+:'<,'>!sort
 
 ==============================================================================
 Surround                                               *help_hotkeys-surround*
