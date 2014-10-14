@@ -15,6 +15,7 @@ Contents                                *help_hotkeys* *help_hotkeys-contents*
 |help_hotkeys-surround|      Surround
 |help_hotkeys-yankring|      YankRing
 |help_hotkeys-cscope|        CScope
+|help_hotkeys-tips|          Tips
 |help_hotkeys-source_help|   Source help doc changed
 
 ==============================================================================
@@ -29,13 +30,11 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <F6> :NewSession<CR>
     noremap <F7> :OpenSession!<CR>
     noremap <F8> :DeleteSession<CR>
-    noremap <F9> :GundoToggle<CR>
+    noremap <F9> :CtrlSF<Space>
     noremap <F10> :call SetEncoding()<CR>
     noremap <F11> :retab<CR> :call RTrailing()<CR>
     noremap <F12> :help_hotkeys<CR>
 " Unbind the C-S, C-X for other usages
-    noremap <C-S> <NOP>
-    noremap <C-X> <NOP>
     " obtain/pull difference
     noremap <C-X>. do
     noremap <C-X>, dp
@@ -46,22 +45,6 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <C-X>+ <C-A>
     noremap <C-X>- <C-X>
     noremap <C-X>_ <C-X>
-" Switch indent modes
-    noremap <leader>1 :call ReadMode()<CR>
-    noremap <leader>2 :call EditMode()<CR>
-    noremap <leader>3 :call KernelMode()<CR>
-" Rebind the vim help file
-    inoremap <F1> <ESC> :NERDTreeToggle <CR>
-    noremap <leader>0 :help<CR>
-    noremap <leader>9 :help_hotkeys<CR>
-" Gen help docs
-    noremap <leader>t :helptags ~/.vim/doc<CR>
-" Set line/file encodings
-    noremap <leader>e :call SetEncoding()<CR>
-" Force save the file by sudo privieges
-    noremap <leader>w :w !sudo tee %<CR>
-" Diff file with current modify
-    noremap <leader>d :DiffSaved<CR>
 " Switch buffers
     noremap <C-left> :MBEbp<CR>
     noremap <C-right> :MBEbn<CR>
@@ -90,11 +73,29 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <C-W>< :vertical resize -10<CR>
     noremap <C-W>. :vertical resize +20<CR>
     noremap <C-W>, :vertical resize -20<CR>
-" Plugin: vim-session
-    noremap <C-X>s :SaveSession!
-    noremap <C-X>n :NewSession<CR>
-    noremap <C-X>o :OpenSession!<CR>
-    noremap <C-X>d :DeleteSession<CR>
+" Set line/file encodings
+    noremap <leader>e :call SetEncoding()<CR>
+" Force save the file by sudo privieges
+    noremap <leader>w :w !sudo tee %<CR>
+" Switch indent modes
+    noremap <leader>1 :call ReadMode()<CR>
+    noremap <leader>2 :call EditMode()<CR>
+    noremap <leader>3 :call KernelMode()<CR>
+" Rebind the vim help file
+    inoremap <F1> <ESC> :NERDTreeToggle <CR>
+    noremap <leader>0 :help<CR>
+    noremap <leader>9 :help_hotkeys<CR>
+" Gen help docs
+    noremap <leader>8 :helptags ~/.vim/doc<CR>
+" Diff file with current modify
+    noremap <leader>d :DiffSaved<CR>
+    noremap <leader>7 :DiffSaved<CR>
+" Plugin: SignifyToggle
+    noremap <leader>4 :SignifyToggle<CR>
+" Plugin: Gitv
+    noremap <leader>5 :Gitv<CR>
+" Plugin: gundo
+    noremap <leader>6 :GundoToggle<CR>
 " Plugin: gtags
     noremap <leader>g :Gtags<CR>
     noremap <leader>s :Gtags -s<CR>
@@ -104,77 +105,78 @@ User defined keys                                     *help_hotkeys-user_keys*
 " Plugin: ctrlp
     " default bindings conflict with yankring bindings
     noremap <leader>p :CtrlPMixed<CR>
-" Plugin: gundo
-    noremap <leader>u :GundoToggle<CR>
-" Plugin: SignifyToggle
-    noremap <leader>4 :SignifyToggle<CR>
-" Plugin: YouCompleteMe
-    noremap <leader>j :YcmCompleter GoTo<CR>
+" Plugin: vim-session
+    noremap <C-X>s :SaveSession!
+    noremap <C-X>n :NewSession<CR>
+    noremap <C-X>o :OpenSession!<CR>
+    noremap <C-X>d :DeleteSession<CR>
+" Plugin: Emmet
+    let g:user_emmet_expandabbr_key = '<C-S>'
 
 ==============================================================================
 Folder                                                   *help_hotkeys-folder*
 
-zo: open
-zO: open all
-zc: close
-zC: close all
+zo  " open
+zO  " open all
+zc  " close
+zC  " close all
 
 ==============================================================================
 Jumps                                                     *help_hotkeys-jumps*
 
-<C-O>: jump back to the previous (older) location
-<C-I>: jump forward to the next (newer) location
+<C-O>  " jump back to the previous (older) location
+<C-I>  " jump forward to the next (newer) location
 
-[{: jump to the beginning of a C code block (while, switch, if etc)
-]}: jump to the end of a C code block (while, switch, if etc)
-[(: jump to the beginning of a parenthesis
-}): jump to the end of a parenthesis
-[[: sections backward or to the previous '{' in the first column.
-]]: sections forward or to the next '{' in the first column.
-[]: sections backward or to the previous '}' in the first column.
+[{  " jump to the beginning of a C code block (while, switch, if etc)
+]}  " jump to the end of a C code block (while, switch, if etc)
+[(  " jump to the beginning of a parenthesis
+})  " jump to the end of a parenthesis
+[[  " sections backward or to the previous '{' in the first column.
+]]  " sections forward or to the next '{' in the first column.
+[]  " sections backward or to the previous '}' in the first column.
 
 ==============================================================================
 Word repeat                                         *help_hotkeys-word_repeat*
 
 In insert mode:
-<C-y>: repeat up line
-<C-e>: repeat down line
+<C-y>  " repeat up line
+<C-e>  " repeat down line
 
 numbers:
-<C-a>: n++
-<C-x>: n--
+<C-a>  " n++
+<C-x>  " n--
 
 ==============================================================================
 Auto complete                                     *help_hotkeys-auto_complete*
 
-<C-p>: previous
-<C-n>: next
-<C-i>: singal line
-<C-f>: file name
+<C-p>  " previous
+<C-n>  " next
+<C-i>  " singal line
+<C-f>  " file name
 
 ==============================================================================
 Pager                                                     *help_hotkeys-pager*
 
-<C-u>: up half page
-<C-d>: down half page
-<C-f>: forward one page
-<C-b>: backup on page
+<C-u>  " up half page
+<C-d>  " down half page
+<C-f>  " forward one page
+<C-b>  " backup on page
 
 ==============================================================================
 Split window                                        *help_hotkeys-split_window*
 
-sp: Split current window in two.
-vsp: Split vertically.
-<C-w> [+|-]: resize windows
-<C-w> [<|>]: resize windows with a vertical split
-<C-w> _: maximize current window
-<C-w> =: make all equal size
+sp   " Split current window in two.
+vsp  " Split vertically.
+<C-w> [+|-]  " resize windows
+<C-w> [<|>]  " resize windows with a vertical split
+<C-w> _  " maximize current window
+<C-w> =  " make all equal size
 
 ==============================================================================
 VimDiff                                                 *help_hotkeys-vimdiff*
 
-do: o for "obtain"
-dp: p for "put"
+do  " o for "obtain"
+dp  " p for "put"
 
 ==============================================================================
 Sort                                                       *help_hotkeys-sort*
@@ -186,51 +188,54 @@ Surround                                               *help_hotkeys-surround*
 
 Normal mode
 -----------
-ds: delete a surrounding
-cs: change a surrounding
-ys: add a surrounding
-yS: add a surrounding and place the surrounded text on a new line + indent it
-yss: add a surrounding to the whole line
-ySs: add a surrounding to the whole line, place it on a new line + indent it
-ySS: same as ySs
+ds   " delete a surrounding
+cs   " change a surrounding
+ys   " add a surrounding
+yS   " add a surrounding and place the surrounded text on a new line + indent it
+yss  " add a surrounding to the whole line
+ySs  " add a surrounding to the whole line, place it on a new line + indent it
+ySS  " same as ySs
 
 Visual mode
 -----------
-s: in visual mode, add a surrounding
-S: in visual mode, add a surrounding but place text on new line + indent it
+s  " in visual mode, add a surrounding
+S  " in visual mode, add a surrounding but place text on new line + indent it
 
 Insert mode
 -----------
-<C-s>: in insert mode, add a surrounding
-<C-s><C-s>: in insert mode, add a new line + surrounding + indent
-<C-g>s: same as <CTRL-s>
-<C-g>S: same as <CTRL-s><CTRL-s>
+<C-s>  " in insert mode, add a surrounding
+<C-s><C-s>  " in insert mode, add a new line + surrounding + indent
+<C-g>s  " same as <CTRL-s>
+<C-g>S  " same as <CTRL-s><CTRL-s>
 
 The . command will work with ds, cs, and yss if you install repeat.vim.
 
 ==============================================================================
 YankRing                                               *help_hotkeys-yankring*
 
-<C-p>: (P for previous) to replace the text last pasted
-<C-n>: (N for next) to replace the previous pasted
-
-Tips:
-yiw: Copy the current word
-viwp: Replace the current word with the clipboard contents
+<C-p>  " (P for previous) to replace the text last pasted
+<C-n>  " (N for next) to replace the previous pasted
 
 ==============================================================================
 CScope                                                   *help_hotkeys-cscope*
 
 :cs add {cscope.out path}
 :cs Usage Tip
-<C-\> c: Find functions calling this function
-<C-\> d: Find functions called by this function
-<C-\> e: Find this egrep pattern
-<C-\> f: Find this file
-<C-\> g: Find this definition
-<C-\> i: Find files #including this file
-<C-\> s: Find this C symbol
-<C-\> t: Find assignments to
+<C-\> c  " Find functions calling this function
+<C-\> d  " Find functions called by this function
+<C-\> e  " Find this egrep pattern
+<C-\> f  " Find this file
+<C-\> g  " Find this definition
+<C-\> i  " Find files #including this file
+<C-\> s  " Find this C symbol
+<C-\> t  " Find assignments to
+
+==============================================================================
+Tips                                                       *help_hotkeys-tips*
+
+yiw   " Copy the current word
+viwp  " Replace the current word with the clipboard contents
+:help key-notation  " lists the meanings of all those <key>
 
 ==============================================================================
 Source help doc changed                             *help_hotkeys-source_help*

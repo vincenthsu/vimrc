@@ -182,7 +182,7 @@
         endif
 
 " User defined functions
-    " Open NERDTree in current dir 
+    " Open NERDTree in current dir
         function! NTToggle()
             "" Check if NERDTree is open
             if exists("t:NERDTreeBufName")
@@ -305,17 +305,17 @@
         noremap <F1> :call NTToggle()<CR>
         noremap <F2> :TagbarToggle<CR>
         noremap <F3> :MBEToggle<CR>
-		set pastetoggle=<F4>
+        set pastetoggle=<F4>
         noremap <F5> :SaveSession!<CR>
         noremap <F6> :NewSession<CR>
         noremap <F7> :OpenSession!<CR>
         noremap <F8> :DeleteSession<CR>
-        noremap <F9> :GundoToggle<CR>
+        noremap <F9> :CtrlSF<Space>
         noremap <F10> :call SetEncoding()<CR>
         noremap <F11> :retab<CR> :call RTrailing()<CR>
         noremap <F12> :help_hotkeys<CR>
     " Unbind the C-S, C-X for other usages
-        noremap <C-S> <NOP>
+        "noremap <C-S> <NOP> " handle by Emmet
         noremap <C-X> <NOP>
         " obtain/pull difference
         noremap <C-X>. do
@@ -327,22 +327,6 @@
         noremap <C-X>+ <C-A>
         noremap <C-X>- <C-X>
         noremap <C-X>_ <C-X>
-    " Switch indent modes
-        noremap <leader>1 :call ReadMode()<CR>
-        noremap <leader>2 :call EditMode()<CR>
-        noremap <leader>3 :call KernelMode()<CR>
-    " Rebind the vim help file
-        inoremap <F1> <ESC> :NERDTreeToggle <CR>
-        noremap <leader>0 :help<CR>
-        noremap <leader>9 :help_hotkeys<CR>
-    " Gen help docs
-        noremap <leader>t :helptags ~/.vim/doc<CR>
-    " Set line/file encodings
-        noremap <leader>e :call SetEncoding()<CR>
-    " Force save the file by sudo privieges
-        noremap <leader>w :w !sudo tee %<CR>
-    " Diff file with current modify
-        noremap <leader>d :DiffSaved<CR>
     " Switch buffers
         noremap <C-left> :MBEbp<CR>
         noremap <C-right> :MBEbn<CR>
@@ -371,11 +355,29 @@
         noremap <C-W>< :vertical resize -10<CR>
         noremap <C-W>. :vertical resize +20<CR>
         noremap <C-W>, :vertical resize -20<CR>
-    " Plugin: vim-session
-        noremap <C-X>s :SaveSession!
-        noremap <C-X>n :NewSession<CR>
-        noremap <C-X>o :OpenSession!<CR>
-        noremap <C-X>d :DeleteSession<CR>
+    " Set line/file encodings
+        noremap <leader>e :call SetEncoding()<CR>
+    " Force save the file by sudo privieges
+        noremap <leader>w :w !sudo tee %<CR>
+    " Switch indent modes
+        noremap <leader>1 :call ReadMode()<CR>
+        noremap <leader>2 :call EditMode()<CR>
+        noremap <leader>3 :call KernelMode()<CR>
+    " Rebind the vim help file
+        inoremap <F1> <ESC> :NERDTreeToggle <CR>
+        noremap <leader>0 :help<CR>
+        noremap <leader>9 :help_hotkeys<CR>
+    " Gen help docs
+        noremap <leader>8 :helptags ~/.vim/doc<CR>
+    " Diff file with current modify
+        noremap <leader>d :DiffSaved<CR>
+        noremap <leader>7 :DiffSaved<CR>
+    " Plugin: SignifyToggle
+        noremap <leader>4 :SignifyToggle<CR>
+    " Plugin: Gitv
+        noremap <leader>5 :Gitv<CR>
+    " Plugin: gundo
+        noremap <leader>6 :GundoToggle<CR>
     " Plugin: gtags
         noremap <leader>g :Gtags<CR>
         noremap <leader>s :Gtags -s<CR>
@@ -385,10 +387,13 @@
     " Plugin: ctrlp
         " default bindings conflict with yankring bindings
         noremap <leader>p :CtrlPMixed<CR>
-    " Plugin: gundo
-        noremap <leader>u :GundoToggle<CR>
-    " Plugin: SignifyToggle
-        noremap <leader>4 :SignifyToggle<CR>
+    " Plugin: vim-session
+        noremap <C-X>s :SaveSession!
+        noremap <C-X>n :NewSession<CR>
+        noremap <C-X>o :OpenSession!<CR>
+        noremap <C-X>d :DeleteSession<CR>
+    " Plugin: Emmet
+        let g:user_emmet_expandabbr_key = '<C-S>'
     " Plugin: YouCompleteMe
         "noremap <leader>j :YcmCompleter GoTo<CR>
 
@@ -411,17 +416,24 @@
         Bundle 'gtags.vim'
         Bundle 'chazy/cscope_maps'
         Bundle 'matchit.zip'
+        Bundle 'mileszs/ack.vim'
+        Bundle 'dyng/ctrlsf.vim'
+        "Bundle 'ggreer/the_silver_searcher'
+        "Bundle 'rking/ag.vim'
         "Bundle 'scrooloose/syntastic'
         "Bundle 'taglist.vim'
     " Auto code completion
-        "Bundle 'Valloric/YouCompleteMe'
         Bundle 'OmniCppComplete'
         Bundle 'ervandew/supertab'
-        Bundle 'marijnh/tern_for_vim'
         Bundle 'Raimondi/delimitMate'
+        Bundle 'mattn/emmet-vim'
         Bundle 'SirVer/ultisnips'
             Bundle 'vincenthsu/vim-snippets'
         "    Bundle 'honza/vim-snippets'
+        "Bundle 'Valloric/YouCompleteMe'
+        "Bundle 'marijnh/tern_for_vim'
+        "Bundle 'Shougo/neocomplete.vim'
+        "Bundle 'gregsexton/MatchTag'
     " Editing
         Bundle 'YankRing.vim'
         Bundle 'sjl/gundo.vim'
