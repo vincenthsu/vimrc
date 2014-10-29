@@ -322,6 +322,8 @@
         noremap <C-X>, dp
         noremap <C-X>> do
         noremap <C-X>< dp
+        noremap <C-X>] ]c
+        noremap <C-X>[ [c
         " number add/sub 1
         noremap <C-X>= <C-A>
         noremap <C-X>+ <C-A>

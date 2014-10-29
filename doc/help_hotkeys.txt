@@ -40,6 +40,8 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <C-X>, dp
     noremap <C-X>> do
     noremap <C-X>< dp
+    noremap <C-X>] ]c
+    noremap <C-X>[ [c
     " number add/sub 1
     noremap <C-X>= <C-A>
     noremap <C-X>+ <C-A>
@@ -177,6 +179,9 @@ VimDiff                                                 *help_hotkeys-vimdiff*
 
 do  " o for "obtain"
 dp  " p for "put"
+]c  " Jump to the next change.
+[c  " Jump to the previous change.
+:diffupdate  " diff update
 
 ==============================================================================
 Sort                                                       *help_hotkeys-sort*
