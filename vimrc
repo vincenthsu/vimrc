@@ -492,12 +492,14 @@
             \ 'fallback': 'find %s -type f'
         \ }
     " vim-session
+        set sessionoptions-=help
         let g:session_directory='~/.vim/tmp/sessions'
         let g:session_autoload='yes'
         let g:session_autosave='no'
         let g:session_default_to_last=1
         let g:session_default_overwrite=1
         let g:session_command_aliases=1
+        let g:session_persist_colors=0
     " vim-airline
         let g:airline_powerline_fonts=0
         let g:airline_left_sep=''
