@@ -1,6 +1,6 @@
 " General
     set nocompatible " explicitly get out of vi-compatible mode
-    set noexrc " don't use local version of .(g)vimrc, .exrc
+    set noexrc       " don't use local version of .(g)vimrc, .exrc
     set cpoptions=aABceFsmq
     "             |||||||||
     "             ||||||||+-- When joining lines, leave the cursor
@@ -17,34 +17,34 @@
     "             ||+-- A backslash has no special meaning in mappings
     "             |+-- :write updates alternative file name
     "             +-- :read updates alternative file name
-    syntax on " syntax highlighting on
-    "set mouse=a " use mouse everywhere
+    syntax on        " syntax highlighting on
+    "set mouse=a     " use mouse everywhere
     set noerrorbells " don't make noise
-    set autochdir "always switch to the current file directory
-    set hidden " you can change buffers without saving
+    set autochdir    " always switch to the current file directory
+    set hidden       " you can change buffers without saving
     set sessionoptions=buffers,curdir,folds,tabpages " customize what to save
 
 " Vim UI
-    "set cursorline " highlight current line
-    set lazyredraw " do not redraw while running macros
-    set linespace=0 " don't insert any extra pixel lines
-                     " betweens rows
-    set nostartofline " leave my cursor where it was
-    set novisualbell " don't blink
-    "set number " turn on line numbers
-    "set numberwidth=5 " We are good up to 99999 lines
+    "set cursorline       " highlight current line
+    set lazyredraw        " do not redraw while running macros
+    set linespace=0       " don't insert any extra pixel lines
+                          " betweens rows
+    set nostartofline     " leave my cursor where it was
+    set novisualbell      " don't blink
+    "set number           " turn on line numbers
+    "set numberwidth=5    " We are good up to 99999 lines
     "autocmd BufRead,BufNewFile *.txt setlocal nonu
-    "set completeopt=0 " don't use a pop up menu for completions
+    "set completeopt=0    " don't use a pop up menu for completions
     "set sidescrolloff=10 " Keep 5 lines at the size
-    set scrolloff=10 " Keep 10 lines (top/bottom) for scope
+    set scrolloff=10      " Keep 10 lines (top/bottom) for scope
     set showmatch " show matching brackets
-    "set matchtime=5 " how many tenths of a second to blink
-                     " matching brackets for
-    set showcmd " show the command being typed
-    set ruler " Always show current positions along the bottom
-    set report=0 " tell us when anything is changed via :...
-    set shortmess=aOstT " shortens messages to avoid
-                        " 'press a key' prompt
+    "set matchtime=5      " how many tenths of a second to blink
+                          " matching brackets for
+    set showcmd           " show the command being typed
+    set ruler             " Always show current positions along the bottom
+    set report=0          " tell us when anything is changed via :...
+    set shortmess=aOstT   " shortens messages to avoid
+                          " 'press a key' prompt
     set laststatus=2 " always show the status line
     "set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
     "              | | | | |  |   |      |  |     |    |
@@ -64,13 +64,13 @@
 
 " Text Formatting/Layout
     "let $LANG="zh_TW.UTF-8"
-    set fileformats=unix,dos,mac " support all three, in this order
+    set fileformats=unix,dos,mac   " support all three, in this order
     set backspace=indent,eol,start " make backspace a more flexible
-    set clipboard+=unnamed " share windows clipboard
-    set iskeyword+=_,$,@,%,# " none of these are word dividers
-    set wildmenu "enable ctrl-n and ctrl-p to scroll thru matches
-    set wildmode=list:longest " turn on wild mode huge list
-    set wildignore+=*.o,*.obj " stuff to ignore when tab completing
+    set clipboard+=unnamed         " share windows clipboard
+    set iskeyword+=_,$,@,%,#       " none of these are word dividers
+    set wildmenu                   " enable ctrl-n and ctrl-p to scroll thru matches
+    set wildmode=list:longest      " turn on wild mode huge list
+    set wildignore+=*.o,*.obj      " stuff to ignore when tab completing
     set wildignore+=*.exe,*.dll,*.pyc
     set wildignore+=*.jpg,*.gif,*.png,*DS_Store*
     set wildignore+=*.bin,*.so,*.swp,*.zip
@@ -95,47 +95,47 @@
     "             | +-- <Space> Normal and Visual
     "             +-- <BS> Normal and Visual
     "set list " show tabs and trailing
-    set listchars=trail:¬,tab:→· " define tabs and trailing chars
-    set shiftround " when at 3 spaces, and I hit > ... go to 4, not 5
-    set smarttab " delete spaces (softtab) as tab
-    set expandtab " no real tabs please!
+    set listchars=trail:¬,tab:▸- " define tabs and trailing chars
+    set shiftround    " when at 3 spaces, and I hit > ... go to 4, not 5
+    set smarttab      " delete spaces (softtab) as tab
+    set expandtab     " no real tabs please!
     set softtabstop=4 " when hitting tab or backspace, how many spaces
                       " should a tab be (see expandtab)
-    set tabstop=4 " real tabs should be 8, and they will show with
-                  " set list on
-    set shiftwidth=4 " auto-indent amount when using cindent,
-                     " >>, << and stuff like that
+    set tabstop=4     " real tabs should be 8, and they will show with
+                      " set list on
+    set shiftwidth=4  " auto-indent amount when using cindent,
+                      " >>, << and stuff like that
     "autocmd FileWritePre * :retab " affect the existing tab characters
                                    " to match current settings when saving
     "autocmd BufWritePre * :retab
     autocmd FileType make setlocal noexpandtab " To turn off expandtab for
                                                " editing makefiles
-    set smartindent " like autoindent but also recognizes some C syntax
-    set cindent " automatic C program indenting
-    set cinoptions=:0,l1,t0,g0  " cindent for kernel style:
-                                " :: switch, l: case
-                                " t: function return, g: C++ scope
-                                " +: continuation line
-                                " j: java, J: javascript
-                                " N for chars, or Ns for shifts
+    set smartindent  " like autoindent but also recognizes some C syntax
+    set cindent      " automatic C program indenting
+    set cinoptions=:0,l1,t0,g0 " cindent for kernel style:
+                               " :: switch, l: case
+                               " t: function return, g: C++ scope
+                               " +: continuation line
+                               " j: java, J: javascript
+                               " N for chars, or Ns for shifts
     " Notice! Following have been loaded in vundles.vim
         "filetype plugin indent on " load filetype plugins/indent settings
         "autocmd FileType python,perl filetype plugin indent on
 
 " Searching
-    set hlsearch " highlight searched for phrases
-    set incsearch " do highlight as you type you search phrase
+    set hlsearch   " highlight searched for phrases
+    set incsearch  " do highlight as you type you search phrase
     set ignorecase " case insensitive by default
-    set infercase " case inferred by default
-    set smartcase " if there are caps, go case-sensitive
+    set infercase  " case inferred by default
+    set smartcase  " if there are caps, go case-sensitive
 
 " Folding
-    set foldenable " Turn on folding
-    set foldmarker={,} " Fold C style code (only use this as default
-                       " if you use a high foldlevel)
+    set foldenable        " Turn on folding
+    set foldmarker={,}    " Fold C style code (only use this as default
+                          " if you use a high foldlevel)
     set foldmethod=marker " Fold on the marker
-    set foldlevel=100 " Don't autofold anything (but I can still
-                      " fold manually)
+    set foldlevel=100     " Don't autofold anything (but I can still
+                          " fold manually)
     set foldopen=block,hor,mark,percent,quickfix,tag " what movements
                                                      " open folds
     "function SimpleFoldText() "
@@ -143,15 +143,6 @@
     "endfunction
     "set foldtext=SimpleFoldText() " Custom fold text function
                                    " (cleaner than default)
-
-" Screen fixing
-    " tmux will send xterm-style keys when its xterm-keys option is on
-    if &term=~'^screen'
-        execute "set <xUp>=\e[1;*A"
-        execute "set <xDown>=\e[1;*B"
-        execute "set <xRight>=\e[1;*C"
-        execute "set <xLeft>=\e[1;*D"
-    endif
 
 " Relative paths
     let s:configdir=expand('~/.vim')
@@ -181,7 +172,35 @@
             let &undodir=g:tempdir
         endif
 
-" User defined functions
+" Screen fixing
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    if &term=~'^screen'
+        execute "set <xUp>=\e[1;*A"
+        execute "set <xDown>=\e[1;*B"
+        execute "set <xRight>=\e[1;*C"
+        execute "set <xLeft>=\e[1;*D"
+    endif
+
+" Bracketed paste mode
+    if &term =~ "xterm.*" || &term =~ "screen-256color"
+        let &t_ti = &t_ti . "\e[?2004h"
+        let &t_te = "\e[?2004l" . &t_te
+        function XTermPasteBegin(ret)
+            set pastetoggle=<Esc>[201~
+            set paste
+            return a:ret
+        endfunction
+        map <expr> <Esc>[200~ XTermPasteBegin("i")
+        imap <expr> <Esc>[200~ XTermPasteBegin("")
+        cmap <Esc>[200~ <nop>
+        cmap <Esc>[201~ <nop>
+    endif
+
+" Start in insert mode for commit
+    autocmd FileType gitcommit execute KernelMode() |
+        \ execute "normal! O" | startinsert
+
+" User-defined functions
     " Open NERDTree in current dir
         function! NTToggle()
             "" Check if NERDTree is open
@@ -264,38 +283,38 @@
         endfunction
     " Quickly change layouts
         function! ReadMode()
-            set nolist " show tabs and trailing
-            set noexpandtab " use real tabs
-            set softtabstop=4 " when hitting tab or backspace, how many spaces
-                              " should a tab be (see expandtab)
-            set tabstop=4 " real tabs should be 8, and they will show with
-                          " set list on
-            set shiftwidth=4 " auto-indent amount when using cindent,
-                             " >>, << and stuff like that
+            set nolist         " show tabs and trailing
+            set noexpandtab    " use real tabs
+            set softtabstop=4  " when hitting tab or backspace, how many spaces
+                               " should a tab be (see expandtab)
+            set tabstop=4      " real tabs should be 8, and they will show with
+                               " set list on
+            set shiftwidth=4   " auto-indent amount when using cindent,
+                               " >>, << and stuff like that
             set colorcolumn=
             set nonumber
         endfunction
         function! EditMode()
-            set list " show tabs and trailing
-            set expandtab " no real tabs please!
-            set softtabstop=4 " when hitting tab or backspace, how many spaces
-                              " should a tab be (see expandtab)
-            set tabstop=4 " real tabs should be 8, and they will show with
-                          " set list on
-            set shiftwidth=4 " auto-indent amount when using cindent,
-                             " >>, << and stuff like that
-            set colorcolumn=
+            set list           " show tabs and trailing
+            set expandtab      " no real tabs please!
+            set softtabstop=4  " when hitting tab or backspace, how many spaces
+                               " should a tab be (see expandtab)
+            set tabstop=4      " real tabs should be 8, and they will show with
+                               " set list on
+            set shiftwidth=4   " auto-indent amount when using cindent,
+                               " >>, << and stuff like that
+            set colorcolumn=80
             set number
         endfunction
         function! KernelMode()
-            set list " show tabs and trailing
-            set noexpandtab " use real tabs
-            set softtabstop=8 " when hitting tab or backspace, how many spaces
-                              " should a tab be (see expandtab)
-            set tabstop=8 " real tabs should be 8, and they will show with
-                          " set list on
-            set shiftwidth=8 " auto-indent amount when using cindent,
-                             " >>, << and stuff like that
+            set list           " show tabs and trailing
+            set noexpandtab    " use real tabs
+            set softtabstop=8  " when hitting tab or backspace, how many spaces
+                               " should a tab be (see expandtab)
+            set tabstop=8      " real tabs should be 8, and they will show with
+                               " set list on
+            set shiftwidth=8   " auto-indent amount when using cindent,
+                               " >>, << and stuff like that
             set colorcolumn=80
             set number
         endfunction
@@ -378,15 +397,15 @@
         noremap <leader>4 :SignifyToggle<CR>
     " Plugin: Gitv
         noremap <leader>5 :Gitv<CR>
-    " Plugin: gundo
+    " Plugin: Gundo
         noremap <leader>6 :GundoToggle<CR>
-    " Plugin: gtags
+    " Plugin: Gtags
         noremap <leader>g :Gtags<CR>
         noremap <leader>s :Gtags -s<CR>
         noremap <leader>r :Gtags -r<CR>
         noremap <leader>z :cp<CR>
         noremap <leader>x :cn<CR>
-    " Plugin: ctrlp
+    " Plugin: Ctrlp
         " default bindings conflict with yankring bindings
         noremap <leader>p :CtrlPMixed<CR>
     " Plugin: vim-session
@@ -396,6 +415,11 @@
         noremap <C-X>d :DeleteSession<CR>
     " Plugin: Emmet
         let g:user_emmet_expandabbr_key = '<C-S>'
+    " Plugin: Tabular
+        nmap <Leader>a= :Tabularize /=<CR>
+        vmap <Leader>a= :Tabularize /=<CR>
+        nmap <Leader>a: :Tabularize /:\zs<CR>
+        vmap <Leader>a: :Tabularize /:\zs<CR>
     " Plugin: YouCompleteMe
         "noremap <leader>j :YcmCompleter GoTo<CR>
 
@@ -404,67 +428,72 @@
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
     " File Manager
-        Bundle 'The-NERD-tree'
-        Bundle 'ctrlp.vim'
-        Bundle 'bufexplorer.zip'
-        Bundle 'fholgado/minibufexpl.vim'
-        Bundle 'xolox/vim-session'
-            Bundle 'xolox/vim-misc'
-        "Bundle 'zefei/buftabs'
-        "Bundle 'mihaifm/bufstop'
-        "Bundle 'jistr/vim-nerdtree-tabs'
+        Plugin 'The-NERD-tree'
+        Plugin 'bufexplorer.zip'
+        Plugin 'fholgado/minibufexpl.vim'
+        Plugin 'xolox/vim-session'
+        Plugin 'xolox/vim-misc'
+        Plugin 'ctrlpvim/ctrlp.vim'
+        "    Plugin 'JazzCore/ctrlp-cmatcher'
+        "Plugin 'zefei/buftabs'
+        "Plugin 'mihaifm/bufstop'
+        "Plugin 'jistr/vim-nerdtree-tabs'
     " Tracing code
-        Bundle 'Tagbar'
-        Bundle 'gtags.vim'
-        Bundle 'chazy/cscope_maps'
-        Bundle 'matchit.zip'
-        Bundle 'mileszs/ack.vim'
-        Bundle 'dyng/ctrlsf.vim'
-        "Bundle 'ggreer/the_silver_searcher'
-        "Bundle 'rking/ag.vim'
-        "Bundle 'scrooloose/syntastic'
-        "Bundle 'taglist.vim'
+        Plugin 'Tagbar'
+        Plugin 'gtags.vim'
+        Plugin 'chazy/cscope_maps'
+        Plugin 'matchit.zip'
+        Plugin 'mileszs/ack.vim'
+            Plugin 'dyng/ctrlsf.vim'
+        "Plugin 'ggreer/the_silver_searcher'
+        "Plugin 'rking/ag.vim'
+        "Plugin 'scrooloose/syntastic'
+        "Plugin 'taglist.vim'
     " Auto code completion
-        Bundle 'OmniCppComplete'
-        Bundle 'ervandew/supertab'
-        Bundle 'Raimondi/delimitMate'
-        Bundle 'mattn/emmet-vim'
-        Bundle 'SirVer/ultisnips'
-            Bundle 'vincenthsu/vim-snippets'
-        "    Bundle 'honza/vim-snippets'
-        "Bundle 'Valloric/YouCompleteMe'
-        "Bundle 'marijnh/tern_for_vim'
-        "Bundle 'Shougo/neocomplete.vim'
-        "Bundle 'gregsexton/MatchTag'
+        Plugin 'OmniCppComplete'
+        Plugin 'ervandew/supertab'
+        Plugin 'Raimondi/delimitMate'
+        Plugin 'mattn/emmet-vim'
+        Plugin 'SirVer/ultisnips'
+            Plugin 'vincenthsu/vim-snippets'
+        "    Plugin 'honza/vim-snippets'
+        "Plugin 'Valloric/YouCompleteMe'
+        "Plugin 'marijnh/tern_for_vim'
+        "Plugin 'Shougo/neocomplete.vim'
+        "Plugin 'gregsexton/MatchTag'
     " Editing
-        Bundle 'YankRing.vim'
-        Bundle 'sjl/gundo.vim'
-        Bundle 'tpope/vim-surround'
-        Bundle 'tpope/vim-repeat'
-        Bundle 'tpope/vim-commentary'
-        Bundle 'jayflo/vim-skip'
-        Bundle 'terryma/vim-multiple-cursors'
-            Bundle 'terryma/vim-expand-region'
+        Plugin 'YankRing.vim'
+        Plugin 'sjl/gundo.vim'
+        Plugin 'tpope/vim-surround'
+        Plugin 'tpope/vim-repeat'
+        Plugin 'tpope/vim-commentary'
+        Plugin 'jayflo/vim-skip'
+        Plugin 'terryma/vim-multiple-cursors'
+            Plugin 'terryma/vim-expand-region'
+        Plugin 'godlygeek/tabular'
     " Syntaxes & colors
-        Bundle 'plasticboy/vim-markdown'
-        Bundle 'flazz/vim-colorschemes'
-        Bundle 'bling/vim-airline'
+        Plugin 'flazz/vim-colorschemes'
+        Plugin 'bling/vim-airline'
+        Plugin 'tpope/vim-markdown'
+        "Plugin 'plasticboy/vim-markdown'
+        "Plugin 'pangloss/vim-javascript'
+        "Plugin 'tpope/vim-git'
     " Version control
-        Bundle 'tpope/vim-fugitive'
-        Bundle 'mhinz/vim-signify'
-        Bundle 'gregsexton/gitv'
-        "Bundle 'airblade/vim-gitgutter'
+        Plugin 'tpope/vim-fugitive'
+        Plugin 'mhinz/vim-signify'
+        Plugin 'gregsexton/gitv'
+        "Plugin 'airblade/vim-gitgutter'
     " Others
-        Bundle 'gmarik/vundle'
-        Bundle 'mattn/webapi-vim'
-        Bundle 'mattn/gist-vim'
-        Bundle 'starleoda/vim-vookmark'
-        Bundle 'LargeFile'
+        Plugin 'gmarik/vundle'
+        Plugin 'mattn/webapi-vim'
+        Plugin 'mattn/gist-vim'
+        Plugin 'starleoda/vim-vookmark'
+        Plugin 'LargeFile'
     "filetype plugin on " required!
     filetype plugin indent on " load filetype plugins/indent settings
 
 " Plugin Settings
-    " ctags
+    " Ctags
         set tags=tags;
     " NerdTree
         let NERDTreeBookmarksFile=expand("$HOME/.vim/tmp/nerdtree_bookmarks.txt")
@@ -480,7 +509,7 @@
         \ }
     " YankRing
         let g:yankring_history_dir=g:tempdir
-    " ctrlp
+    " Ctrlp
         let g:ctrlp_working_path_mode='ra'
         let g:ctrlp_custom_ignore='\v[\/]\.(git|hg|svn)$'
         let g:ctrlp_follow_symlinks=1
@@ -512,47 +541,47 @@
         let g:vim_markdown_folding_disabled=1
     " vim-vookmark
         let g:vookmark_savepath=$HOME.'/.vim/tmp/bookmark'
-    " gist-vim
+    " Gist-vim
         let g:gist_show_privates=1
         let g:gist_post_private=1
-    " minibufexpl
+    " Minibufexpl
         let g:miniBufExplCycleArround=1
     " UltiSnips
         let g:UltiSnipsExpandTrigger="<Tab>"
         let g:UltiSnipsJumpForwardTrigger="<Tab>"
         let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
     " YouCompleteMe
-        " let g:ycm_show_diagnostics_ui=0
-        " let g:ycm_key_list_select_completion=['<Down>']
-        " let g:ycm_key_list_previous_completion=['<Up>']
-        " let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-        " let g:ycm_confirm_extra_conf=0
-        " let g:ycm_collect_identifiers_from_tags_files=1
-        " " :h filetype - vim filetypes
-        " " :set ft? - get the filetype of the current file
-        " let g:ycm_filetype_blacklist = {
-        "     \ 'nerdtree' : 1,
-        "     \ 'tagbar' : 1,
-        "     \ 'minibufexpl' : 1,
-        "     \ 'gundo' : 1,
-        "     \ 'vundle' : 1,
-        "     \ 'qf' : 1,
-        "     \ 'notes' : 1,
-        "     \ 'markdown' : 1,
-        "     \ 'mkd' : 1,
-        "     \ 'unite' : 1,
-        "     \ 'text' : 1,
-        "     \ 'vimwiki' : 1,
-        "     \ 'gitcommit' : 1,
-        " \ }
-        " "let g:ycm_filetype_whitelist = {
-        " "    \ 'c': 1,
-        " "    \ 'cpp': 1,
-        " "    \ 'sh': 1,
-        " "    \ 'java': 1,
-        " "    \ 'python': 1,
-        " "    \ 'ruby': 1,
-        " "\ }
+        "let g:ycm_show_diagnostics_ui=0
+        "let g:ycm_key_list_select_completion=['<Down>']
+        "let g:ycm_key_list_previous_completion=['<Up>']
+        "let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+        "let g:ycm_confirm_extra_conf=0
+        "let g:ycm_collect_identifiers_from_tags_files=1
+        "" :h filetype - vim filetypes
+        "" :set ft? - get the filetype of the current file
+        "let g:ycm_filetype_blacklist = {
+        "    \ 'nerdtree' : 1,
+        "    \ 'tagbar' : 1,
+        "    \ 'minibufexpl' : 1,
+        "    \ 'gundo' : 1,
+        "    \ 'vundle' : 1,
+        "    \ 'qf' : 1,
+        "    \ 'notes' : 1,
+        "    \ 'markdown' : 1,
+        "    \ 'mkd' : 1,
+        "    \ 'unite' : 1,
+        "    \ 'text' : 1,
+        "    \ 'vimwiki' : 1,
+        "    \ 'gitcommit' : 1,
+        "\ }
+        ""let g:ycm_filetype_whitelist = {
+        ""    \ 'c': 1,
+        ""    \ 'cpp': 1,
+        ""    \ 'sh': 1,
+        ""    \ 'java': 1,
+        ""    \ 'python': 1,
+        ""    \ 'ruby': 1,
+        ""\ }
 
 " Color Theme: sequence-related
     " Enable xterm 256 color
