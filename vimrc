@@ -487,8 +487,9 @@
         Plugin 'gmarik/vundle'
         Plugin 'mattn/webapi-vim'
         Plugin 'mattn/gist-vim'
-        Plugin 'starleoda/vim-vookmark'
         Plugin 'LargeFile'
+        Plugin 'MattesGroeger/vim-bookmarks'
+        "Plugin 'starleoda/vim-vookmark'
     "filetype plugin on " required!
     filetype plugin indent on " load filetype plugins/indent settings
 
@@ -539,8 +540,6 @@
         let g:signify_disable_by_default=1
     " vim-markdown
         let g:vim_markdown_folding_disabled=1
-    " vim-vookmark
-        let g:vookmark_savepath=$HOME.'/.vim/tmp/bookmark'
     " Gist-vim
         let g:gist_show_privates=1
         let g:gist_post_private=1
@@ -550,6 +549,11 @@
         let g:UltiSnipsExpandTrigger="<Tab>"
         let g:UltiSnipsJumpForwardTrigger="<Tab>"
         let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+    " vim-bookmark
+        let g:bookmark_auto_save_file = $HOME.'/.vim/tmp/bookmarks'
+        let g:bookmark_auto_close = 1
+    " vim-vookmark
+        "let g:vookmark_savepath=$HOME.'/.vim/tmp/bookmarks'
     " YouCompleteMe
         "let g:ycm_show_diagnostics_ui=0
         "let g:ycm_key_list_select_completion=['<Down>']

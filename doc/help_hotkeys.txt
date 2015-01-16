@@ -15,6 +15,7 @@ Contents                                *help_hotkeys* *help_hotkeys-contents*
 |help_hotkeys-surround|      Surround
 |help_hotkeys-yankring|      YankRing
 |help_hotkeys-cscope|        CScope
+|help_hotkeys-vim-bookmarks| VIM bookmarks
 |help_hotkeys-tips|          Tips
 |help_hotkeys-source_help|   Source help doc changed
 
@@ -234,6 +235,21 @@ CScope                                                   *help_hotkeys-cscope*
 <C-\> i  " Find files #including this file
 <C-\> s  " Find this C symbol
 <C-\> t  " Find assignments to
+
+==============================================================================
+VIM bookmarks                                     *help_hotkeys-vim-bookmarks*
+
+| Action | Shortcut                   | Command                                    |
+|--------|----------------------------|--------------------------------------------|
+| mm     | :BookmarkToggle            | Add/remove bookmark at current line        |
+| mi     | :BookmarkAnnotate <TEXT>   | Add/edit/remove annotation at current line |
+| mn     | :BookmarkNext              | Jump to next bookmark in buffer            |
+| mp     | :BookmarkPrev              | Jump to previous bookmark in buffer        |
+| ma     | :BookmarkShowAll           | Show all bookmarks (toggle)                |
+| mc     | :BookmarkClear             | Clear bookmarks in current buffer only     |
+| mx     | :BookmarkClearAll          | Clear bookmarks in all buffers             |
+|        | :BookmarkSave <FILE_PATH>  | Save all bookmarks to a file               |
+|        | :BookmarkLoad <FILE_PATH>  | Load bookmarks from a file                 |
 
 ==============================================================================
 Tips                                                       *help_hotkeys-tips*
