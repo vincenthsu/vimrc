@@ -413,13 +413,13 @@
         noremap <C-X>n :NewSession<CR>
         noremap <C-X>o :OpenSession!<CR>
         noremap <C-X>d :DeleteSession<CR>
-    " Plugin: Emmet
+    " Plugin: Emmet (Zen Coding)
         let g:user_emmet_expandabbr_key = '<C-S>'
     " Plugin: Tabular
-        nmap <Leader>a= :Tabularize /=<CR>
-        vmap <Leader>a= :Tabularize /=<CR>
-        nmap <Leader>a: :Tabularize /:\zs<CR>
-        vmap <Leader>a: :Tabularize /:\zs<CR>
+        "nmap <Leader>a= :Tabularize /=<CR>
+        "vmap <Leader>a= :Tabularize /=<CR>
+        "nmap <Leader>a: :Tabularize /:\zs<CR>
+        "vmap <Leader>a: :Tabularize /:\zs<CR>
     " Plugin: YouCompleteMe
         "noremap <leader>j :YcmCompleter GoTo<CR>
 
@@ -466,11 +466,13 @@
         Plugin 'sjl/gundo.vim'
         Plugin 'tpope/vim-surround'
         Plugin 'tpope/vim-repeat'
-        Plugin 'tpope/vim-commentary'
         Plugin 'jayflo/vim-skip'
         Plugin 'terryma/vim-multiple-cursors'
             Plugin 'terryma/vim-expand-region'
-        Plugin 'godlygeek/tabular'
+        Plugin 'tommcdo/vim-lion'
+        Plugin 'tomtom/tcomment_vim'
+        "Plugin 'godlygeek/tabular'
+        "Plugin 'tpope/vim-commentary'
     " Syntaxes & colors
         Plugin 'flazz/vim-colorschemes'
         Plugin 'bling/vim-airline'
