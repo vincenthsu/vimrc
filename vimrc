@@ -349,18 +349,14 @@
         noremap <C-X>- <C-X>
         noremap <C-X>_ <C-X>
     " Switch buffers
-        noremap <C-left> :MBEbp<CR>
-        noremap <C-right> :MBEbn<CR>
+        noremap <C-left> :bprevious<CR>
+        noremap <C-right> :bnext<CR>
         noremap <C-up> :BufExplorer<CR>
-        noremap <C-down> :MBEbd<CR>
-        noremap <C-X><left> :MBEbp<CR>
-        noremap <C-X><right> :MBEbn<CR>
-        noremap <C-X><up> :BufExplorer<CR>
-        noremap <C-X><down> :MBEbd<CR>
-        noremap <leader><left> :MBEbp<CR>
-        noremap <leader><right> :MBEbn<CR>
+        noremap <C-down> :bdelete<CR>
+        noremap <leader><left> :bprevious<CR>
+        noremap <leader><right> :bnext<CR>
         noremap <leader><up> :BufExplorer<CR>
-        noremap <leader><down> :MBEbd<CR>
+        noremap <leader><down> :bdelete<CR>
     " Switch between windows
         noremap <C-H> <C-W>h
         noremap <C-L> <C-W>l
@@ -430,11 +426,11 @@
     " File Manager
         Plugin 'The-NERD-tree'
         Plugin 'bufexplorer.zip'
-        Plugin 'fholgado/minibufexpl.vim'
         Plugin 'xolox/vim-session'
         Plugin 'xolox/vim-misc'
         Plugin 'ctrlpvim/ctrlp.vim'
         "    Plugin 'JazzCore/ctrlp-cmatcher'
+        "Plugin 'fholgado/minibufexpl.vim'
         "Plugin 'zefei/buftabs'
         "Plugin 'mihaifm/bufstop'
         "Plugin 'jistr/vim-nerdtree-tabs'
@@ -524,7 +520,6 @@
             \ 'fallback': 'find %s -type f'
         \ }
     " vim-session
-        set sessionoptions-=help
         let g:session_directory='~/.vim/tmp/sessions'
         let g:session_autoload='yes'
         let g:session_autosave='no'
@@ -533,11 +528,12 @@
         let g:session_command_aliases=1
         let g:session_persist_colors=0
     " vim-airline
-        let g:airline_powerline_fonts=0
-        let g:airline_left_sep=''
-        let g:airline_right_sep=''
+        let g:airline_powerline_fonts=1
+        "let g:airline_left_sep=''
+        "let g:airline_right_sep=''
         "let g:airline_section_x='%{getcwd()}'
         let g:airline_section_z='%l/%L'
+        let g:airline#extensions#tabline#enabled=1
     " vim-signify
         let g:signify_disable_by_default=1
     " vim-markdown
@@ -546,7 +542,7 @@
         let g:gist_show_privates=1
         let g:gist_post_private=1
     " Minibufexpl
-        let g:miniBufExplCycleArround=1
+        "let g:miniBufExplCycleArround=1
     " UltiSnips
         let g:UltiSnipsExpandTrigger="<Tab>"
         let g:UltiSnipsJumpForwardTrigger="<Tab>"
