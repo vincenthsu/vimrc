@@ -1,3 +1,8 @@
+" Configuration variables (defined in ~/.vimrc.inc)
+    "let g:powerline_fonts = 1
+    "let g:cpp_developer = 1
+    "let g:web_developer = 1
+
 " General
     set nocompatible " explicitly get out of vi-compatible mode
     set noexrc       " don't use local version of .(g)vimrc, .exrc
@@ -234,18 +239,18 @@
                 bdelete diffbuf
                 diffoff
             else
-                let filetype=&ft
+                let filetype = &ft
                 diffthis
                 vnew diffbuf| r # | normal! | ggdd
                 diffthis
                 execute "setlocal bt=nofile bh=wipe ro noswf ft=" . filetype
-                let b:diffbuf=1
+                let b:diffbuf = 1
             endif
         endfunction
         command! DiffSaved call DiffWithSaved()
     " A mapping to make a backup session of the current file.
         function! WriteSession()
-            let l:fname=strftime('%Y%m%d-%H%M%S') . '_' . expand('%:t')
+            let l:fname = strftime('%Y%m%d-%H%M%S') . '_' . expand('%:t')
             silent execute 'SaveSession! ' . l:fname
             echomsg 'Saved Session: ' . l:fname
         endfunction
@@ -334,7 +339,7 @@
         noremap <F11> :retab<CR> :call RTrailing()<CR>
         noremap <F12> :help_hotkeys<CR>
     " Unbind the C-S, C-X for other usages
-        "noremap <C-S> <NOP> " handle by Emmet
+        "noremap <C-S> <NOP> " handle by emmet
         noremap <C-X> <NOP>
         " obtain/pull difference
         noremap <C-X>. do
@@ -349,19 +354,19 @@
         noremap <C-X>- <C-X>
         noremap <C-X>_ <C-X>
     " Switch buffers
-        noremap <C-left> :bprevious<CR>
-        noremap <C-right> :bnext<CR>
+        noremap <C-left> :MBEbp<CR>
+        noremap <C-right> :MBEbn<CR>
         noremap <C-up> :BufExplorer<CR>
-        noremap <C-down> :bdelete<CR>
-        noremap <leader><left> :bprevious<CR>
-        noremap <leader><right> :bnext<CR>
+        noremap <C-down> :MBEbd<CR>
+        noremap <leader><left> :MBEbp<CR>
+        noremap <leader><right> :MBEbn<CR>
         noremap <leader><up> :BufExplorer<CR>
-        noremap <leader><down> :bdelete<CR>
+        noremap <leader><down> :MBEbd<CR>
     " Switch between windows
         noremap <C-H> <C-W>h
-        noremap <C-L> <C-W>l
         noremap <C-J> <C-W>j
         noremap <C-K> <C-W>k
+        noremap <C-L> <C-W>l
     " Split windows
         nnoremap <C-\> :vsp<CR>
         nnoremap <C-_> :sp<CR>
@@ -409,15 +414,6 @@
         noremap <C-X>n :NewSession<CR>
         noremap <C-X>o :OpenSession!<CR>
         noremap <C-X>d :DeleteSession<CR>
-    " Plugin: Emmet (Zen Coding)
-        let g:user_emmet_expandabbr_key = '<C-S>'
-    " Plugin: Tabular
-        "nmap <Leader>a= :Tabularize /=<CR>
-        "vmap <Leader>a= :Tabularize /=<CR>
-        "nmap <Leader>a: :Tabularize /:\zs<CR>
-        "vmap <Leader>a: :Tabularize /:\zs<CR>
-    " Plugin: YouCompleteMe
-        "noremap <leader>j :YcmCompleter GoTo<CR>
 
 " Use Vundle plugin to manage all other plugins
     filetype off " required!
@@ -426,18 +422,18 @@
     " File Manager
         Plugin 'The-NERD-tree'
         Plugin 'bufexplorer.zip'
+        Plugin 'fholgado/minibufexpl.vim'
         Plugin 'xolox/vim-session'
         Plugin 'xolox/vim-misc'
         Plugin 'ctrlpvim/ctrlp.vim'
         "    Plugin 'JazzCore/ctrlp-cmatcher'
-        "Plugin 'fholgado/minibufexpl.vim'
         "Plugin 'zefei/buftabs'
         "Plugin 'mihaifm/bufstop'
         "Plugin 'jistr/vim-nerdtree-tabs'
     " Tracing code
         Plugin 'Tagbar'
         Plugin 'gtags.vim'
-        Plugin 'chazy/cscope_maps'
+        " Plugin 'chazy/cscope_maps'
         Plugin 'matchit.zip'
         Plugin 'mileszs/ack.vim'
             Plugin 'dyng/ctrlsf.vim'
@@ -446,14 +442,20 @@
         "Plugin 'scrooloose/syntastic'
         "Plugin 'taglist.vim'
     " Auto code completion
-        Plugin 'OmniCppComplete'
+        if exists("g:cpp_developer")
+            Plugin 'Valloric/YouCompleteMe'
+        else
+            Plugin 'OmniCppComplete'
+        endif
+        if exists("g:web_developer")
+            Plugin 'mattn/emmet-vim'
+        endif
         Plugin 'ervandew/supertab'
         Plugin 'Raimondi/delimitMate'
-        Plugin 'mattn/emmet-vim'
         Plugin 'SirVer/ultisnips'
             Plugin 'vincenthsu/vim-snippets'
         "    Plugin 'honza/vim-snippets'
-        "Plugin 'Valloric/YouCompleteMe'
+        "Plugin 'justmao945/vim-clang'
         "Plugin 'marijnh/tern_for_vim'
         "Plugin 'Shougo/neocomplete.vim'
         "Plugin 'gregsexton/MatchTag'
@@ -495,10 +497,10 @@
     " Ctags
         set tags=tags;
     " NerdTree
-        let NERDTreeBookmarksFile=expand("$HOME/.vim/tmp/nerdtree_bookmarks.txt")
+        let NERDTreeBookmarksFile = expand("$HOME/.vim/tmp/nerdtree_bookmarks.txt")
     " Tagbar
-        let tagbar_width=30 " default: 40
-        let g:tagbar_type_css = {
+        let tagbar_width = 30 " default: 40
+        let g:tagbar_type_css  =  {
             \ 'ctagstype' : 'Css',
             \ 'kinds'     : [
                 \ 'c:classes',
@@ -507,12 +509,12 @@
             \ ]
         \ }
     " YankRing
-        let g:yankring_history_dir=g:tempdir
+        let g:yankring_history_dir = g:tempdir
     " Ctrlp
-        let g:ctrlp_working_path_mode='ra'
-        let g:ctrlp_custom_ignore='\v[\/]\.(git|hg|svn)$'
-        let g:ctrlp_follow_symlinks=1
-        let g:ctrlp_user_command={
+        let g:ctrlp_working_path_mode = 'ra'
+        let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+        let g:ctrlp_follow_symlinks = 1
+        let g:ctrlp_user_command = {
             \ 'types': {
                 \ 1: ['.git', 'cd %s && git ls-files'],
                 \ 2: ['.hg', 'hg --cwd %s locate -I .'],
@@ -520,70 +522,84 @@
             \ 'fallback': 'find %s -type f'
         \ }
     " vim-session
-        let g:session_directory='~/.vim/tmp/sessions'
-        let g:session_autoload='yes'
-        let g:session_autosave='no'
-        let g:session_default_to_last=1
-        let g:session_default_overwrite=1
-        let g:session_command_aliases=1
-        let g:session_persist_colors=0
-    " vim-airline
-        let g:airline_powerline_fonts=1
-        "let g:airline_left_sep=''
-        "let g:airline_right_sep=''
-        "let g:airline_section_x='%{getcwd()}'
-        let g:airline_section_z='%l/%L'
-        let g:airline#extensions#tabline#enabled=1
+        let g:session_directory = '~/.vim/tmp/sessions'
+        let g:session_autoload = 'yes'
+        let g:session_autosave = 'no'
+        let g:session_default_to_last = 1
+        let g:session_default_overwrite = 1
+        let g:session_command_aliases = 1
+        let g:session_persist_colors = 0
     " vim-signify
-        let g:signify_disable_by_default=1
+        let g:signify_disable_by_default = 1
     " vim-markdown
-        let g:vim_markdown_folding_disabled=1
+        let g:vim_markdown_folding_disabled = 1
     " Gist-vim
-        let g:gist_show_privates=1
-        let g:gist_post_private=1
+        let g:gist_show_privates = 1
+        let g:gist_post_private = 1
     " Minibufexpl
-        "let g:miniBufExplCycleArround=1
+        let g:miniBufExplCycleArround = 1
     " UltiSnips
-        let g:UltiSnipsExpandTrigger="<Tab>"
-        let g:UltiSnipsJumpForwardTrigger="<Tab>"
-        let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+        let g:UltiSnipsExpandTrigger = "<C-X>"
+        let g:UltiSnipsJumpForwardTrigger = "<Tab>"
+        let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
     " vim-bookmark
         let g:bookmark_auto_save_file = $HOME.'/.vim/tmp/bookmarks'
         let g:bookmark_auto_close = 1
     " vim-vookmark
-        "let g:vookmark_savepath=$HOME.'/.vim/tmp/bookmarks'
+        "let g:vookmark_savepath = $HOME.'/.vim/tmp/bookmarks'
+    " vim-airline
+        if exists("g:powerline_fonts")
+            let g:airline_powerline_fonts = 1
+        else
+            let g:airline_left_sep = ''
+            let g:airline_right_sep = ''
+        end
+        let g:airline_section_z = '%l/%L'
+        "let g:airline_section_x = '%{getcwd()}'
+        "let g:airline#extensions#tabline#enabled = 1
     " YouCompleteMe
-        "let g:ycm_show_diagnostics_ui=0
-        "let g:ycm_key_list_select_completion=['<Down>']
-        "let g:ycm_key_list_previous_completion=['<Up>']
-        "let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-        "let g:ycm_confirm_extra_conf=0
-        "let g:ycm_collect_identifiers_from_tags_files=1
-        "" :h filetype - vim filetypes
-        "" :set ft? - get the filetype of the current file
-        "let g:ycm_filetype_blacklist = {
-        "    \ 'nerdtree' : 1,
-        "    \ 'tagbar' : 1,
-        "    \ 'minibufexpl' : 1,
-        "    \ 'gundo' : 1,
-        "    \ 'vundle' : 1,
-        "    \ 'qf' : 1,
-        "    \ 'notes' : 1,
-        "    \ 'markdown' : 1,
-        "    \ 'mkd' : 1,
-        "    \ 'unite' : 1,
-        "    \ 'text' : 1,
-        "    \ 'vimwiki' : 1,
-        "    \ 'gitcommit' : 1,
-        "\ }
-        ""let g:ycm_filetype_whitelist = {
-        ""    \ 'c': 1,
-        ""    \ 'cpp': 1,
-        ""    \ 'sh': 1,
-        ""    \ 'java': 1,
-        ""    \ 'python': 1,
-        ""    \ 'ruby': 1,
-        ""\ }
+        if exists("g:cpp_developer")
+            noremap <leader>j :YcmCompleter GoTo<CR>
+            let g:ycm_show_diagnostics_ui = 0
+            let g:ycm_autoclose_preview_window_after_completion = 1
+            let g:ycm_autoclose_preview_window_after_insertion = 1
+            let g:ycm_key_list_select_completion = ['<Down>']
+            let g:ycm_key_list_previous_completion = ['<Up>']
+            let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+            let g:ycm_confirm_extra_conf = 0
+            let g:ycm_collect_identifiers_from_tags_files = 1
+            " :h filetype - vim filetypes
+            " :set ft? - get the filetype of the current file
+            let g:ycm_filetype_blacklist = {
+                \ 'nerdtree' : 1,
+                \ 'tagbar' : 1,
+                \ 'minibufexpl' : 1,
+                \ 'gundo' : 1,
+                \ 'vundle' : 1,
+                \ 'qf' : 1,
+                \ 'notes' : 1,
+                \ 'markdown' : 1,
+                \ 'mkd' : 1,
+                \ 'unite' : 1,
+                \ 'text' : 1,
+                \ 'vimwiki' : 1,
+                \ 'gitcommit' : 1,
+            \ }
+            "let g:ycm_filetype_whitelist = {
+            "    \ 'c': 1,
+            "    \ 'cpp': 1,
+            "    \ 'sh': 1,
+            "    \ 'java': 1,
+            "    \ 'python': 1,
+            "    \ 'ruby': 1,
+            "\ }
+        endif
+    " Emmet (Zen Coding)
+        if exists("g:web_developer")
+            let g:user_emmet_expandabbr_key = '<C-S>'
+        else
+            noremap <C-S> <NOP>
+        end
 
 " Color Theme: sequence-related
     " Enable xterm 256 color
@@ -592,9 +608,10 @@
         colorscheme blackboard
     " Plugin: BufTabs
         highlight BufTabs term=standout ctermbg=4 ctermfg=7
-        let g:buftabs_active_highlight_group="BufTabs"
+        let g:buftabs_active_highlight_group = "BufTabs"
     " Popup menu
         highlight Pmenu ctermbg=234 ctermfg=7
         highlight PmenuSel ctermbg=8 ctermfg=7
     " Tabs and trailing
         highlight SpecialKey ctermfg=236 ctermbg=0
+
