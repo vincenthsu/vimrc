@@ -14,7 +14,6 @@ Contents                                *help_hotkeys* *help_hotkeys-contents*
 |help_hotkeys-sort|          Sort
 |help_hotkeys-surround|      Surround
 |help_hotkeys-yankring|      YankRing
-|help_hotkeys-cscope|        CScope
 |help_hotkeys-vim-bookmarks| VIM bookmarks
 |help_hotkeys-tips|          Tips
 |help_hotkeys-source_help|   Source help doc changed
@@ -22,21 +21,22 @@ Contents                                *help_hotkeys* *help_hotkeys-contents*
 ==============================================================================
 User defined keys                                     *help_hotkeys-user_keys*
 
+
 " Hotkeys
     noremap <F1> :call NTToggle()<CR>
     noremap <F2> :TagbarToggle<CR>
-    noremap <F3> :MBEToggle<CR>
-    set pastetoggle=<F4>
+    noremap <F3> :CtrlSF<Space>
+    noremap <F4> :GundoToggle<CR>
     noremap <F5> :SaveSession!<CR>
     noremap <F6> :NewSession<CR>
     noremap <F7> :OpenSession!<CR>
     noremap <F8> :DeleteSession<CR>
-    noremap <F9> :CtrlSF<Space>
+    set pastetoggle=<F9>
     noremap <F10> :call SetEncoding()<CR>
     noremap <F11> :retab<CR> :call RTrailing()<CR>
     noremap <F12> :help_hotkeys<CR>
 " Unbind the C-S, C-X for other usages
-    "noremap <C-S> <NOP> " handle by Emmet
+    "noremap <C-S> <NOP> " handle by emmet
     noremap <C-X> <NOP>
     " obtain/pull difference
     noremap <C-X>. do
@@ -51,23 +51,19 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <C-X>- <C-X>
     noremap <C-X>_ <C-X>
 " Switch buffers
-    noremap <C-left> :MBEbp<CR>
-    noremap <C-right> :MBEbn<CR>
+    noremap <C-left> :bp<CR>
+    noremap <C-right> :bn<CR>
     noremap <C-up> :BufExplorer<CR>
-    noremap <C-down> :MBEbd<CR>
-    noremap <C-X><left> :MBEbp<CR>
-    noremap <C-X><right> :MBEbn<CR>
-    noremap <C-X><up> :BufExplorer<CR>
-    noremap <C-X><down> :MBEbd<CR>
-    noremap <leader><left> :MBEbp<CR>
-    noremap <leader><right> :MBEbn<CR>
+    noremap <C-down> :bd<CR>
+    noremap <leader><left> :bp<CR>
+    noremap <leader><right> :bn<CR>
     noremap <leader><up> :BufExplorer<CR>
-    noremap <leader><down> :MBEbd<CR>
+    noremap <leader><down> :bd<CR>
 " Switch between windows
     noremap <C-H> <C-W>h
-    noremap <C-L> <C-W>l
     noremap <C-J> <C-W>j
     noremap <C-K> <C-W>k
+    noremap <C-L> <C-W>l
 " Split windows
     nnoremap <C-\> :vsp<CR>
     nnoremap <C-_> :sp<CR>
@@ -115,6 +111,8 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <C-X>n :NewSession<CR>
     noremap <C-X>o :OpenSession!<CR>
     noremap <C-X>d :DeleteSession<CR>
+" Plugin: YouCompleteMe
+    noremap <leader>j :YcmCompleter GoTo<CR>
 " Plugin: Emmet (Zen Coding)
     let g:user_emmet_expandabbr_key = '<C-S>'
 
@@ -223,20 +221,6 @@ YankRing                                               *help_hotkeys-yankring*
 
 <C-p>  " (P for previous) to replace the text last pasted
 <C-n>  " (N for next) to replace the previous pasted
-
-==============================================================================
-CScope                                                   *help_hotkeys-cscope*
-
-:cs add {cscope.out path}
-:cs Usage Tip
-<C-\> c  " Find functions calling this function
-<C-\> d  " Find functions called by this function
-<C-\> e  " Find this egrep pattern
-<C-\> f  " Find this file
-<C-\> g  " Find this definition
-<C-\> i  " Find files #including this file
-<C-\> s  " Find this C symbol
-<C-\> t  " Find assignments to
 
 ==============================================================================
 VIM bookmarks                                     *help_hotkeys-vim-bookmarks*

@@ -217,8 +217,10 @@
             if (s:ntree != -1)
                 "" If NERDTree is open, close it.
                 :NERDTreeClose
+                ":NERDTreeTabsClose
             else
                 "" Open NERDTree in the file path
+                ":NERDTreeTabsOpen
                 :NERDTreeFind
             endif
         endfunction
@@ -328,13 +330,13 @@
     " Hotkeys
         noremap <F1> :call NTToggle()<CR>
         noremap <F2> :TagbarToggle<CR>
-        noremap <F3> :MBEToggle<CR>
-        set pastetoggle=<F4>
+        noremap <F3> :CtrlSF<Space>
+        noremap <F4> :GundoToggle<CR>
         noremap <F5> :SaveSession!<CR>
         noremap <F6> :NewSession<CR>
         noremap <F7> :OpenSession!<CR>
         noremap <F8> :DeleteSession<CR>
-        noremap <F9> :CtrlSF<Space>
+        set pastetoggle=<F9>
         noremap <F10> :call SetEncoding()<CR>
         noremap <F11> :retab<CR> :call RTrailing()<CR>
         noremap <F12> :help_hotkeys<CR>
@@ -354,14 +356,14 @@
         noremap <C-X>- <C-X>
         noremap <C-X>_ <C-X>
     " Switch buffers
-        noremap <C-left> :MBEbp<CR>
-        noremap <C-right> :MBEbn<CR>
+        noremap <C-left> :bp<CR>
+        noremap <C-right> :bn<CR>
         noremap <C-up> :BufExplorer<CR>
-        noremap <C-down> :MBEbd<CR>
-        noremap <leader><left> :MBEbp<CR>
-        noremap <leader><right> :MBEbn<CR>
+        noremap <C-down> :bd<CR>
+        noremap <leader><left> :bp<CR>
+        noremap <leader><right> :bn<CR>
         noremap <leader><up> :BufExplorer<CR>
-        noremap <leader><down> :MBEbd<CR>
+        noremap <leader><down> :bd<CR>
     " Switch between windows
         noremap <C-H> <C-W>h
         noremap <C-J> <C-W>j
@@ -406,6 +408,7 @@
         noremap <leader>r :Gtags -r<CR>
         noremap <leader>z :cp<CR>
         noremap <leader>x :cn<CR>
+        noremap <leader>q :cclose<CR>
     " Plugin: Ctrlp
         " default bindings conflict with yankring bindings
         noremap <leader>p :CtrlPMixed<CR>
@@ -422,18 +425,17 @@
     " File Manager
         Plugin 'The-NERD-tree'
         Plugin 'bufexplorer.zip'
-        Plugin 'fholgado/minibufexpl.vim'
         Plugin 'xolox/vim-session'
         Plugin 'xolox/vim-misc'
         Plugin 'ctrlpvim/ctrlp.vim'
         "    Plugin 'JazzCore/ctrlp-cmatcher'
+        "Plugin 'fholgado/minibufexpl.vim'
         "Plugin 'zefei/buftabs'
         "Plugin 'mihaifm/bufstop'
         "Plugin 'jistr/vim-nerdtree-tabs'
     " Tracing code
         Plugin 'Tagbar'
         Plugin 'gtags.vim'
-        " Plugin 'chazy/cscope_maps'
         Plugin 'matchit.zip'
         Plugin 'mileszs/ack.vim'
             Plugin 'dyng/ctrlsf.vim'
@@ -538,6 +540,9 @@
         let g:gist_post_private = 1
     " Minibufexpl
         let g:miniBufExplCycleArround = 1
+        let g:miniBufExplorerAutoStart = 0
+        let g:miniBufExplHideWhenDiff = 1
+        let g:miniBufExplBuffersNeeded = 0
     " UltiSnips
         let g:UltiSnipsExpandTrigger = "<C-X>"
         let g:UltiSnipsJumpForwardTrigger = "<Tab>"
@@ -554,9 +559,14 @@
             let g:airline_left_sep = ''
             let g:airline_right_sep = ''
         end
-        let g:airline_section_z = '%l/%L'
         "let g:airline_section_x = '%{getcwd()}'
-        "let g:airline#extensions#tabline#enabled = 1
+        let g:airline_section_z = '%l/%L'
+        let g:airline#extensions#tabline#enabled = 1
+        let g:airline#extensions#tabline#show_close_button = 0
+        let g:airline#extensions#tabline#show_tab_type = 0
+        let g:airline#extensions#tabline#show_tab_nr = 1
+        let g:airline#extensions#tabline#tab_nr_type = 1
+
     " YouCompleteMe
         if exists("g:cpp_developer")
             noremap <leader>j :YcmCompleter GoTo<CR>
@@ -570,29 +580,29 @@
             let g:ycm_collect_identifiers_from_tags_files = 1
             " :h filetype - vim filetypes
             " :set ft? - get the filetype of the current file
-            let g:ycm_filetype_blacklist = {
-                \ 'nerdtree' : 1,
-                \ 'tagbar' : 1,
-                \ 'minibufexpl' : 1,
-                \ 'gundo' : 1,
-                \ 'vundle' : 1,
-                \ 'qf' : 1,
-                \ 'notes' : 1,
-                \ 'markdown' : 1,
-                \ 'mkd' : 1,
-                \ 'unite' : 1,
-                \ 'text' : 1,
-                \ 'vimwiki' : 1,
-                \ 'gitcommit' : 1,
-            \ }
-            "let g:ycm_filetype_whitelist = {
-            "    \ 'c': 1,
-            "    \ 'cpp': 1,
-            "    \ 'sh': 1,
-            "    \ 'java': 1,
-            "    \ 'python': 1,
-            "    \ 'ruby': 1,
+            "let g:ycm_filetype_blacklist = {
+            "    \ 'nerdtree' : 1,
+            "    \ 'tagbar' : 1,
+            "    \ 'minibufexpl' : 1,
+            "    \ 'gundo' : 1,
+            "    \ 'vundle' : 1,
+            "    \ 'qf' : 1,
+            "    \ 'notes' : 1,
+            "    \ 'markdown' : 1,
+            "    \ 'mkd' : 1,
+            "    \ 'unite' : 1,
+            "    \ 'text' : 1,
+            "    \ 'vimwiki' : 1,
+            "    \ 'gitcommit' : 1,
             "\ }
+            let g:ycm_filetype_whitelist = {
+               \ 'c': 1,
+               \ 'cpp': 1,
+               \ 'sh': 1,
+               \ 'java': 1,
+               \ 'python': 1,
+               \ 'ruby': 1,
+            \ }
         endif
     " Emmet (Zen Coding)
         if exists("g:web_developer")
