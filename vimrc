@@ -348,8 +348,6 @@
         noremap <C-X>, dp
         noremap <C-X>> do
         noremap <C-X>< dp
-        noremap <C-X>] ]c
-        noremap <C-X>[ [c
         " number add/sub 1
         noremap <C-X>= <C-A>
         noremap <C-X>+ <C-A>
@@ -379,29 +377,25 @@
         noremap <C-W>< :vertical resize -10<CR>
         noremap <C-W>. :vertical resize +20<CR>
         noremap <C-W>, :vertical resize -20<CR>
-    " Set line/file encodings
-        noremap <leader>e :call SetEncoding()<CR>
     " Force save the file by sudo privieges
         noremap <leader>w :w !sudo tee %<CR>
     " Switch indent modes
         noremap <leader>1 :call ReadMode()<CR>
         noremap <leader>2 :call EditMode()<CR>
         noremap <leader>3 :call KernelMode()<CR>
-    " Rebind the vim help file
-        inoremap <F1> <ESC> :NERDTreeToggle <CR>
-        noremap <leader>0 :help<CR>
-        noremap <leader>9 :help_hotkeys<CR>
-    " Gen help docs
-        noremap <leader>8 :helptags ~/.vim/doc<CR>
     " Diff file with current modify
         noremap <leader>d :DiffSaved<CR>
-        noremap <leader>7 :DiffSaved<CR>
+        noremap <leader>6 :DiffSaved<CR>
+    " Gen help docs
+        noremap <leader>8 :helptags ~/.vim/doc<CR>
+    " Rebind the vim help file
+        inoremap <F1> <ESC> :call NTToggle()<CR>
+        noremap <leader>9 :help_hotkeys<CR>
+        noremap <leader>0 :help<CR>
     " Plugin: SignifyToggle
         noremap <leader>4 :SignifyToggle<CR>
     " Plugin: Gitv
         noremap <leader>5 :Gitv<CR>
-    " Plugin: Gundo
-        noremap <leader>6 :GundoToggle<CR>
     " Plugin: Gtags
         noremap <leader>g :Gtags<CR>
         noremap <leader>s :Gtags -s<CR>
@@ -412,11 +406,6 @@
     " Plugin: Ctrlp
         " default bindings conflict with yankring bindings
         noremap <leader>p :CtrlPMixed<CR>
-    " Plugin: vim-session
-        noremap <C-X>s :SaveSession!
-        noremap <C-X>n :NewSession<CR>
-        noremap <C-X>o :OpenSession!<CR>
-        noremap <C-X>d :DeleteSession<CR>
 
 " Use Vundle plugin to manage all other plugins
     filetype off " required!
@@ -448,11 +437,11 @@
             Plugin 'Valloric/YouCompleteMe'
         else
             Plugin 'OmniCppComplete'
+            Plugin 'ervandew/supertab'
         endif
         if exists("g:web_developer")
             Plugin 'mattn/emmet-vim'
         endif
-        Plugin 'ervandew/supertab'
         Plugin 'Raimondi/delimitMate'
         Plugin 'SirVer/ultisnips'
             Plugin 'vincenthsu/vim-snippets'
@@ -544,7 +533,7 @@
         let g:miniBufExplHideWhenDiff = 1
         let g:miniBufExplBuffersNeeded = 0
     " UltiSnips
-        let g:UltiSnipsExpandTrigger = "<C-X>"
+        let g:UltiSnipsExpandTrigger = "<Tab>"
         let g:UltiSnipsJumpForwardTrigger = "<Tab>"
         let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
     " vim-bookmark
@@ -570,16 +559,24 @@
     " YouCompleteMe
         if exists("g:cpp_developer")
             noremap <leader>j :YcmCompleter GoTo<CR>
-            let g:ycm_show_diagnostics_ui = 0
-            let g:ycm_autoclose_preview_window_after_completion = 1
-            let g:ycm_autoclose_preview_window_after_insertion = 1
+            let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
             let g:ycm_key_list_select_completion = ['<Down>']
             let g:ycm_key_list_previous_completion = ['<Up>']
-            let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+            let g:ycm_autoclose_preview_window_after_completion = 1
+            let g:ycm_autoclose_preview_window_after_insertion = 1
             let g:ycm_confirm_extra_conf = 0
-            let g:ycm_collect_identifiers_from_tags_files = 1
+            "let g:ycm_show_diagnostics_ui = 0
+            "let g:ycm_collect_identifiers_from_tags_files = 1
             " :h filetype - vim filetypes
             " :set ft? - get the filetype of the current file
+            let g:ycm_filetype_whitelist = {
+               \ 'c': 1,
+               \ 'cpp': 1,
+               \ 'sh': 1,
+               \ 'java': 1,
+               \ 'python': 1,
+               \ 'ruby': 1,
+            \ }
             "let g:ycm_filetype_blacklist = {
             "    \ 'nerdtree' : 1,
             "    \ 'tagbar' : 1,
@@ -595,14 +592,6 @@
             "    \ 'vimwiki' : 1,
             "    \ 'gitcommit' : 1,
             "\ }
-            let g:ycm_filetype_whitelist = {
-               \ 'c': 1,
-               \ 'cpp': 1,
-               \ 'sh': 1,
-               \ 'java': 1,
-               \ 'python': 1,
-               \ 'ruby': 1,
-            \ }
         endif
     " Emmet (Zen Coding)
         if exists("g:web_developer")
