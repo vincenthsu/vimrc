@@ -3,20 +3,22 @@
 ==============================================================================
 Contents                                *help_hotkeys* *help_hotkeys-contents*
 
-|help_hotkeys-user_keys|     User defined keys
-|help_hotkeys-folder|        Folder
-|help_hotkeys-jumps|         Jumps
-|help_hotkeys-word_repeat|   Word repeat
-|help_hotkeys-auto_complete| Auto complete
-|help_hotkeys-pager|         Pager
-|help_hotkeys-split_window|  Split window
-|help_hotkeys-vimdiff|       VimDiff
-|help_hotkeys-sort|          Sort
-|help_hotkeys-surround|      Surround
-|help_hotkeys-yankring|      YankRing
-|help_hotkeys-vim-bookmarks| VIM bookmarks
-|help_hotkeys-tips|          Tips
-|help_hotkeys-source_help|   Source help doc changed
+User defined keys        |Help_hotkeys-user_keys|
+Folder                   |help_hotkeys-folder|
+Jumps                    |help_hotkeys-jumps|
+Word repeat              |help_hotkeys-word_repeat|
+Auto complete            |help_hotkeys-auto_complete|
+Pager                    |help_hotkeys-pager|
+Split window             |help_hotkeys-split_window|
+VimDiff                  |help_hotkeys-vimdiff|
+Sort                     |help_hotkeys-sort|
+YankRing                 |help_hotkeys-yankring|
+CtrlP                    |help_hotkeys-ctrlp|
+Surround                 |help_hotkeys-surround|
+TComment                 |help_hotkeys-tcomment|
+VIM bookmarks            |help_hotkeys-vim-bookmarks|
+Tips                     |help_hotkeys-tips|
+Source help doc changed  |help_hotkeys-source_help|
 
 ==============================================================================
 User defined keys                                     *help_hotkeys-user_keys*
@@ -43,8 +45,6 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <C-X>, dp
     noremap <C-X>> do
     noremap <C-X>< dp
-    noremap <C-X>] ]c
-    noremap <C-X>[ [c
     " number add/sub 1
     noremap <C-X>= <C-A>
     noremap <C-X>+ <C-A>
@@ -59,6 +59,9 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <leader><right> :bn<CR>
     noremap <leader><up> :BufExplorer<CR>
     noremap <leader><down> :bd<CR>
+    noremap <C-X>h :bp<CR>
+    noremap <C-X>l :bn<CR>
+    noremap <C-X>k :BufExplorer<CR>
 " Switch between windows
     noremap <C-H> <C-W>h
     noremap <C-J> <C-W>j
@@ -74,43 +77,35 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <C-W>< :vertical resize -10<CR>
     noremap <C-W>. :vertical resize +20<CR>
     noremap <C-W>, :vertical resize -20<CR>
-" Set line/file encodings
-    noremap <leader>e :call SetEncoding()<CR>
 " Force save the file by sudo privieges
     noremap <leader>w :w !sudo tee %<CR>
 " Switch indent modes
     noremap <leader>1 :call ReadMode()<CR>
     noremap <leader>2 :call EditMode()<CR>
     noremap <leader>3 :call KernelMode()<CR>
-" Rebind the vim help file
-    inoremap <F1> <ESC> :NERDTreeToggle <CR>
-    noremap <leader>0 :help<CR>
-    noremap <leader>9 :help_hotkeys<CR>
-" Gen help docs
-    noremap <leader>8 :helptags ~/.vim/doc<CR>
 " Diff file with current modify
     noremap <leader>d :DiffSaved<CR>
-    noremap <leader>7 :DiffSaved<CR>
+    noremap <leader>6 :DiffSaved<CR>
+" Gen help docs
+    noremap <leader>8 :helptags ~/.vim/doc<CR>
+" Rebind the vim help file
+    inoremap <F1> <ESC> :call NTToggle()<CR>
+    noremap <leader>9 :help_hotkeys<CR>
+    noremap <leader>0 :help<CR>
 " Plugin: SignifyToggle
     noremap <leader>4 :SignifyToggle<CR>
 " Plugin: Gitv
     noremap <leader>5 :Gitv<CR>
-" Plugin: Gundo
-    noremap <leader>6 :GundoToggle<CR>
 " Plugin: Gtags
     noremap <leader>g :Gtags<CR>
     noremap <leader>s :Gtags -s<CR>
     noremap <leader>r :Gtags -r<CR>
     noremap <leader>z :cp<CR>
     noremap <leader>x :cn<CR>
-" Plugin: Ctrlp
+    noremap <leader>q :cclose<CR>
+" Plugin: CtrlP
     " default bindings conflict with yankring bindings
     noremap <leader>p :CtrlPMixed<CR>
-" Plugin: vim-session
-    noremap <C-X>s :SaveSession!
-    noremap <C-X>n :NewSession<CR>
-    noremap <C-X>o :OpenSession!<CR>
-    noremap <C-X>d :DeleteSession<CR>
 " Plugin: YouCompleteMe
     noremap <leader>j :YcmCompleter GoTo<CR>
 " Plugin: Emmet (Zen Coding)
@@ -190,6 +185,17 @@ Sort                                                       *help_hotkeys-sort*
 :'<,'>!sort
 
 ==============================================================================
+YankRing                                               *help_hotkeys-yankring*
+
+<C-p>  " (P for previous) to replace the text last pasted
+<C-n>  " (N for next) to replace the previous pasted
+
+==============================================================================
+CtrlP                                                     *help_hotkeys-ctrlp*
+
+<C-d>  " filename mode
+
+==============================================================================
 Surround                                               *help_hotkeys-surround*
 
 Normal mode
@@ -217,10 +223,38 @@ Insert mode
 The . command will work with ds, cs, and yss if you install repeat.vim.
 
 ==============================================================================
-YankRing                                               *help_hotkeys-yankring*
+TComment                                               *help_hotkeys-tcomment*
 
-<C-p>  " (P for previous) to replace the text last pasted
-<C-n>  " (N for next) to replace the previous pasted
+Primary key maps for normal and insert mode:
+
+    <c-_><c-_>   :: :TComment
+    <c-_><space> :: :TComment <QUERY COMMENT-BEGIN ?COMMENT-END>
+    <c-_>b       :: :TCommentBlock
+                    In insert mode, the cursor will be positioned inside
+                    the comment. In normal mode, the cursor will stay
+                    put.
+    <c-_>a       :: :TCommentAs <QUERY COMMENT TYPE>
+    <c-_>n       :: :TCommentAs &filetype <QUERY COUNT>
+    <c-_>s       :: :TCommentAs &filetype_<QUERY COMMENT SUBTYPE>
+    <c-_>i       :: :TCommentInline (in normal and insert mode, this map will
+                    create an empty inline comment, which isn't suitable for
+                    all filetypes though)
+                    In insert mode, the cursor will be positioned inside
+                    the comment. In normal mode, the cursor will stay
+                    put.
+    <c-_>r       :: :TCommentRight
+    <c-_>p       :: Comment the current inner paragraph
+    <c-_><Count> :: Set the count argument (a number from 1 to 9) for use with
+                    the subsequent tcomment map/command (see
+                    |tcomment#Comment()|)
+                    E.g. in JavaScript, in order to get an empty /** */
+                    comment for documentation purposes, in insert mode type
+                    <c-_>2<c-_>i
+                    In order to get an empty block comment like >
+                      /**
+                       *
+                       */
+<                   type <c-_>2<c-_>b
 
 ==============================================================================
 VIM bookmarks                                     *help_hotkeys-vim-bookmarks*

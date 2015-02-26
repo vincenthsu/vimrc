@@ -252,7 +252,7 @@
         command! DiffSaved call DiffWithSaved()
     " A mapping to make a backup session of the current file.
         function! WriteSession()
-            let l:fname = strftime('%Y%m%d-%H%M%S') . '_' . expand('%:t')
+            let l:fname = expand('%:t') . '_' . strftime('%Y-%m-%d.%H-%M-%S')
             silent execute 'SaveSession! ' . l:fname
             echomsg 'Saved Session: ' . l:fname
         endfunction
@@ -362,6 +362,9 @@
         noremap <leader><right> :bn<CR>
         noremap <leader><up> :BufExplorer<CR>
         noremap <leader><down> :bd<CR>
+        noremap <C-X>h :bp<CR>
+        noremap <C-X>l :bn<CR>
+        noremap <C-X>k :BufExplorer<CR>
     " Switch between windows
         noremap <C-H> <C-W>h
         noremap <C-J> <C-W>j
@@ -403,7 +406,7 @@
         noremap <leader>z :cp<CR>
         noremap <leader>x :cn<CR>
         noremap <leader>q :cclose<CR>
-    " Plugin: Ctrlp
+    " Plugin: CtrlP
         " default bindings conflict with yankring bindings
         noremap <leader>p :CtrlPMixed<CR>
 
@@ -417,7 +420,7 @@
         Plugin 'xolox/vim-session'
         Plugin 'xolox/vim-misc'
         Plugin 'ctrlpvim/ctrlp.vim'
-        "    Plugin 'JazzCore/ctrlp-cmatcher'
+            Plugin 'FelikZ/ctrlp-py-matcher'
         "Plugin 'fholgado/minibufexpl.vim'
         "Plugin 'zefei/buftabs'
         "Plugin 'mihaifm/bufstop'
@@ -501,21 +504,12 @@
         \ }
     " YankRing
         let g:yankring_history_dir = g:tempdir
-    " Ctrlp
-        let g:ctrlp_working_path_mode = 'ra'
-        let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-        let g:ctrlp_follow_symlinks = 1
-        let g:ctrlp_user_command = {
-            \ 'types': {
-                \ 1: ['.git', 'cd %s && git ls-files'],
-                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-            \ },
-            \ 'fallback': 'find %s -type f'
-        \ }
+    " ctrlp-py-matcher
+        let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
     " vim-session
         let g:session_directory = '~/.vim/tmp/sessions'
         let g:session_autoload = 'yes'
-        let g:session_autosave = 'no'
+        let g:session_autosave = 'yes'
         let g:session_default_to_last = 1
         let g:session_default_overwrite = 1
         let g:session_command_aliases = 1
