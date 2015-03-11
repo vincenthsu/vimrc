@@ -412,8 +412,10 @@
 
 " Use Vundle plugin to manage all other plugins
     filetype off " required!
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+    " let Vundle manage Vundle, required
+        Plugin 'gmarik/Vundle.vim'
     " File Manager
         Plugin 'The-NERD-tree'
         Plugin 'bufexplorer.zip'
@@ -478,14 +480,13 @@
         Plugin 'gregsexton/gitv'
         "Plugin 'airblade/vim-gitgutter'
     " Others
-        Plugin 'gmarik/vundle'
         Plugin 'mattn/webapi-vim'
         Plugin 'mattn/gist-vim'
         Plugin 'LargeFile'
         Plugin 'MattesGroeger/vim-bookmarks'
         "Plugin 'starleoda/vim-vookmark'
-    "filetype plugin on " required!
-    filetype plugin indent on " load filetype plugins/indent settings
+    call vundle#end() " vundle required
+    filetype plugin indent on " vundle required
 
 " Plugin Settings
     " Ctags
