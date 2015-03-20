@@ -80,7 +80,7 @@
     set wildignore+=*.jpg,*.gif,*.png,*DS_Store*
     set wildignore+=*.bin,*.so,*.swp,*.zip
     set encoding=utf8
-    set fileencodings=utf-8,big5,latin1,gbk,cp932,iso-2022-jp,euc-jp
+    set fileencodings=utf-8,ucs-bom,big5,gbk,cp932,iso-2022-jp,euc-jp,latin1
     set formatoptions=mtcql " m: also break at a multi-byte character
                             " t: auto-wrap text using textwidth
                             " c: auto-wrap comments using textwidth
@@ -260,8 +260,8 @@
     " Set encoding
         function! SetEncoding()
             echomsg "Set line encoding to: 1)unix, 2)dos, 3)mac,"
-            echomsg "Set file encoding to: 4)utf-8, 5)big5, 6)latin1,
-                \ 7)gbk, 8)JIS."
+            echomsg "Set file encoding to: 4)utf-8, 5)ucs-bom, 6)latin1,
+                        \ 7)big5, 8)gbk, 9)jis."
             let en=input('? ')
             if en==1
                 execute ':set ff=unix'
@@ -276,15 +276,18 @@
                 execute ':e ++enc=utf-8'
             endif
             if en==5
-                execute ':e ++enc=big5'
+                execute ':e ++enc=ucs-bom'
             endif
             if en==6
                 execute ':e ++enc=latin1'
             endif
             if en==7
-                execute ':e ++enc=gbk'
+                execute ':e ++enc=big5'
             endif
             if en==8
+                execute ':e ++enc=gbk'
+            endif
+            if en==9
                 execute ':e ++enc=cp932'
             endif
         endfunction
