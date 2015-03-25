@@ -252,7 +252,7 @@
         command! DiffSaved call DiffWithSaved()
     " A mapping to make a backup session of the current file.
         function! WriteSession()
-            let l:fname = expand('%:t') . '_' . strftime('%Y-%m-%d.%H-%M-%S')
+            let l:fname = strftime('%Y-%m-%d.%H-%M-%S') . '_' . expand('%:t')
             silent execute 'SaveSession! ' . l:fname
             echomsg 'Saved Session: ' . l:fname
         endfunction
