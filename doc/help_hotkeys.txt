@@ -16,7 +16,7 @@ YankRing                 |help_hotkeys-yankring|
 CtrlP                    |help_hotkeys-ctrlp|
 Surround                 |help_hotkeys-surround|
 TComment                 |help_hotkeys-tcomment|
-VIM bookmarks            |help_hotkeys-vim-bookmarks|
+VIM Signature            |help_hotkeys-vim-signature|
 Tips                     |help_hotkeys-tips|
 Source help doc changed  |help_hotkeys-source_help|
 
@@ -257,19 +257,34 @@ Primary key maps for normal and insert mode:
 <                   type <c-_>2<c-_>b
 
 ==============================================================================
-VIM bookmarks                                     *help_hotkeys-vim-bookmarks*
+VIM signature                                     *help_hotkeys-vim-signature*
 
-| Action | Shortcut                   | Command                                    |
-|--------|----------------------------|--------------------------------------------|
-| mm     | :BookmarkToggle            | Add/remove bookmark at current line        |
-| mi     | :BookmarkAnnotate <TEXT>   | Add/edit/remove annotation at current line |
-| mn     | :BookmarkNext              | Jump to next bookmark in buffer            |
-| mp     | :BookmarkPrev              | Jump to previous bookmark in buffer        |
-| ma     | :BookmarkShowAll           | Show all bookmarks (toggle)                |
-| mc     | :BookmarkClear             | Clear bookmarks in current buffer only     |
-| mx     | :BookmarkClearAll          | Clear bookmarks in all buffers             |
-|        | :BookmarkSave <FILE_PATH>  | Save all bookmarks to a file               |
-|        | :BookmarkLoad <FILE_PATH>  | Load bookmarks from a file                 |
+mx           Toggle mark 'x' and display it in the leftmost column
+dmx          Remove mark 'x' where x is a-zA-Z
+
+m,           Place the next available mark
+m.           If no mark on line, place the next available mark. Otherwise, remove (first) existing mark.
+m-           Delete all marks from the current line
+m<Space>     Delete all marks from the current buffer
+]`           Jump to next mark
+[`           Jump to prev mark
+]'           Jump to start of next line containing a mark
+['           Jump to start of prev line containing a mark
+`]           Jump by alphabetical order to next mark
+`[           Jump by alphabetical order to prev mark
+']           Jump by alphabetical order to start of next line having a mark
+'[           Jump by alphabetical order to start of prev line having a mark
+m/           Open location list and display marks from current buffer
+
+m[0-9]       Toggle the corresponding marker !@#$%^&*()
+m<S-[0-9]>   Remove all markers of the same type
+]-           Jump to next line having a marker of the same type
+[-           Jump to prev line having a marker of the same type
+]=           Jump to next line having a marker of any type
+[=           Jump to prev line having a marker of any type
+m?           Open location list and display markers from current buffer
+m<BS>        Remove all markers
+
 
 ==============================================================================
 Tips                                                       *help_hotkeys-tips*

@@ -474,6 +474,8 @@
         Plugin 'flazz/vim-colorschemes'
         Plugin 'bling/vim-airline'
         Plugin 'tpope/vim-markdown'
+        Plugin 'octol/vim-cpp-enhanced-highlight'
+        Plugin 'chrisbra/vim-diff-enhanced'
         "Plugin 'plasticboy/vim-markdown'
         "Plugin 'pangloss/vim-javascript'
         "Plugin 'tpope/vim-git'
@@ -486,7 +488,8 @@
         Plugin 'mattn/webapi-vim'
         Plugin 'mattn/gist-vim'
         Plugin 'LargeFile'
-        Plugin 'MattesGroeger/vim-bookmarks'
+        Plugin 'kshenoy/vim-signature'
+        "Plugin 'MattesGroeger/vim-bookmarks'
         "Plugin 'starleoda/vim-vookmark'
     call vundle#end() " vundle required
     filetype plugin indent on " vundle required
@@ -534,11 +537,6 @@
         let g:UltiSnipsExpandTrigger = "<Tab>"
         let g:UltiSnipsJumpForwardTrigger = "<Tab>"
         let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
-    " vim-bookmark
-        let g:bookmark_auto_save_file = $HOME.'/.vim/tmp/bookmarks'
-        let g:bookmark_auto_close = 1
-    " vim-vookmark
-        "let g:vookmark_savepath = $HOME.'/.vim/tmp/bookmarks'
     " vim-airline
         if exists("g:powerline_fonts")
             let g:airline_powerline_fonts = 1
@@ -602,10 +600,7 @@
     " Enable xterm 256 color
         set t_Co=256
     " Plugin: vim-colorschemes
-        colorscheme blackboard
-    " Plugin: BufTabs
-        highlight BufTabs term=standout ctermbg=4 ctermfg=7
-        let g:buftabs_active_highlight_group = "BufTabs"
+        colorscheme desert256v2
     " Popup menu
         highlight Pmenu ctermbg=234 ctermfg=7
         highlight PmenuSel ctermbg=8 ctermfg=7
