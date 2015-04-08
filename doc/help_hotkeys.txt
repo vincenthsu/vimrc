@@ -12,6 +12,7 @@ Pager                    |help_hotkeys-pager|
 Split window             |help_hotkeys-split_window|
 VimDiff                  |help_hotkeys-vimdiff|
 Sort                     |help_hotkeys-sort|
+Recording                |help_hotkeys-recording|
 YankRing                 |help_hotkeys-yankring|
 CtrlP                    |help_hotkeys-ctrlp|
 Surround                 |help_hotkeys-surround|
@@ -133,6 +134,54 @@ Jumps                                                     *help_hotkeys-jumps*
 ]]  " sections forward or to the next '{' in the first column.
 []  " sections backward or to the previous '}' in the first column.
 
+h   " move one character left
+j   " move one row down
+k   " move one row up
+l   " move one character right
+w   " move to beginning of next word
+b   " move to beginning of previous word
+e   " move to end of word
+W   " move to beginning of next word after a whitespace
+B   " move to beginning of previous word before a whitespace
+E   " move to end of word before a whitespace
+All the above movements can be preceded by a count; e.g. 4j will move down 4 lines.
+
+0   " move to beginning of line
+$   " move to end of line
+^   " move to first non-blank char of the line
+_   " same as above, but can take a count to go to a different line
+g_  " move to last non-blank char of the line (can also take a count as above)
+
+gg  " move to first line
+G   " move to last line
+nG  " move to n'th line of file (where n is a number)
+
+H   " move to top of screen
+M   " move to middle of screen
+L   " move to bottom of screen
+
+z.  " put the line with the cursor at the center
+zt  " put the line with the cursor at the top
+zb  " put the line with the cursor at the bottom of the screen
+
+Ctrl-D  " move half-page down
+Ctrl-U  " move half-page up
+Ctrl-B  " page up
+Ctrl-F  " page down
+Ctrl-o  " jump to last cursor position
+Ctrl-i  " jump to next cursor position
+
+n   " next matching search pattern
+N   " previous matching search pattern
+*   " next word under cursor
+#   " previous word under cursor
+g*  " next matching search pattern under cursor
+g#  " previous matching search pattern under cursor
+
+%   " jump to matching bracket { } [ ] ( )
+
+:call cursor(0, len(getline('.'))/2) " Go to middle of line in vim
+
 ==============================================================================
 Word repeat                                         *help_hotkeys-word_repeat*
 
@@ -149,7 +198,7 @@ Auto complete                                     *help_hotkeys-auto_complete*
 
 <C-p>  " previous
 <C-n>  " next
-<C-i>  " singal line
+<C-i>  " single line
 <C-f>  " file name
 
 ==============================================================================
@@ -183,6 +232,36 @@ dp  " p for "put"
 Sort                                                       *help_hotkeys-sort*
 
 :'<,'>!sort
+
+==============================================================================
+Recording                                             *help_hotkeys-recording*
+
+q<register>     " start recorfing
+                " do sth...
+q               " stop recording
+@<register>     " execute recording
+
+eg.
+Here is an example to replace string OldString with NewString contained in
+multiple *.cpp files:
+    vim *.cpp
+    qx          # start recording to register x
+    :%s/OldString/NewString/g
+    :wnext
+    q           # stop recording
+    @x          # playback to see if it works correctly
+    999@x       # repeat 999 times to complete the job
+
+One way to edit a recording (for example, to register x) is to paste it into a
+new buffer, then edit the buffer, then copy the results back into the register.
+For example:
+    :new        # new buffer
+    "xp         # paste register x into the buffer
+    [edit the keystrokes]
+    <Esc>       # return to normal mode
+    0"xy$       # go to beginning of line; into register x, yank to end of line
+    :bd!        # delete the new buffer without saving
+    @x          # execute modified recording
 
 ==============================================================================
 YankRing                                               *help_hotkeys-yankring*

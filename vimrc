@@ -385,6 +385,8 @@
         noremap <C-W>, :vertical resize -20<CR>
     " Force save the file by sudo privieges
         noremap <leader>w :w !sudo tee %<CR>
+    " Go to middle of line in vim
+        noremap gm :call cursor(0, len(getline('.'))/2)<CR>
     " Switch indent modes
         noremap <leader>1 :call ReadMode()<CR>
         noremap <leader>2 :call EditMode()<CR>
@@ -410,8 +412,8 @@
         noremap <leader>x :cn<CR>
         noremap <leader>q :cclose<CR>
     " Plugin: CtrlP
-        " default bindings conflict with yankring bindings
-        noremap <leader>p :CtrlPMixed<CR>
+        " Default bindings conflict with yankring bindings
+        let g:ctrlp_map = '<leader>p'
 
 " Use Vundle plugin to manage all other plugins
     filetype off " required!
@@ -434,6 +436,7 @@
         Plugin 'Tagbar'
         Plugin 'gtags.vim'
         Plugin 'matchit.zip'
+        Plugin 'a.vim'
         Plugin 'mileszs/ack.vim'
             Plugin 'dyng/ctrlsf.vim'
         "Plugin 'ggreer/the_silver_searcher'
@@ -459,7 +462,6 @@
         "Plugin 'Shougo/neocomplete.vim'
         "Plugin 'gregsexton/MatchTag'
     " Editing
-        Plugin 'YankRing.vim'
         Plugin 'sjl/gundo.vim'
         Plugin 'tpope/vim-surround'
         Plugin 'tpope/vim-repeat'
@@ -468,6 +470,8 @@
             Plugin 'terryma/vim-expand-region'
         Plugin 'tommcdo/vim-lion'
         Plugin 'tomtom/tcomment_vim'
+        Plugin 'svermeulen/vim-easyclip'
+        "Plugin 'YankRing.vim'
         "Plugin 'godlygeek/tabular'
         "Plugin 'tpope/vim-commentary'
     " Syntaxes & colors
@@ -510,7 +514,16 @@
             \ ]
         \ }
     " YankRing
-        let g:yankring_history_dir = g:tempdir
+        "let g:yankring_history_dir = g:tempdir
+    " vim-easyclip
+        let g:EasyClipPreserveCursorPositionAfterYank = 1
+        let g:EasyClipShareYanks = 1
+        let g:EasyClipShareYanksDirectory = g:tempdir
+        " Give my 'x' command back. Don't remap my 'm' key.
+        let g:EasyClipUseCutDefaults = 0
+        nmap x <Plug>MoveMotionPlug
+        xmap x <Plug>MoveMotionXPlug
+        nmap xx <Plug>MoveMotionLinePlug
     " ctrlp-py-matcher
         let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
     " vim-session
