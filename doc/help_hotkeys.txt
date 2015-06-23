@@ -39,8 +39,6 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <F11> :retab<CR> :call RTrailing()<CR>
     noremap <F12> :help_hotkeys<CR>
 " Unbind the C-S, C-X for other usages
-    "noremap <C-S> <NOP> " handle by emmet
-    noremap <C-X> <NOP>
     " obtain/pull difference
     noremap <C-X>. do
     noremap <C-X>, dp
@@ -80,6 +78,8 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <C-W>, :vertical resize -20<CR>
 " Force save the file by sudo privieges
     noremap <leader>w :w !sudo tee %<CR>
+" Go to middle of line in vim
+    noremap gm :call cursor(0, len(getline('.'))/2)<CR>
 " Switch indent modes
     noremap <leader>1 :call ReadMode()<CR>
     noremap <leader>2 :call EditMode()<CR>
@@ -105,8 +105,8 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <leader>x :cn<CR>
     noremap <leader>q :cclose<CR>
 " Plugin: CtrlP
-    " default bindings conflict with yankring bindings
-    noremap <leader>p :CtrlPMixed<CR>
+    " Default bindings conflict with yankring bindings
+    let g:ctrlp_map = '<leader>p'
 " Plugin: YouCompleteMe
     noremap <leader>j :YcmCompleter GoTo<CR>
 " Plugin: Emmet (Zen Coding)
@@ -144,7 +144,8 @@ e   " move to end of word
 W   " move to beginning of next word after a whitespace
 B   " move to beginning of previous word before a whitespace
 E   " move to end of word before a whitespace
-All the above movements can be preceded by a count; e.g. 4j will move down 4 lines.
+All the above movements can be preceded by a count;
+e.g. 4j will move down 4 lines.
 
 0   " move to beginning of line
 $   " move to end of line
@@ -342,7 +343,8 @@ mx           Toggle mark 'x' and display it in the leftmost column
 dmx          Remove mark 'x' where x is a-zA-Z
 
 m,           Place the next available mark
-m.           If no mark on line, place the next available mark. Otherwise, remove (first) existing mark.
+m.           If no mark on line, place the next available mark.
+             Otherwise, remove (first) existing mark.
 m-           Delete all marks from the current line
 m<Space>     Delete all marks from the current buffer
 ]`           Jump to next mark
@@ -368,9 +370,18 @@ m<BS>        Remove all markers
 ==============================================================================
 Tips                                                       *help_hotkeys-tips*
 
-yiw   " Copy the current word
-viwp  " Replace the current word with the clipboard contents
-:help key-notation  " lists the meanings of all those <key>
+yiw                 " Copy the current word
+viwp                " Replace the current word with the clipboard contents
+
+:help key-notation          " List the meanings of all those <key>
+:help encoding-values       " List supported encoding values
+:set encoding=utf8          " Set how vim shall represent characters internally
+:set fileencoding=utf-8     " Set the encoding for a particular file
+:setlocal ff=[dos/unix/mac] " Set file format for current buffer
+:help filetype              " List supported filetypes
+:set ft?                    " get the filetype of the current file
+:%!xxd[ -r]
+:%!python -m json.tool
 
 ==============================================================================
 Source help doc changed                             *help_hotkeys-source_help*
