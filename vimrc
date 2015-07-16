@@ -487,11 +487,13 @@
         Plugin 'tpope/vim-fugitive'
         Plugin 'mhinz/vim-signify'
         Plugin 'gregsexton/gitv'
+        Plugin 'bartman/git-wip', {'rtp': 'vim/'}
         "Plugin 'airblade/vim-gitgutter'
     " Others
+        Plugin 'LargeFile'
         Plugin 'mattn/webapi-vim'
         Plugin 'mattn/gist-vim'
-        Plugin 'LargeFile'
+        Plugin 'vitalk/vim-simple-todo'
         Plugin 'kshenoy/vim-signature'
         "Plugin 'MattesGroeger/vim-bookmarks'
         "Plugin 'starleoda/vim-vookmark'
