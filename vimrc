@@ -81,12 +81,12 @@
     set wildignore+=*.bin,*.so,*.swp,*.zip
     set encoding=utf8
     set fileencodings=utf-8,ucs-bom,big5,gbk,cp932,iso-2022-jp,euc-jp,latin1
-    set formatoptions=mtcql " m: also break at a multi-byte character
-                            " t: auto-wrap text using textwidth
-                            " c: auto-wrap comments using textwidth
-                            " q: let gq format comments
-                            " l: long lines are not formatting in insert mode
-                            " r: automatically insert comment leader on return
+    set formatoptions=tcqlron   " m: also break at a multi-byte character
+                                " t: auto-wrap text using textwidth
+                                " c: auto-wrap comments using textwidth
+                                " q: let gq format comments
+                                " l: long lines are not formatting in insert mode
+                                " r: automatically insert comment leader on return
     set wrap " wrap long line
     "set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
     "             | | | | | | | | |
@@ -99,7 +99,7 @@
     "             | | +-- "h" Normal and Visual (not recommended)
     "             | +-- <Space> Normal and Visual
     "             +-- <BS> Normal and Visual
-    "set list " show tabs and trailing
+    set nolist        " show tabs and trailing
     set listchars=trail:¬,tab:▸- " define tabs and trailing chars
     set shiftround    " when at 3 spaces, and I hit > ... go to 4, not 5
     set smarttab      " delete spaces (softtab) as tab
@@ -117,12 +117,12 @@
                                                " editing makefiles
     set smartindent  " like autoindent but also recognizes some C syntax
     set cindent      " automatic C program indenting
-    set cinoptions=:0,l1,t0,g0 " cindent for kernel style:
-                               " :: switch, l: case
-                               " t: function return, g: C++ scope
-                               " +: continuation line
-                               " j: java, J: javascript
-                               " N for chars, or Ns for shifts
+    set cinoptions=:0,l1,t0,g0  " set cindent default style:
+                                " :: switch, l: case
+                                " t: function return, g: C++ scope
+                                " +: continuation line
+                                " j: java, J: javascript
+                                " N for chars, or Ns for shifts
     " Notice! Following have been loaded in vundles.vim
         "filetype plugin indent on " load filetype plugins/indent settings
         "autocmd FileType python,perl filetype plugin indent on
@@ -301,6 +301,7 @@
                                " set list on
             set shiftwidth=4   " auto-indent amount when using cindent,
                                " >>, << and stuff like that
+            set cinoptions=:0,l1,t0,g0
             set colorcolumn=
             set nonumber
         endfunction
@@ -313,6 +314,7 @@
                                " set list on
             set shiftwidth=4   " auto-indent amount when using cindent,
                                " >>, << and stuff like that
+            set cinoptions=:0,l1,t0,g0
             set colorcolumn=80
             set number
         endfunction
@@ -325,6 +327,7 @@
                                " set list on
             set shiftwidth=8   " auto-indent amount when using cindent,
                                " >>, << and stuff like that
+            set cinoptions=:0,l1,t0,g0,(0
             set colorcolumn=80
             set number
         endfunction
@@ -468,6 +471,8 @@
         Plugin 'jayflo/vim-skip'
         Plugin 'terryma/vim-multiple-cursors'
             Plugin 'terryma/vim-expand-region'
+        Plugin 'editorconfig/editorconfig-vim'
+        Plugin 'Chiel92/vim-autoformat'
         Plugin 'tommcdo/vim-lion'
         Plugin 'tomtom/tcomment_vim'
         Plugin 'svermeulen/vim-easyclip'
