@@ -473,7 +473,7 @@
             Plugin 'terryma/vim-expand-region'
         Plugin 'editorconfig/editorconfig-vim'
         Plugin 'Chiel92/vim-autoformat'
-        Plugin 'tommcdo/vim-lion'
+        Plugin 'junegunn/vim-easy-align'
         Plugin 'tomtom/tcomment_vim'
         Plugin 'svermeulen/vim-easyclip'
         "Plugin 'YankRing.vim'
@@ -569,7 +569,11 @@
         let g:airline#extensions#tabline#show_tab_type = 0
         let g:airline#extensions#tabline#show_tab_nr = 1
         let g:airline#extensions#tabline#tab_nr_type = 1
-
+    " vim-easy-align
+        " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+        vmap <Enter> <Plug>(EasyAlign)
+        " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+        nmap ga <Plug>(EasyAlign)
     " YouCompleteMe
         if exists("g:cpp_developer")
             noremap <leader>j :YcmCompleter GoTo<CR>
