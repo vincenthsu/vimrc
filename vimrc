@@ -201,10 +201,6 @@
         cmap <Esc>[201~ <nop>
     endif
 
-" Start in insert mode for commit
-    autocmd FileType gitcommit execute KernelMode() |
-        \ execute "normal! O" | startinsert
-
 " User-defined functions
     " Open NERDTree in current dir
         function! NTToggle()
@@ -498,7 +494,6 @@
         Plugin 'LargeFile'
         Plugin 'mattn/webapi-vim'
         Plugin 'mattn/gist-vim'
-        Plugin 'vitalk/vim-simple-todo'
         Plugin 'kshenoy/vim-signature'
         "Plugin 'MattesGroeger/vim-bookmarks'
         "Plugin 'starleoda/vim-vookmark'
