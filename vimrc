@@ -333,7 +333,7 @@
         noremap <F1> :call NTToggle()<CR>
         noremap <F2> :TagbarToggle<CR>
         noremap <F3> :CtrlSF<Space>
-        noremap <F4> :GundoToggle<CR>
+        noremap <F4> :UndotreeToggle<CR>
         noremap <F5> :SaveSession!<CR>
         noremap <F6> :NewSession<CR>
         noremap <F7> :OpenSession!<CR>
@@ -420,9 +420,9 @@
     call vundle#begin()
     " let Vundle manage Vundle, required
         Plugin 'gmarik/Vundle.vim'
-    " File Manager
-        Plugin 'The-NERD-tree'
-        Plugin 'bufexplorer.zip'
+    " File navigation
+        Plugin 'scrooloose/nerdtree'
+        Plugin 'jlanzarotta/bufexplorer'
         Plugin 'xolox/vim-session'
         Plugin 'xolox/vim-misc'
         Plugin 'ctrlpvim/ctrlp.vim'
@@ -432,16 +432,20 @@
         "Plugin 'mihaifm/bufstop'
         "Plugin 'jistr/vim-nerdtree-tabs'
     " Tracing code
-        Plugin 'Tagbar'
+        Plugin 'majutsushi/tagbar'
         Plugin 'gtags.vim'
         Plugin 'matchit.zip'
         Plugin 'a.vim'
+        Plugin 'kshenoy/vim-signature'
+        Plugin 'name5566/vim-bookmark'
         Plugin 'mileszs/ack.vim'
             Plugin 'dyng/ctrlsf.vim'
         "Plugin 'ggreer/the_silver_searcher'
         "Plugin 'rking/ag.vim'
         "Plugin 'scrooloose/syntastic'
         "Plugin 'taglist.vim'
+        "Plugin 'MattesGroeger/vim-bookmarks'
+        "Plugin 'starleoda/vim-vookmark'
     " Auto code completion
         if exists("g:cpp_developer")
             Plugin 'Valloric/YouCompleteMe'
@@ -461,17 +465,19 @@
         "Plugin 'Shougo/neocomplete.vim'
         "Plugin 'gregsexton/MatchTag'
     " Editing
-        Plugin 'sjl/gundo.vim'
+        Plugin 'mbbill/undotree'
         Plugin 'tpope/vim-surround'
         Plugin 'tpope/vim-repeat'
+        Plugin 'tpope/vim-abolish'
         Plugin 'jayflo/vim-skip'
-        Plugin 'terryma/vim-multiple-cursors'
-            Plugin 'terryma/vim-expand-region'
-        Plugin 'editorconfig/editorconfig-vim'
-        Plugin 'Chiel92/vim-autoformat'
-        Plugin 'junegunn/vim-easy-align'
         Plugin 'tomtom/tcomment_vim'
         Plugin 'svermeulen/vim-easyclip'
+        Plugin 'Chiel92/vim-autoformat'
+        Plugin 'junegunn/vim-easy-align'
+        Plugin 'terryma/vim-multiple-cursors'
+            Plugin 'terryma/vim-expand-region'
+        "Plugin 'editorconfig/editorconfig-vim'
+        "Plugin 'sjl/gundo.vim'
         "Plugin 'YankRing.vim'
         "Plugin 'godlygeek/tabular'
         "Plugin 'tpope/vim-commentary'
@@ -481,6 +487,7 @@
         Plugin 'tpope/vim-markdown'
         Plugin 'octol/vim-cpp-enhanced-highlight'
         Plugin 'chrisbra/vim-diff-enhanced'
+        "Plugin 'bbchung/clighter'
         "Plugin 'plasticboy/vim-markdown'
         "Plugin 'pangloss/vim-javascript'
         "Plugin 'tpope/vim-git'
@@ -494,9 +501,6 @@
         Plugin 'LargeFile'
         Plugin 'mattn/webapi-vim'
         Plugin 'mattn/gist-vim'
-        Plugin 'kshenoy/vim-signature'
-        "Plugin 'MattesGroeger/vim-bookmarks'
-        "Plugin 'starleoda/vim-vookmark'
     call vundle#end() " vundle required
     filetype plugin indent on " vundle required
 
@@ -569,6 +573,8 @@
         vmap <Enter> <Plug>(EasyAlign)
         " Start interactive EasyAlign for a motion/text object (e.g. gaip)
         nmap ga <Plug>(EasyAlign)
+    " vim-bookmark
+        let g:vbookmark_bookmarkSaveFile = $HOME . '/.vim/tmp/bookmarks'
     " YouCompleteMe
         if exists("g:cpp_developer")
             noremap <leader>j :YcmCompleter GoTo<CR>
