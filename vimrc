@@ -117,12 +117,11 @@
                                                " editing makefiles
     set smartindent  " like autoindent but also recognizes some C syntax
     set cindent      " automatic C program indenting
-    set cinoptions=:0,l1,t0,g0  " set cindent default style:
-                                " :: switch, l: case
-                                " t: function return, g: C++ scope
-                                " +: continuation line
-                                " j: java, J: javascript
-                                " N for chars, or Ns for shifts
+    set cinoptions=:0,l1,t0,g0,+s,(s  " set cindent default style.
+                                            " :: switch, l: case
+                                            " t: function return, g: C++ scope
+                                            " +: continuation line
+                                            " j: java, J: javascript
     " Notice! Following have been loaded in vundles.vim
         "filetype plugin indent on " load filetype plugins/indent settings
         "autocmd FileType python,perl filetype plugin indent on
@@ -579,7 +578,7 @@
         if exists("g:cpp_developer")
             noremap <leader>j :YcmCompleter GoTo<CR>
             let g:ycm_global_ycm_extra_conf =
-                        \ '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+                        \ '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
             let g:ycm_key_list_select_completion = ['<Down>']
             let g:ycm_key_list_previous_completion = ['<Up>']
             let g:ycm_autoclose_preview_window_after_completion = 1
