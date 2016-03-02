@@ -71,7 +71,7 @@
     "let $LANG="zh_TW.UTF-8"
     set fileformats=unix,dos,mac   " support all three, in this order
     set backspace=indent,eol,start " make backspace a more flexible
-    set clipboard+=unnamed         " share windows clipboard
+    set clipboard=unnamed          " share windows clipboard
     set iskeyword+=_,$,@,%,#       " none of these are word dividers
     set wildmenu                   " enable ctrl-n and ctrl-p to scroll thru matches
     set wildmode=list:longest      " turn on wild mode huge list
@@ -436,13 +436,13 @@
         Plugin 'matchit.zip'
         Plugin 'a.vim'
         Plugin 'kshenoy/vim-signature'
-        Plugin 'name5566/vim-bookmark'
         Plugin 'mileszs/ack.vim'
             Plugin 'dyng/ctrlsf.vim'
         "Plugin 'ggreer/the_silver_searcher'
         "Plugin 'rking/ag.vim'
         "Plugin 'scrooloose/syntastic'
         "Plugin 'taglist.vim'
+        "Plugin 'name5566/vim-bookmark'
         "Plugin 'MattesGroeger/vim-bookmarks'
         "Plugin 'starleoda/vim-vookmark'
     " Auto code completion
@@ -518,8 +518,10 @@
                 \ 'i:identities'
             \ ]
         \ }
-    " YankRing
-        "let g:yankring_history_dir = g:tempdir
+    " vim-multiple-cursors
+        let g:multi_cursor_next_key='<C-j>'
+        let g:multi_cursor_prev_key='<C-k>'
+        let g:multi_cursor_skip_key='<C-x>'
     " vim-easyclip
         let g:EasyClipPreserveCursorPositionAfterYank = 1
         let g:EasyClipShareYanks = 1
@@ -572,13 +574,11 @@
         vmap <Enter> <Plug>(EasyAlign)
         " Start interactive EasyAlign for a motion/text object (e.g. gaip)
         nmap ga <Plug>(EasyAlign)
-    " vim-bookmark
-        let g:vbookmark_bookmarkSaveFile = $HOME . '/.vim/tmp/bookmarks'
     " YouCompleteMe
         if exists("g:cpp_developer")
             noremap <leader>j :YcmCompleter GoTo<CR>
             let g:ycm_global_ycm_extra_conf =
-                        \ '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+                \ '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
             let g:ycm_key_list_select_completion = ['<Down>']
             let g:ycm_key_list_previous_completion = ['<Up>']
             let g:ycm_autoclose_preview_window_after_completion = 1
@@ -587,12 +587,12 @@
             "let g:ycm_show_diagnostics_ui = 0
             "let g:ycm_collect_identifiers_from_tags_files = 1
             let g:ycm_filetype_whitelist = {
-               \ 'c': 1,
-               \ 'cpp': 1,
-               \ 'sh': 1,
-               \ 'java': 1,
-               \ 'python': 1,
-               \ 'ruby': 1,
+                \ 'c': 1,
+                \ 'cpp': 1,
+                \ 'sh': 1,
+                \ 'java': 1,
+                \ 'python': 1,
+                \ 'ruby': 1,
             \ }
         endif
     " Emmet (Zen Coding)

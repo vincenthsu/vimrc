@@ -3,33 +3,35 @@
 ==============================================================================
 Contents                                *help_hotkeys* *help_hotkeys-contents*
 
-User defined keys        |Help_hotkeys-user_keys|
-Folder                   |help_hotkeys-folder|
-Jumps                    |help_hotkeys-jumps|
-Word repeat              |help_hotkeys-word_repeat|
-Auto complete            |help_hotkeys-auto_complete|
-Pager                    |help_hotkeys-pager|
-Split window             |help_hotkeys-split_window|
-VimDiff                  |help_hotkeys-vimdiff|
-Sort                     |help_hotkeys-sort|
-Recording                |help_hotkeys-recording|
-YankRing                 |help_hotkeys-yankring|
-CtrlP                    |help_hotkeys-ctrlp|
-Surround                 |help_hotkeys-surround|
-TComment                 |help_hotkeys-tcomment|
-VIM Signature            |help_hotkeys-vim-signature|
-Tips                     |help_hotkeys-tips|
-Source help doc changed  |help_hotkeys-source_help|
+User Defined Keys                               |Help_hotkeys-user_keys|
+Jumps                                           |help_hotkeys-jumps|
+Pager                                           |help_hotkeys-pager|
+Split Window                                    |help_hotkeys-split_window|
+Folder                                          |help_hotkeys-folder|
+Switching Case                                  |help_hotkeys-switching_case|
+Word Repeat                                     |help_hotkeys-word_repeat|
+Auto Complete                                   |help_hotkeys-auto_complete|
+VimDiff                                         |help_hotkeys-vimdiff|
+Sort                                            |help_hotkeys-sort|
+Recording                                       |help_hotkeys-recording|
+YankRing                                        |help_hotkeys-yankring|
+CtrlP                                           |help_hotkeys-ctrlp|
+Surround                                        |help_hotkeys-surround|
+TComment                                        |help_hotkeys-tcomment|
+VIM Signature                                   |help_hotkeys-vim-signature|
+VIM Easy Align                                  |help_hotkeys-vim-easy-align|
+Tips                                            |help_hotkeys-tips|
+Apply Help Documents Changing                   |help_hotkeys-helptags|
 
 ==============================================================================
-User defined keys                                     *help_hotkeys-user_keys*
+User Defined Keys                                     *help_hotkeys-user_keys*
 
 
 " Hotkeys
     noremap <F1> :call NTToggle()<CR>
     noremap <F2> :TagbarToggle<CR>
     noremap <F3> :CtrlSF<Space>
-    noremap <F4> :GundoToggle<CR>
+    noremap <F4> :UndotreeToggle<CR>
     noremap <F5> :SaveSession!<CR>
     noremap <F6> :NewSession<CR>
     noremap <F7> :OpenSession!<CR>
@@ -39,6 +41,8 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <F11> :retab<CR> :call RTrailing()<CR>
     noremap <F12> :help_hotkeys<CR>
 " Unbind the C-S, C-X for other usages
+    "noremap <C-S> <NOP> " handle by emmet
+    noremap <C-X> <NOP>
     " obtain/pull difference
     noremap <C-X>. do
     noremap <C-X>, dp
@@ -106,19 +110,15 @@ User defined keys                                     *help_hotkeys-user_keys*
     noremap <leader>q :cclose<CR>
 " Plugin: CtrlP
     " Default bindings conflict with yankring bindings
-    let g:ctrlp_map = '<leader>p'
-" Plugin: YouCompleteMe
-    noremap <leader>j :YcmCompleter GoTo<CR>
-" Plugin: Emmet (Zen Coding)
-    let g:user_emmet_expandabbr_key = '<C-S>'
-
-==============================================================================
-Folder                                                   *help_hotkeys-folder*
-
-zo  " open
-zO  " open all
-zc  " close
-zC  " close all
+    g:ctrlp_map = '<leader>p'
+" Plugin: vim-multiple-cursors
+    g:multi_cursor_next_key='<C-j>'
+    g:multi_cursor_prev_key='<C-k>'
+    g:multi_cursor_skip_key='<C-x>'
+    g:multi_cursor_quit_key='<Esc>'
+" Plugin: vim-easyclip/YankRing
+    <C-p>  " (P for previous) to replace the text last pasted
+    <C-n>  " (N for next) to replace the previous pasted
 
 ==============================================================================
 Jumps                                                     *help_hotkeys-jumps*
@@ -184,7 +184,61 @@ g#  " previous matching search pattern under cursor
 :call cursor(0, len(getline('.'))/2) " Go to middle of line in vim
 
 ==============================================================================
-Word repeat                                         *help_hotkeys-word_repeat*
+Pager                                                     *help_hotkeys-pager*
+
+<C-u>  " up half page
+<C-d>  " down half page
+<C-f>  " forward one page
+<C-b>  " backup on page
+
+==============================================================================
+Split Window                                       *help_hotkeys-split_window*
+
+sp   " Split current window in two.
+vsp  " Split vertically.
+<C-w> [+|-]  " resize windows
+<C-w> [<|>]  " resize windows with a vertical split
+<C-w> _  " maximize current window
+<C-w> =  " make all equal size
+
+==============================================================================
+Folder                                                   *help_hotkeys-folder*
+
+zo  " open
+zO  " open all
+zc  " close
+zC  " close all
+
+==============================================================================
+Switching Case of Characters                     *help_hotkeys-switching_case*
+
+~       Toggle case of the character under the cursor, or all visually-selected
+        characters.
+
+3~      Toggle case of the next three characters.
+g~3w    Toggle case of the next three words.
+g~iw    Toggle case of the current word (inner word – cursor anywhere in word).
+g~$     Toggle case of all characters to end of line.
+g~~     Toggle case of the current line (same as V~).
+
+The above uses ~ to toggle case. In each example, you can replace ~ with u to
+convert to lowercase, or with U to convert to uppercase. For example:
+
+U       Uppercase the visually-selected text.
+        First press v or V then move to select text.
+        If you don't select text, pressing U will undo all changes to the
+        current line.
+
+gUU     Change the current line to uppercase (same as VU).
+gUiw    Change current word to uppercase.
+
+u       Lowercase the visually-selected text.
+        If you don't select text, pressing u will undo the last change.
+
+guu     Change the current line to lowercase (same as Vu).
+
+==============================================================================
+Word Repeat                                         *help_hotkeys-word_repeat*
 
 In insert mode:
 <C-y>  " repeat up line
@@ -195,30 +249,13 @@ numbers:
 <C-x>  " n--
 
 ==============================================================================
-Auto complete                                     *help_hotkeys-auto_complete*
+Auto Complete                                     *help_hotkeys-auto_complete*
 
 <C-p>  " previous
 <C-n>  " next
 <C-i>  " single line
 <C-f>  " file name
 
-==============================================================================
-Pager                                                     *help_hotkeys-pager*
-
-<C-u>  " up half page
-<C-d>  " down half page
-<C-f>  " forward one page
-<C-b>  " backup on page
-
-==============================================================================
-Split window                                        *help_hotkeys-split_window*
-
-sp   " Split current window in two.
-vsp  " Split vertically.
-<C-w> [+|-]  " resize windows
-<C-w> [<|>]  " resize windows with a vertical split
-<C-w> _  " maximize current window
-<C-w> =  " make all equal size
 
 ==============================================================================
 VimDiff                                                 *help_hotkeys-vimdiff*
@@ -263,12 +300,6 @@ For example:
     0"xy$       # go to beginning of line; into register x, yank to end of line
     :bd!        # delete the new buffer without saving
     @x          # execute modified recording
-
-==============================================================================
-YankRing                                               *help_hotkeys-yankring*
-
-<C-p>  " (P for previous) to replace the text last pasted
-<C-n>  " (N for next) to replace the previous pasted
 
 ==============================================================================
 CtrlP                                                     *help_hotkeys-ctrlp*
@@ -337,7 +368,7 @@ Primary key maps for normal and insert mode:
 <                   type <c-_>2<c-_>b
 
 ==============================================================================
-VIM signature                                     *help_hotkeys-vim-signature*
+VIM Signature                                     *help_hotkeys-vim-signature*
 
 mx           Toggle mark 'x' and display it in the leftmost column
 dmx          Remove mark 'x' where x is a-zA-Z
@@ -366,6 +397,17 @@ m<S-[0-9]>   Remove all markers of the same type
 m?           Open location list and display markers from current buffer
 m<BS>        Remove all markers
 
+==============================================================================
+VIM Easy Align                                  *help_hotkeys-vim-easy-align)*
+
+try these commands:
+ - vip<Enter>=
+   - `v`isual-select `i`nner `p`aragraph
+   - Start EasyAlign command (<Enter>)
+   - Align around `=`
+ - `gaip=`
+   - Start EasyAlign command (`ga`) for `i`nner `p`aragraph
+   - Align around `=`
 
 ==============================================================================
 Tips                                                       *help_hotkeys-tips*
@@ -384,6 +426,6 @@ viwp                " Replace the current word with the clipboard contents
 :%!python -m json.tool
 
 ==============================================================================
-Source help doc changed                             *help_hotkeys-source_help*
+Apply Help Documents Changing                          *help_hotkeys-helptags*
 
 :helptags ~/.vim/doc
