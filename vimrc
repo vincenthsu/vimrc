@@ -117,11 +117,7 @@
                                                " editing makefiles
     set smartindent  " like autoindent but also recognizes some C syntax
     set cindent      " automatic C program indenting
-    set cinoptions=:0,l1,t0,g0,+s,(s  " set cindent default style.
-                                            " :: switch, l: case
-                                            " t: function return, g: C++ scope
-                                            " +: continuation line
-                                            " j: java, J: javascript
+    set cinoptions=:0,l1,t0,g0,+s,(s,p0 " set cindent default style.
     " Notice! Following have been loaded in vundles.vim
         "filetype plugin indent on " load filetype plugins/indent settings
         "autocmd FileType python,perl filetype plugin indent on
