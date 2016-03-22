@@ -1,5 +1,7 @@
 !.gitignore
+autoload/
 bundle/
+plugged/
 tmp/
 tags
 .netrwhist

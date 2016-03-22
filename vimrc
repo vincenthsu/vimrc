@@ -118,7 +118,7 @@
     set smartindent  " like autoindent but also recognizes some C syntax
     set cindent      " automatic C program indenting
     set cinoptions=:0,l1,t0,g0,+s,(s,p0 " set cindent default style.
-    " Notice! Following have been loaded in vundles.vim
+    " Notice! the following will be setted later
         "filetype plugin indent on " load filetype plugins/indent settings
         "autocmd FileType python,perl filetype plugin indent on
 
@@ -409,95 +409,91 @@
         " Default bindings conflict with yankring bindings
         let g:ctrlp_map = '<leader>p'
 
-" Use Vundle plugin to manage all other plugins
-    filetype off " required!
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
-    " let Vundle manage Vundle, required
-        Plugin 'gmarik/Vundle.vim'
+" Use vim-plug to manage all other plugins
+    call plug#begin('~/.vim/plugged')
     " File navigation
-        Plugin 'scrooloose/nerdtree'
-        Plugin 'jlanzarotta/bufexplorer'
-        Plugin 'xolox/vim-session'
-        Plugin 'xolox/vim-misc'
-        Plugin 'ctrlpvim/ctrlp.vim'
-            Plugin 'FelikZ/ctrlp-py-matcher'
-        "Plugin 'fholgado/minibufexpl.vim'
-        "Plugin 'zefei/buftabs'
-        "Plugin 'mihaifm/bufstop'
-        "Plugin 'jistr/vim-nerdtree-tabs'
+        Plug 'scrooloose/nerdtree'
+        Plug 'jlanzarotta/bufexplorer'
+        Plug 'xolox/vim-session'
+        Plug 'xolox/vim-misc'
+        Plug 'ctrlpvim/ctrlp.vim'
+            Plug 'FelikZ/ctrlp-py-matcher'
+        "Plug 'fholgado/minibufexpl.vim'
+        "Plug 'zefei/buftabs'
+        "Plug 'mihaifm/bufstop'
+        "Plug 'jistr/vim-nerdtree-tabs'
     " Tracing code
-        Plugin 'majutsushi/tagbar'
-        Plugin 'gtags.vim'
-        Plugin 'matchit.zip'
-        Plugin 'a.vim'
-        Plugin 'kshenoy/vim-signature'
-        Plugin 'mileszs/ack.vim'
-            Plugin 'dyng/ctrlsf.vim'
-        "Plugin 'ggreer/the_silver_searcher'
-        "Plugin 'rking/ag.vim'
-        "Plugin 'scrooloose/syntastic'
-        "Plugin 'taglist.vim'
-        "Plugin 'name5566/vim-bookmark'
-        "Plugin 'MattesGroeger/vim-bookmarks'
-        "Plugin 'starleoda/vim-vookmark'
+        Plug 'majutsushi/tagbar'
+        Plug 'gtags.vim'
+        Plug 'matchit.zip'
+        Plug 'a.vim'
+        Plug 'kshenoy/vim-signature'
+        Plug 'mileszs/ack.vim'
+            Plug 'dyng/ctrlsf.vim'
+        "Plug 'ggreer/the_silver_searcher'
+        "Plug 'rking/ag.vim'
+        "Plug 'scrooloose/syntastic'
+        "Plug 'taglist.vim'
+        "Plug 'name5566/vim-bookmark'
+        "Plug 'MattesGroeger/vim-bookmarks'
+        "Plug 'starleoda/vim-vookmark'
     " Auto code completion
         if exists("g:cpp_developer")
-            Plugin 'Valloric/YouCompleteMe'
+            Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
         else
-            Plugin 'OmniCppComplete'
-            Plugin 'ervandew/supertab'
+            Plug 'OmniCppComplete'
+            Plug 'ervandew/supertab'
         endif
         if exists("g:web_developer")
-            Plugin 'mattn/emmet-vim'
+            Plug 'mattn/emmet-vim'
         endif
-        Plugin 'Raimondi/delimitMate'
-        Plugin 'SirVer/ultisnips'
-            Plugin 'vincenthsu/vim-snippets'
-        "    Plugin 'honza/vim-snippets'
-        "Plugin 'justmao945/vim-clang'
-        "Plugin 'marijnh/tern_for_vim'
-        "Plugin 'Shougo/neocomplete.vim'
-        "Plugin 'gregsexton/MatchTag'
+        Plug 'Raimondi/delimitMate'
+        Plug 'SirVer/ultisnips'
+            Plug 'vincenthsu/vim-snippets'
+        "    Plug 'honza/vim-snippets'
+        "Plug 'justmao945/vim-clang'
+        "Plug 'marijnh/tern_for_vim'
+        "Plug 'Shougo/neocomplete.vim'
+        "Plug 'gregsexton/MatchTag'
     " Editing
-        Plugin 'mbbill/undotree'
-        Plugin 'tpope/vim-surround'
-        Plugin 'tpope/vim-repeat'
-        Plugin 'tpope/vim-abolish'
-        Plugin 'jayflo/vim-skip'
-        Plugin 'tomtom/tcomment_vim'
-        Plugin 'svermeulen/vim-easyclip'
-        Plugin 'Chiel92/vim-autoformat'
-        Plugin 'junegunn/vim-easy-align'
-        Plugin 'terryma/vim-multiple-cursors'
-            Plugin 'terryma/vim-expand-region'
-        "Plugin 'editorconfig/editorconfig-vim'
-        "Plugin 'sjl/gundo.vim'
-        "Plugin 'YankRing.vim'
-        "Plugin 'godlygeek/tabular'
-        "Plugin 'tpope/vim-commentary'
+        Plug 'mbbill/undotree'
+        Plug 'tpope/vim-surround'
+        Plug 'tpope/vim-repeat'
+        Plug 'tpope/vim-abolish'
+        Plug 'jayflo/vim-skip'
+        Plug 'tomtom/tcomment_vim'
+        Plug 'svermeulen/vim-easyclip'
+        Plug 'Chiel92/vim-autoformat'
+        Plug 'junegunn/vim-easy-align'
+        Plug 'terryma/vim-multiple-cursors'
+            Plug 'terryma/vim-expand-region'
+        "Plug 'editorconfig/editorconfig-vim'
+        "Plug 'sjl/gundo.vim'
+        "Plug 'YankRing.vim'
+        "Plug 'godlygeek/tabular'
+        "Plug 'tpope/vim-commentary'
     " Syntaxes & colors
-        Plugin 'flazz/vim-colorschemes'
-        Plugin 'bling/vim-airline'
-        Plugin 'tpope/vim-markdown'
-        Plugin 'octol/vim-cpp-enhanced-highlight'
-        Plugin 'chrisbra/vim-diff-enhanced'
-        "Plugin 'bbchung/clighter'
-        "Plugin 'plasticboy/vim-markdown'
-        "Plugin 'pangloss/vim-javascript'
-        "Plugin 'tpope/vim-git'
+        Plug 'flazz/vim-colorschemes'
+        Plug 'bling/vim-airline'
+        Plug 'tpope/vim-markdown'
+        Plug 'octol/vim-cpp-enhanced-highlight'
+        Plug 'chrisbra/vim-diff-enhanced'
+        "Plug 'bbchung/clighter'
+        "Plug 'plasticboy/vim-markdown'
+        "Plug 'pangloss/vim-javascript'
+        "Plug 'tpope/vim-git'
     " Version control
-        Plugin 'tpope/vim-fugitive'
-        Plugin 'mhinz/vim-signify'
-        Plugin 'gregsexton/gitv'
-        Plugin 'bartman/git-wip', {'rtp': 'vim/'}
-        "Plugin 'airblade/vim-gitgutter'
+        Plug 'tpope/vim-fugitive'
+        Plug 'mhinz/vim-signify'
+        Plug 'gregsexton/gitv'
+        Plug 'bartman/git-wip', {'rtp': 'vim/'}
+        "Plug 'airblade/vim-gitgutter'
     " Others
-        Plugin 'LargeFile'
-        Plugin 'mattn/webapi-vim'
-        Plugin 'mattn/gist-vim'
-    call vundle#end() " vundle required
-    filetype plugin indent on " vundle required
+        Plug 'LargeFile'
+        Plug 'mattn/webapi-vim'
+        Plug 'mattn/gist-vim'
+    call plug#end()
+    filetype plugin indent on
 
 " Plugin Settings
     " Ctags
