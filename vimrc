@@ -6,22 +6,6 @@
 " General
     set nocompatible " explicitly get out of vi-compatible mode
     set noexrc       " don't use local version of .(g)vimrc, .exrc
-    set cpoptions=aABceFsmq
-    "             |||||||||
-    "             ||||||||+-- When joining lines, leave the cursor
-    "             |||||||      between joined lines
-    "             |||||||+-- When a new match is created (showmatch)
-    "             ||||||      pause for .5
-    "             ||||||+-- Set buffer options when entering the
-    "             |||||      buffer
-    "             |||||+-- :write command updates current file name
-    "             ||||+-- Automatically add <CR> to the last line
-    "             |||      when using :@r
-    "             |||+-- Searching continues at the end of the match
-    "             ||      at the cursor position
-    "             ||+-- A backslash has no special meaning in mappings
-    "             |+-- :write updates alternative file name
-    "             +-- :read updates alternative file name
     syntax on        " syntax highlighting on
     "set mouse=a     " use mouse everywhere
     set noerrorbells " don't make noise
@@ -373,10 +357,8 @@
     " Split windows size
         noremap <C-W>+ :resize +10<CR>
         noremap <C-W>- :resize -10<CR>
-        noremap <C-W>> :vertical resize +10<CR>
-        noremap <C-W>< :vertical resize -10<CR>
-        noremap <C-W>. :vertical resize +20<CR>
-        noremap <C-W>, :vertical resize -20<CR>
+        noremap <C-W>= :vertical resize +10<CR>
+        noremap <C-W>- :vertical resize -10<CR>
     " Force save the file by sudo privieges
         noremap <leader>w :w !sudo tee %<CR>
     " Go to middle of line in vim
