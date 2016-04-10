@@ -20,6 +20,7 @@ Surround                                        |help_hotkeys-surround|
 TComment                                        |help_hotkeys-tcomment|
 VIM Signature                                   |help_hotkeys-vim-signature|
 VIM Easy Align                                  |help_hotkeys-vim-easy-align|
+VIM Easygrep                                    |help_hotkeys-vim-easygrep|
 Tips                                            |help_hotkeys-tips|
 Apply Help Documents Changing                   |help_hotkeys-helptags|
 
@@ -31,14 +32,14 @@ User Defined Keys                                     *help_hotkeys-user_keys*
     noremap <F1> :call NTToggle()<CR>
     noremap <F2> :TagbarToggle<CR>
     noremap <F3> :CtrlSF<Space>
-    noremap <F4> :UndotreeToggle<CR>
+    noremap <F4> :Ack<Space>
     noremap <F5> :SaveSession!<CR>
     noremap <F6> :NewSession<CR>
     noremap <F7> :OpenSession!<CR>
     noremap <F8> :DeleteSession<CR>
-    set pastetoggle=<F9>
-    noremap <F10> :call SetEncoding()<CR>
-    noremap <F11> :retab<CR> :call RTrailing()<CR>
+    noremap <F9> :Autoformat<CR>
+    noremap <F10> :retab<CR> :call RTrailing()<CR>
+    noremap <F11> :call SetEncoding()<CR>
     noremap <F12> :help_hotkeys<CR>
 " Unbind the C-S, C-X for other usages
     "noremap <C-S> <NOP> " handle by emmet
@@ -76,10 +77,8 @@ User Defined Keys                                     *help_hotkeys-user_keys*
 " Split windows size
     noremap <C-W>+ :resize +10<CR>
     noremap <C-W>- :resize -10<CR>
-    noremap <C-W>> :vertical resize +10<CR>
-    noremap <C-W>< :vertical resize -10<CR>
-    noremap <C-W>. :vertical resize +20<CR>
-    noremap <C-W>, :vertical resize -20<CR>
+    noremap <C-W>= :vertical resize +10<CR>
+    noremap <C-W>- :vertical resize -10<CR>
 " Force save the file by sudo privieges
     noremap <leader>w :w !sudo tee %<CR>
 " Go to middle of line in vim
@@ -90,27 +89,29 @@ User Defined Keys                                     *help_hotkeys-user_keys*
     noremap <leader>3 :call KernelMode()<CR>
 " Diff file with current modify
     noremap <leader>d :DiffSaved<CR>
-    noremap <leader>6 :DiffSaved<CR>
 " Gen help docs
-    noremap <leader>8 :helptags ~/.vim/doc<CR>
+    noremap <leader>9 :helptags ~/.vim/doc<CR>
 " Rebind the vim help file
     inoremap <F1> <ESC> :call NTToggle()<CR>
-    noremap <leader>9 :help_hotkeys<CR>
     noremap <leader>0 :help<CR>
-" Plugin: SignifyToggle
-    noremap <leader>4 :SignifyToggle<CR>
-" Plugin: Gitv
-    noremap <leader>5 :Gitv<CR>
-" Plugin: Gtags
+" Plugin: vim-autoformat
+    noremap <leader>4 :Autoformat<CR>
+" Plugin: vim-signify
+    noremap <leader>5 :SignifyToggle<CR>
+" Plugin: undotree
+    noremap <leader>6 :UndotreeToggle<CR>
+" Plugin: gitv
+    noremap <leader>7 :Gitv<CR>
+" Plugin: gtags.vim
     noremap <leader>g :Gtags<CR>
     noremap <leader>s :Gtags -s<CR>
     noremap <leader>r :Gtags -r<CR>
     noremap <leader>z :cp<CR>
     noremap <leader>x :cn<CR>
     noremap <leader>q :cclose<CR>
-" Plugin: CtrlP
+" Plugin: ctrlp.vim
     " Default bindings conflict with yankring bindings
-    g:ctrlp_map = '<leader>p'
+    let g:ctrlp_map = '<leader>p'
 " Plugin: vim-multiple-cursors
     g:multi_cursor_next_key='<C-j>'
     g:multi_cursor_prev_key='<C-k>'
@@ -408,6 +409,25 @@ try these commands:
  - `gaip=`
    - Start EasyAlign command (`ga`) for `i`nner `p`aragraph
    - Align around `=`
+
+
+==============================================================================
+VIM Easygrep                                      *help_hotkeys-vim-easygrep)*
+
+<Leader>vv  - Grep for the word under the cursor, match all occurences,
+              like |gstar|
+<Leader>vV  - Grep for the word under the cursor, match whole word, like
+              |star|
+<Leader>va  - Like vv, but add to existing list
+<Leader>vA  - Like vV, but add to existing list
+<Leader>vr  - Perform a global search search on the word under the cursor
+              and prompt for a pattern with which to replace it.
+<Leader>vo  - Select the files to search in and set grep options
+<Leader>vy* - Invoke any option from the options explorer, where * is the
+              shortcut for that option.
+              e.g. <Leader>vyr - toggles recursion
+                   <Leader>vyb - sets buffer grepping mode
+                   etc.
 
 ==============================================================================
 Tips                                                       *help_hotkeys-tips*

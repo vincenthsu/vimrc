@@ -312,14 +312,14 @@
         noremap <F1> :call NTToggle()<CR>
         noremap <F2> :TagbarToggle<CR>
         noremap <F3> :CtrlSF<Space>
-        noremap <F4> :UndotreeToggle<CR>
+        noremap <F4> :Ack<Space>
         noremap <F5> :SaveSession!<CR>
         noremap <F6> :NewSession<CR>
         noremap <F7> :OpenSession!<CR>
         noremap <F8> :DeleteSession<CR>
-        set pastetoggle=<F9>
-        noremap <F10> :call SetEncoding()<CR>
-        noremap <F11> :retab<CR> :call RTrailing()<CR>
+        noremap <F9> :Autoformat<CR>
+        noremap <F10> :retab<CR> :call RTrailing()<CR>
+        noremap <F11> :call SetEncoding()<CR>
         noremap <F12> :help_hotkeys<CR>
     " Unbind the C-S, C-X for other usages
         "noremap <C-S> <NOP> " handle by emmet
@@ -369,25 +369,27 @@
         noremap <leader>3 :call KernelMode()<CR>
     " Diff file with current modify
         noremap <leader>d :DiffSaved<CR>
-        noremap <leader>6 :DiffSaved<CR>
     " Gen help docs
-        noremap <leader>8 :helptags ~/.vim/doc<CR>
+        noremap <leader>9 :helptags ~/.vim/doc<CR>
     " Rebind the vim help file
         inoremap <F1> <ESC> :call NTToggle()<CR>
-        noremap <leader>9 :help_hotkeys<CR>
         noremap <leader>0 :help<CR>
-    " Plugin: SignifyToggle
-        noremap <leader>4 :SignifyToggle<CR>
-    " Plugin: Gitv
-        noremap <leader>5 :Gitv<CR>
-    " Plugin: Gtags
+    " Plugin: vim-autoformat
+        noremap <leader>4 :Autoformat<CR>
+    " Plugin: vim-signify
+        noremap <leader>5 :SignifyToggle<CR>
+    " Plugin: undotree
+        noremap <leader>6 :UndotreeToggle<CR>
+    " Plugin: gitv
+        noremap <leader>7 :Gitv<CR>
+    " Plugin: gtags.vim
         noremap <leader>g :Gtags<CR>
         noremap <leader>s :Gtags -s<CR>
         noremap <leader>r :Gtags -r<CR>
         noremap <leader>z :cp<CR>
         noremap <leader>x :cn<CR>
         noremap <leader>q :cclose<CR>
-    " Plugin: CtrlP
+    " Plugin: ctrlp.vim
         " Default bindings conflict with yankring bindings
         let g:ctrlp_map = '<leader>p'
 
@@ -397,7 +399,7 @@
         Plug 'scrooloose/nerdtree'
         Plug 'jlanzarotta/bufexplorer'
         Plug 'xolox/vim-session'
-        Plug 'xolox/vim-misc'
+            Plug 'xolox/vim-misc'
         Plug 'ctrlpvim/ctrlp.vim'
             Plug 'FelikZ/ctrlp-py-matcher'
         "Plug 'fholgado/minibufexpl.vim'
@@ -408,20 +410,18 @@
         Plug 'majutsushi/tagbar'
         Plug 'gtags.vim'
         Plug 'matchit.zip'
-        Plug 'a.vim'
+        Plug 'a.vim', { 'on': 'A' }
         Plug 'kshenoy/vim-signature'
         Plug 'mileszs/ack.vim'
-            Plug 'dyng/ctrlsf.vim'
-        "Plug 'ggreer/the_silver_searcher'
-        "Plug 'rking/ag.vim'
+            Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
         "Plug 'scrooloose/syntastic'
-        "Plug 'taglist.vim'
         "Plug 'name5566/vim-bookmark'
         "Plug 'MattesGroeger/vim-bookmarks'
         "Plug 'starleoda/vim-vookmark'
     " Auto code completion
         if exists("g:cpp_developer")
-            Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
+            Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+                Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
         else
             Plug 'OmniCppComplete'
             Plug 'ervandew/supertab'
@@ -434,19 +434,18 @@
             Plug 'vincenthsu/vim-snippets'
         "    Plug 'honza/vim-snippets'
         "Plug 'justmao945/vim-clang'
-        "Plug 'marijnh/tern_for_vim'
-        "Plug 'Shougo/neocomplete.vim'
-        "Plug 'gregsexton/MatchTag'
+        "Plug 'marijnh/tern_for_vim', { 'for': 'javascipt' }
     " Editing
-        Plug 'mbbill/undotree'
+        Plug 'tomtom/tcomment_vim'
+        Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+        Plug 'jayflo/vim-skip'
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-repeat'
         Plug 'tpope/vim-abolish'
-        Plug 'jayflo/vim-skip'
-        Plug 'tomtom/tcomment_vim'
-        Plug 'svermeulen/vim-easyclip'
-        Plug 'Chiel92/vim-autoformat'
+        Plug 'Chiel92/vim-autoformat', { 'on': 'Autoformat' }
         Plug 'junegunn/vim-easy-align'
+        Plug 'svermeulen/vim-easyclip'
+        Plug 'dkprice/vim-easygrep'
         Plug 'terryma/vim-multiple-cursors'
             Plug 'terryma/vim-expand-region'
         "Plug 'editorconfig/editorconfig-vim'
@@ -457,29 +456,54 @@
     " Syntaxes & colors
         Plug 'flazz/vim-colorschemes'
         Plug 'bling/vim-airline'
-        Plug 'tpope/vim-markdown'
-        Plug 'octol/vim-cpp-enhanced-highlight'
         Plug 'chrisbra/vim-diff-enhanced'
+        Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
+        Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+        Plug 'fatih/vim-go', { 'for': 'go' }
         "Plug 'bbchung/clighter'
         "Plug 'plasticboy/vim-markdown'
         "Plug 'pangloss/vim-javascript'
         "Plug 'tpope/vim-git'
     " Version control
-        Plug 'tpope/vim-fugitive'
+        Plug 'bartman/git-wip', { 'rtp': 'vim/' }
         Plug 'mhinz/vim-signify'
-        Plug 'gregsexton/gitv'
-        Plug 'bartman/git-wip', {'rtp': 'vim/'}
+        Plug 'tpope/vim-fugitive'
+            Plug 'gregsexton/gitv', { 'on': 'Gitv' }
         "Plug 'airblade/vim-gitgutter'
     " Others
         Plug 'LargeFile'
-        Plug 'mattn/webapi-vim'
-        Plug 'mattn/gist-vim'
+        Plug 'mattn/webapi-vim', { 'on': 'Gist' }
+        Plug 'mattn/gist-vim', { 'on': 'Gist' }
     call plug#end()
     filetype plugin indent on
 
 " Plugin Settings
     " Ctags
         set tags=tags;
+    " ack.vim
+        if executable('ag')
+            let g:ackprg = 'ag --vimgrep'
+        endif
+    " clighter
+        "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+        "nmap <silent> <Leader>a :call clighter#Rename()<CR>
+    " ctrlp-py-matcher
+        let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+    " Emmet (Zen Coding)
+        if exists("g:web_developer")
+            let g:user_emmet_expandabbr_key = '<C-S>'
+        else
+            noremap <C-S> <NOP>
+        end
+    " Gist-vim
+        let g:gist_detect_filetype = 1
+        let g:gist_post_private = 1
+        let g:gist_show_privates = 1
+    " Minibufexpl
+        let g:miniBufExplCycleArround = 1
+        let g:miniBufExplorerAutoStart = 0
+        let g:miniBufExplHideWhenDiff = 1
+        let g:miniBufExplBuffersNeeded = 0
     " NerdTree
         let NERDTreeBookmarksFile = expand("$HOME/.vim/tmp/nerdtree_bookmarks.txt")
     " Tagbar
@@ -492,39 +516,6 @@
                 \ 'i:identities'
             \ ]
         \ }
-    " vim-multiple-cursors
-        let g:multi_cursor_next_key='<C-j>'
-        let g:multi_cursor_prev_key='<C-k>'
-        let g:multi_cursor_skip_key='<C-x>'
-    " vim-easyclip
-        let g:EasyClipPreserveCursorPositionAfterYank = 1
-        let g:EasyClipShareYanks = 1
-        let g:EasyClipShareYanksDirectory = g:tempdir
-        " Give my 'x' command back. Don't remap my 'm' key.
-        let g:EasyClipUseCutDefaults = 0
-        xmap x <Plug>MoveMotionXPlug
-    " ctrlp-py-matcher
-        let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-    " vim-session
-        let g:session_directory = '~/.vim/tmp/sessions'
-        let g:session_autoload = 'yes'
-        let g:session_autosave = 'yes'
-        let g:session_default_to_last = 1
-        let g:session_default_overwrite = 1
-        let g:session_command_aliases = 1
-        let g:session_persist_colors = 0
-    " vim-signify
-        let g:signify_disable_by_default = 1
-    " vim-markdown
-        let g:vim_markdown_folding_disabled = 1
-    " Gist-vim
-        let g:gist_show_privates = 1
-        let g:gist_post_private = 1
-    " Minibufexpl
-        let g:miniBufExplCycleArround = 1
-        let g:miniBufExplorerAutoStart = 0
-        let g:miniBufExplHideWhenDiff = 1
-        let g:miniBufExplBuffersNeeded = 0
     " UltiSnips
         let g:UltiSnipsExpandTrigger = "<Tab>"
         let g:UltiSnipsJumpForwardTrigger = "<Tab>"
@@ -543,16 +534,41 @@
         let g:airline#extensions#tabline#show_tab_type = 0
         let g:airline#extensions#tabline#show_tab_nr = 1
         let g:airline#extensions#tabline#tab_nr_type = 1
+    " vim-cpp-enhanced-highlight
+        let c_no_curly_error=1 " Vim tend to a have issues with flagging braces as errors
     " vim-easy-align
         " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
         vmap <Enter> <Plug>(EasyAlign)
         " Start interactive EasyAlign for a motion/text object (e.g. gaip)
         nmap ga <Plug>(EasyAlign)
+    " vim-easyclip
+        let g:EasyClipPreserveCursorPositionAfterYank = 1
+        let g:EasyClipShareYanks = 1
+        let g:EasyClipShareYanksDirectory = g:tempdir
+        " Give my 'x' command back. Don't remap my 'm' key.
+        let g:EasyClipUseCutDefaults = 0
+        xmap x <Plug>MoveMotionXPlug
+    " vim-markdown
+        let g:vim_markdown_folding_disabled = 1
+    " vim-multiple-cursors
+        let g:multi_cursor_next_key='<C-j>'
+        let g:multi_cursor_prev_key='<C-k>'
+        let g:multi_cursor_skip_key='<C-x>'
+    " vim-session
+        let g:session_directory = '~/.vim/tmp/sessions'
+        let g:session_autoload = 'yes'
+        let g:session_autosave = 'yes'
+        let g:session_default_to_last = 1
+        let g:session_default_overwrite = 1
+        let g:session_command_aliases = 1
+        let g:session_persist_colors = 0
+    " vim-signify
+        let g:signify_disable_by_default = 1
     " YouCompleteMe
         if exists("g:cpp_developer")
             noremap <leader>j :YcmCompleter GoTo<CR>
             let g:ycm_global_ycm_extra_conf =
-                \ '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+                \ '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
             let g:ycm_key_list_select_completion = ['<Down>']
             let g:ycm_key_list_previous_completion = ['<Up>']
             let g:ycm_autoclose_preview_window_after_completion = 1
@@ -569,12 +585,6 @@
                 \ 'ruby': 1,
             \ }
         endif
-    " Emmet (Zen Coding)
-        if exists("g:web_developer")
-            let g:user_emmet_expandabbr_key = '<C-S>'
-        else
-            noremap <C-S> <NOP>
-        end
 
 " Color Theme: sequence-related
     " Enable xterm 256 color
