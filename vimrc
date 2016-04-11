@@ -350,13 +350,6 @@
         noremap <C-right> :bn<CR>
         noremap <C-up> :BufExplorer<CR>
         noremap <C-down> :bd<CR>
-        noremap <leader><left> :bp<CR>
-        noremap <leader><right> :bn<CR>
-        noremap <leader><up> :BufExplorer<CR>
-        noremap <leader><down> :bd<CR>
-        noremap <C-X>h :bp<CR>
-        noremap <C-X>l :bn<CR>
-        noremap <C-X>k :BufExplorer<CR>
     " Switch between windows
         noremap <C-H> <C-W>h
         noremap <C-J> <C-W>j
@@ -385,9 +378,9 @@
     " Rebind the vim help file
         inoremap <F1> <ESC> :call NTToggle()<CR>
         noremap <leader>0 :help<CR>
-    " Plugin: vim-signify
+    " Plugin: ctrlsf.vim
         noremap <leader>5 :CtrlSF<CR>
-    " Plugin: undotree
+    " Plugin: YCM-Generator
         noremap <leader>6 :YcmGenerateConfig<CR>
     " Plugin: vim-autoformat
         noremap <leader>7 :Autoformat<CR>
@@ -402,7 +395,9 @@
         noremap <leader>q :cclose<CR>
     " Plugin: ctrlp.vim
         " Default bindings conflict with yankring bindings
-        let g:ctrlp_map = '<leader>p'
+        "let g:ctrlp_map = '<leader>p'
+    " Plugin: fzf
+        noremap <leader>p :FZF<CR>
 
 " Use vim-plug to manage all other plugins
     call plug#begin('~/.vim/plugged')
@@ -411,8 +406,10 @@
         Plug 'jlanzarotta/bufexplorer'
         Plug 'xolox/vim-session'
             Plug 'xolox/vim-misc'
-        Plug 'ctrlpvim/ctrlp.vim'
-            Plug 'FelikZ/ctrlp-py-matcher'
+        Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+            Plug 'junegunn/fzf.vim'
+        "Plug 'ctrlpvim/ctrlp.vim'
+        "   Plug 'FelikZ/ctrlp-py-matcher'
         "Plug 'fholgado/minibufexpl.vim'
         "Plug 'zefei/buftabs'
         "Plug 'mihaifm/bufstop'
@@ -465,12 +462,14 @@
         "Plug 'godlygeek/tabular'
         "Plug 'tpope/vim-commentary'
     " Syntaxes & colors
+        Plug 'vim-airline/vim-airline'
+        Plug 'vim-airline/vim-airline-themes'
         Plug 'flazz/vim-colorschemes'
-        Plug 'bling/vim-airline'
         Plug 'chrisbra/vim-diff-enhanced'
         Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
         Plug 'tpope/vim-markdown', { 'for': 'markdown' }
         Plug 'fatih/vim-go', { 'for': 'go' }
+        Plug 'keith/swift.vim', { 'for': 'swift' }
         "Plug 'bbchung/clighter'
         "Plug 'plasticboy/vim-markdown'
         "Plug 'pangloss/vim-javascript'
@@ -499,7 +498,7 @@
         "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
         "nmap <silent> <Leader>a :call clighter#Rename()<CR>
     " ctrlp-py-matcher
-        let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+        "let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
     " Emmet (Zen Coding)
         if exists("g:web_developer")
             let g:user_emmet_expandabbr_key = '<C-S>'
