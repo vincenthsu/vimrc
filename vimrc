@@ -199,6 +199,17 @@
                 :NERDTreeFind
             endif
         endfunction
+    " Toggle mouse
+        function! MouseToggle()
+            " check if mouse is enabled
+            if &mouse == 'a'
+                " disable mouse
+                set mouse=
+            else
+                " enable mouse everywhere
+                set mouse=a
+            endif
+        endfunction
     " Removes trailing spaces
         function RTrailing()
             %s/\s*$//
@@ -311,13 +322,13 @@
     " Hotkeys
         noremap <F1> :call NTToggle()<CR>
         noremap <F2> :TagbarToggle<CR>
-        noremap <F3> :CtrlSF<Space>
-        noremap <F4> :Ack<Space>
+        noremap <F3> :SignifyToggle<CR>
+        noremap <F4> :UndotreeToggle<CR>
         noremap <F5> :SaveSession!<CR>
         noremap <F6> :NewSession<CR>
         noremap <F7> :OpenSession!<CR>
         noremap <F8> :DeleteSession<CR>
-        noremap <F9> :Autoformat<CR>
+        noremap <F9> :call MouseToggle()<CR>
         noremap <F10> :retab<CR> :call RTrailing()<CR>
         noremap <F11> :call SetEncoding()<CR>
         noremap <F12> :help_hotkeys<CR>
@@ -374,14 +385,14 @@
     " Rebind the vim help file
         inoremap <F1> <ESC> :call NTToggle()<CR>
         noremap <leader>0 :help<CR>
-    " Plugin: vim-autoformat
-        noremap <leader>4 :Autoformat<CR>
     " Plugin: vim-signify
-        noremap <leader>5 :SignifyToggle<CR>
+        noremap <leader>5 :CtrlSF<CR>
     " Plugin: undotree
-        noremap <leader>6 :UndotreeToggle<CR>
+        noremap <leader>6 :YcmGenerateConfig<CR>
+    " Plugin: vim-autoformat
+        noremap <leader>7 :Autoformat<CR>
     " Plugin: gitv
-        noremap <leader>7 :Gitv<CR>
+        noremap <leader>8 :Gitv<CR>
     " Plugin: gtags.vim
         noremap <leader>g :Gtags<CR>
         noremap <leader>s :Gtags -s<CR>
@@ -574,8 +585,9 @@
             let g:ycm_autoclose_preview_window_after_completion = 1
             let g:ycm_autoclose_preview_window_after_insertion = 1
             let g:ycm_confirm_extra_conf = 0
-            "let g:ycm_show_diagnostics_ui = 0
             "let g:ycm_collect_identifiers_from_tags_files = 1
+            "let g:ycm_register_as_syntastic_checker = 0
+            "let g:ycm_show_diagnostics_ui = 0
             let g:ycm_filetype_whitelist = {
                 \ 'c': 1,
                 \ 'cpp': 1,
