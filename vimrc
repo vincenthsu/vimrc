@@ -1,4 +1,4 @@
-" Configuration variables (defined in ~/.vimrc.inc)
+" Configurable variables (defined in ~/.vimrc.inc)
     "let g:powerline_fonts = 1
     "let g:cpp_developer = 1
     "let g:web_developer = 1
@@ -393,11 +393,8 @@
         noremap <leader>z :cp<CR>
         noremap <leader>x :cn<CR>
         noremap <leader>q :cclose<CR>
-    " Plugin: ctrlp.vim
-        " Default bindings conflict with yankring bindings
-        "let g:ctrlp_map = '<leader>p'
     " Plugin: fzf
-        noremap <leader>p :FZF<CR>
+        noremap <leader>p :FZF<space>
 
 " Use vim-plug to manage all other plugins
     call plug#begin('~/.vim/plugged')
@@ -427,14 +424,14 @@
         "Plug 'MattesGroeger/vim-bookmarks'
         "Plug 'starleoda/vim-vookmark'
     " Auto code completion
-        if exists("g:cpp_developer")
+        if exists("g:cpp_developer") && g:cpp_developer == 1
             Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
                 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
         else
             Plug 'OmniCppComplete'
             Plug 'ervandew/supertab'
         endif
-        if exists("g:web_developer")
+        if exists("g:web_developer") && g:web_developer == 1
             Plug 'mattn/emmet-vim'
         endif
         Plug 'Raimondi/delimitMate'
@@ -497,10 +494,8 @@
     " clighter
         "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
         "nmap <silent> <Leader>a :call clighter#Rename()<CR>
-    " ctrlp-py-matcher
-        "let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
     " Emmet (Zen Coding)
-        if exists("g:web_developer")
+        if exists("g:web_developer") && g:web_developer == 1
             let g:user_emmet_expandabbr_key = '<C-S>'
         else
             noremap <C-S> <NOP>
@@ -531,7 +526,7 @@
         let g:UltiSnipsJumpForwardTrigger = "<Tab>"
         let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
     " vim-airline
-        if exists("g:powerline_fonts")
+        if exists("g:powerline_fonts") && g:powerline_fonts == 1
             let g:airline_powerline_fonts = 1
         else
             let g:airline_left_sep = ''
@@ -575,7 +570,7 @@
     " vim-signify
         let g:signify_disable_by_default = 1
     " YouCompleteMe
-        if exists("g:cpp_developer")
+        if exists("g:cpp_developer") && g:cpp_developer == 1
             noremap <leader>j :YcmCompleter GoTo<CR>
             let g:ycm_global_ycm_extra_conf =
                 \ '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'

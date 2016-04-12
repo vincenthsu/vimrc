@@ -15,7 +15,6 @@ VimDiff                                         |help_hotkeys-vimdiff|
 Sort                                            |help_hotkeys-sort|
 Recording                                       |help_hotkeys-recording|
 YankRing                                        |help_hotkeys-yankring|
-CtrlP                                           |help_hotkeys-ctrlp|
 Surround                                        |help_hotkeys-surround|
 TComment                                        |help_hotkeys-tcomment|
 VIM Signature                                   |help_hotkeys-vim-signature|
@@ -59,13 +58,6 @@ User Defined Keys                                     *help_hotkeys-user_keys*
     noremap <C-right> :bn<CR>
     noremap <C-up> :BufExplorer<CR>
     noremap <C-down> :bd<CR>
-    noremap <leader><left> :bp<CR>
-    noremap <leader><right> :bn<CR>
-    noremap <leader><up> :BufExplorer<CR>
-    noremap <leader><down> :bd<CR>
-    noremap <C-X>h :bp<CR>
-    noremap <C-X>l :bn<CR>
-    noremap <C-X>k :BufExplorer<CR>
 " Switch between windows
     noremap <C-H> <C-W>h
     noremap <C-J> <C-W>j
@@ -94,9 +86,9 @@ User Defined Keys                                     *help_hotkeys-user_keys*
 " Rebind the vim help file
     inoremap <F1> <ESC> :call NTToggle()<CR>
     noremap <leader>0 :help<CR>
-" Plugin: vim-signify
+" Plugin: ctrlsf.vim
     noremap <leader>5 :CtrlSF<CR>
-" Plugin: undotree
+" Plugin: YCM-Generator
     noremap <leader>6 :YcmGenerateConfig<CR>
 " Plugin: vim-autoformat
     noremap <leader>7 :Autoformat<CR>
@@ -109,9 +101,8 @@ User Defined Keys                                     *help_hotkeys-user_keys*
     noremap <leader>z :cp<CR>
     noremap <leader>x :cn<CR>
     noremap <leader>q :cclose<CR>
-" Plugin: ctrlp.vim
-    " Default bindings conflict with yankring bindings
-    let g:ctrlp_map = '<leader>p'
+" Plugin: fzf
+    noremap <leader>p :FZF<CR>
 " Plugin: vim-multiple-cursors
     g:multi_cursor_next_key='<C-j>'
     g:multi_cursor_prev_key='<C-k>'
@@ -301,11 +292,6 @@ For example:
     0"xy$       # go to beginning of line; into register x, yank to end of line
     :bd!        # delete the new buffer without saving
     @x          # execute modified recording
-
-==============================================================================
-CtrlP                                                     *help_hotkeys-ctrlp*
-
-<C-d>  " filename mode
 
 ==============================================================================
 Surround                                               *help_hotkeys-surround*
