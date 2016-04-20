@@ -533,7 +533,7 @@
             let g:airline_right_sep = ''
         end
         "let g:airline_section_x = '%{getcwd()}'
-        let g:airline_section_z = '%l/%L'
+        let g:airline_section_z = '%l/%L, %c'
         let g:airline#extensions#tabline#enabled = 1
         let g:airline#extensions#tabline#show_close_button = 0
         let g:airline#extensions#tabline#show_tab_type = 0
@@ -596,7 +596,11 @@
     " Enable xterm 256 color
         set t_Co=256
     " Plugin: vim-colorschemes
-        colorscheme desert256v2
+        "colorscheme distinguished
+        "colorscheme desert256
+        "colorscheme heroku-terminal
+        "colorscheme wombat256
+        colorscheme oceanblack256
     " Popup menu
         highlight Pmenu ctermbg=234 ctermfg=7
         highlight PmenuSel ctermbg=8 ctermfg=7
