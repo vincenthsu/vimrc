@@ -425,7 +425,7 @@
         "Plug 'starleoda/vim-vookmark'
     " Auto code completion
         if exists("g:cpp_developer") && g:cpp_developer == 1
-            Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+            Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clang-completer' }
                 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
         else
             Plug 'OmniCppComplete'
