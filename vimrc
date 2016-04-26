@@ -460,13 +460,13 @@
         "Plug 'tpope/vim-commentary'
     " Syntaxes & colors
         Plug 'vim-airline/vim-airline'
-        Plug 'vim-airline/vim-airline-themes'
-        Plug 'flazz/vim-colorschemes'
         Plug 'chrisbra/vim-diff-enhanced'
         Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
         Plug 'tpope/vim-markdown', { 'for': 'markdown' }
         Plug 'fatih/vim-go', { 'for': 'go' }
         Plug 'keith/swift.vim', { 'for': 'swift' }
+        "Plug 'vim-airline/vim-airline-themes'
+        "Plug 'flazz/vim-colorschemes'
         "Plug 'bbchung/clighter'
         "Plug 'plasticboy/vim-markdown'
         "Plug 'pangloss/vim-javascript'
@@ -592,18 +592,6 @@
             \ }
         endif
 
-" Color Theme: sequence-related
-    " Enable xterm 256 color
-        set t_Co=256
-    " Plugin: vim-colorschemes
-        "colorscheme distinguished
-        "colorscheme desert256
-        "colorscheme heroku-terminal
-        "colorscheme wombat256
-        colorscheme oceanblack256
-    " Popup menu
-        highlight Pmenu ctermbg=234 ctermfg=7
-        highlight PmenuSel ctermbg=8 ctermfg=7
-    " Tabs and trailing
-        highlight SpecialKey ctermfg=236 ctermbg=0
-
+" Color Theme
+    set t_Co=256 " Enable xterm 256 color
+    colorscheme distinguished
