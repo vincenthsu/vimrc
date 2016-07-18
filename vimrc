@@ -472,11 +472,11 @@
         "Plug 'pangloss/vim-javascript'
         "Plug 'tpope/vim-git'
     " Version control
-        Plug 'bartman/git-wip', { 'rtp': 'vim/' }
         Plug 'mhinz/vim-signify'
         Plug 'tpope/vim-fugitive'
             Plug 'gregsexton/gitv', { 'on': 'Gitv' }
         "Plug 'airblade/vim-gitgutter'
+        "Plug 'bartman/git-wip', { 'rtp': 'vim/' }
     " Others
         Plug 'LargeFile'
         Plug 'mattn/webapi-vim', { 'on': 'Gist' }
@@ -500,7 +500,7 @@
         else
             noremap <C-S> <NOP>
         end
-    " Gist-vim
+    " gist-vim
         let g:gist_detect_filetype = 1
         let g:gist_post_private = 1
         let g:gist_show_privates = 1
@@ -561,7 +561,7 @@
         let g:multi_cursor_skip_key='<C-x>'
     " vim-session
         let g:session_directory = '~/.vim/tmp/sessions'
-        let g:session_autoload = 'yes'
+        let g:session_autoload = 'no'
         let g:session_autosave = 'yes'
         let g:session_default_to_last = 1
         let g:session_default_overwrite = 1
