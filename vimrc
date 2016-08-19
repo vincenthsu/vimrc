@@ -148,7 +148,7 @@
     " Jump to the last position when reopening a file
         autocmd BufReadPost *
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
-            \   execute "normal g'\"" |
+                \ execute "normal g'\"" |
             \ endif ""'")
     " Vim 7.3 feature: infinite undo
         if version >= 703
@@ -462,13 +462,12 @@
         Plug 'vim-airline/vim-airline'
         Plug 'chrisbra/vim-diff-enhanced'
         Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
-        Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+        Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
         Plug 'fatih/vim-go', { 'for': 'go' }
         Plug 'keith/swift.vim', { 'for': 'swift' }
         "Plug 'vim-airline/vim-airline-themes'
         "Plug 'flazz/vim-colorschemes'
         "Plug 'bbchung/clighter'
-        "Plug 'plasticboy/vim-markdown'
         "Plug 'pangloss/vim-javascript'
         "Plug 'tpope/vim-git'
     " Version control
@@ -478,6 +477,7 @@
         "Plug 'airblade/vim-gitgutter'
         "Plug 'bartman/git-wip', { 'rtp': 'vim/' }
     " Others
+        Plug 'Conque-GDB', { 'on': ['ConqueGdb', 'ConqueGdbVSplit'] }
         Plug 'LargeFile'
         Plug 'mattn/webapi-vim', { 'on': 'Gist' }
         Plug 'mattn/gist-vim', { 'on': 'Gist' }
@@ -494,6 +494,11 @@
     " clighter
         "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
         "nmap <silent> <Leader>a :call clighter#Rename()<CR>
+    " ConqueGdb
+        let g:ConqueGdb_Leader = '<C-X>'
+        let g:ConqueTerm_Color = 2
+        let g:ConqueTerm_CloseOnEnd = 1
+        let g:ConqueTerm_StartMessages = 0
     " Emmet (Zen Coding)
         if exists("g:web_developer") && g:web_developer == 1
             let g:user_emmet_expandabbr_key = '<C-S>'
@@ -513,13 +518,22 @@
         let NERDTreeBookmarksFile = expand("$HOME/.vim/tmp/nerdtree_bookmarks.txt")
     " Tagbar
         let tagbar_width = 30 " default: 40
-        let g:tagbar_type_css  =  {
+        let g:tagbar_type_css = {
             \ 'ctagstype' : 'Css',
-            \ 'kinds'     : [
+            \ 'kinds' : [
                 \ 'c:classes',
                 \ 's:selectors',
                 \ 'i:identities'
             \ ]
+        \ }
+        let g:tagbar_type_markdown = {
+            \ 'ctagstype' : 'markdown',
+            \ 'kinds' : [
+                \ 'h:headings',
+                \ 'l:links',
+                \ 'i:images'
+            \ ],
+            \ "sort" : 0
         \ }
     " UltiSnips
         let g:UltiSnipsExpandTrigger = "<Tab>"
@@ -554,7 +568,7 @@
         let g:EasyClipUseCutDefaults = 0
         xmap x <Plug>MoveMotionXPlug
     " vim-markdown
-        let g:vim_markdown_folding_disabled = 1
+        autocmd BufNewFile,BufReadPost *.md set filetype=markdown
     " vim-multiple-cursors
         let g:multi_cursor_next_key='<C-j>'
         let g:multi_cursor_prev_key='<C-k>'
@@ -578,6 +592,7 @@
             let g:ycm_key_list_previous_completion = ['<Up>']
             let g:ycm_autoclose_preview_window_after_completion = 1
             let g:ycm_autoclose_preview_window_after_insertion = 1
+            let g:ycm_complete_in_comments = 1
             let g:ycm_confirm_extra_conf = 0
             "let g:ycm_collect_identifiers_from_tags_files = 1
             "let g:ycm_register_as_syntastic_checker = 0
