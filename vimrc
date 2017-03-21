@@ -416,13 +416,10 @@
         Plug 'gtags.vim'
         Plug 'matchit.zip'
         Plug 'a.vim', { 'on': 'A' }
-        Plug 'kshenoy/vim-signature'
+        Plug 'MattesGroeger/vim-bookmarks'
         Plug 'mileszs/ack.vim'
             Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
-        "Plug 'scrooloose/syntastic'
-        "Plug 'name5566/vim-bookmark'
-        "Plug 'MattesGroeger/vim-bookmarks'
-        "Plug 'starleoda/vim-vookmark'
+        "Plug 'kshenoy/vim-signature'
     " Auto code completion
         if exists("g:cpp_developer") && g:cpp_developer == 1
             Plug 'Valloric/YouCompleteMe', { 'do': 'python ./install.py --clang-completer' }
@@ -453,6 +450,8 @@
         Plug 'dkprice/vim-easygrep'
         Plug 'terryma/vim-multiple-cursors'
             Plug 'terryma/vim-expand-region'
+        Plug 'hynek/vim-python-pep8-indent', { 'for': ['python', 'meson'] }
+        Plug 'rhysd/vim-clang-format'
         "Plug 'editorconfig/editorconfig-vim'
         "Plug 'sjl/gundo.vim'
         "Plug 'YankRing.vim'
@@ -465,6 +464,7 @@
         Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
         Plug 'fatih/vim-go', { 'for': 'go' }
         Plug 'keith/swift.vim', { 'for': 'swift' }
+        Plug 'mesonbuild/meson', { 'for': 'meson', 'rtp': 'syntax-highlighting/vim' }
         "Plug 'vim-airline/vim-airline-themes'
         "Plug 'flazz/vim-colorschemes'
         "Plug 'bbchung/clighter'
@@ -491,6 +491,9 @@
         if executable('ag')
             let g:ackprg = 'ag --vimgrep'
         endif
+    " vim-bookmarks
+        let g:bookmark_auto_close = 1
+        let g:bookmark_auto_save_file = $HOME .'/.vim/tmp/bookmarks'
     " clighter
         "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
         "nmap <silent> <Leader>a :call clighter#Rename()<CR>
@@ -610,3 +613,6 @@
 " Color Theme
     set t_Co=256 " Enable xterm 256 color
     colorscheme distinguished
+
+" Neovim
+"     set viminfo+=n~/.nvim/tmpfiles/viminfo
