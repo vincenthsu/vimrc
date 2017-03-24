@@ -433,7 +433,7 @@
         endif
         Plug 'Raimondi/delimitMate'
         Plug 'SirVer/ultisnips'
-            Plug 'vincenthsu/vim-snippets'
+            Plug 'vincenthsu/vim-snippets', { 'branch': 'extension'}
         "    Plug 'honza/vim-snippets'
         "Plug 'justmao945/vim-clang'
         "Plug 'marijnh/tern_for_vim', { 'for': 'javascipt' }
@@ -460,7 +460,7 @@
     " Syntaxes & colors
         Plug 'vim-airline/vim-airline'
         Plug 'chrisbra/vim-diff-enhanced'
-        Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
+        Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
         Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
         Plug 'fatih/vim-go', { 'for': 'go' }
         Plug 'keith/swift.vim', { 'for': 'swift' }
@@ -558,6 +558,7 @@
         let g:airline#extensions#tabline#tab_nr_type = 1
     " vim-cpp-enhanced-highlight
         let c_no_curly_error=1 " Vim tend to a have issues with flagging braces as errors
+        let g:cpp_class_scope_highlight = 1
     " vim-easy-align
         " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
         vmap <Enter> <Plug>(EasyAlign)
