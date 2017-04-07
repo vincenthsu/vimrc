@@ -395,6 +395,9 @@
         noremap <leader>q :cclose<CR>
     " Plugin: fzf
         noremap <leader>p :FZF<space>
+    " Plugin: vim-visual-star-search
+        nnoremap # #<c-o>
+        noremap <leader>h :%s///g<left><left>
 
 " Use vim-plug to manage all other plugins
     call plug#begin('~/.vim/plugged')
@@ -452,6 +455,7 @@
             Plug 'terryma/vim-expand-region'
         Plug 'hynek/vim-python-pep8-indent', { 'for': ['python', 'meson'] }
         Plug 'rhysd/vim-clang-format'
+        Plug 'bronson/vim-visual-star-search'
         "Plug 'editorconfig/editorconfig-vim'
         "Plug 'sjl/gundo.vim'
         "Plug 'YankRing.vim'
