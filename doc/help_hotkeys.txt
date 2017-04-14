@@ -30,8 +30,8 @@ User Defined Keys                                     *help_hotkeys-user_keys*
 " Hotkeys
     noremap <F1> :call NTToggle()<CR>
     noremap <F2> :TagbarToggle<CR>
-    noremap <F3> :SignifyToggle<CR>
-    noremap <F4> :UndotreeToggle<CR>
+    noremap <F3> :UndotreeToggle<CR>
+    noremap <F4> :ClangFormatAutoToggle<CR>
     noremap <F5> :SaveSession!<CR>
     noremap <F6> :NewSession<CR>
     noremap <F7> :OpenSession!<CR>
@@ -71,29 +71,25 @@ User Defined Keys                                     *help_hotkeys-user_keys*
     noremap <C-W>- :resize -10<CR>
     noremap <C-W>= :vertical resize +10<CR>
     noremap <C-W>- :vertical resize -10<CR>
-" Force save the file by sudo privieges
-    noremap <leader>w :w !sudo tee %<CR>
 " Go to middle of line in vim
     noremap gm :call cursor(0, len(getline('.'))/2)<CR>
+" Diff file with current modify
+    noremap <leader>d :DiffSaved<CR>
+" Force save the file by sudo privieges
+    noremap <leader>w :w !sudo tee %<CR>
 " Switch indent modes
     noremap <leader>1 :call ReadMode()<CR>
     noremap <leader>2 :call EditMode()<CR>
     noremap <leader>3 :call KernelMode()<CR>
-" Diff file with current modify
-    noremap <leader>d :DiffSaved<CR>
 " Gen help docs
     noremap <leader>9 :helptags ~/.vim/doc<CR>
 " Rebind the vim help file
     inoremap <F1> <ESC> :call NTToggle()<CR>
     noremap <leader>0 :help<CR>
-" Plugin: ctrlsf.vim
-    noremap <leader>5 :CtrlSF<CR>
-" Plugin: YCM-Generator
-    noremap <leader>6 :YcmGenerateConfig<CR>
-" Plugin: vim-autoformat
-    noremap <leader>7 :Autoformat<CR>
+" Plugin: vim-signify
+    noremap <leader>4 :SignifyToggle<CR>
 " Plugin: gitv
-    noremap <leader>8 :Gitv<CR>
+    noremap <leader>5 :Gitv<CR>
 " Plugin: gtags.vim
     noremap <leader>g :Gtags<CR>
     noremap <leader>s :Gtags -s<CR>
@@ -102,15 +98,24 @@ User Defined Keys                                     *help_hotkeys-user_keys*
     noremap <leader>x :cn<CR>
     noremap <leader>q :cclose<CR>
 " Plugin: fzf
-    noremap <leader>p :FZF<CR>
+    noremap <leader>p :FZF<space>
+" Plugin: vim-clang-format
+    noremap <leader>f :ClangFormat<CR>
+" Plugin: vim-bookmarks
+    noremap <leader>b :BookmarkShowAll<CR>
+" Plugin: vim-visual-star-search
+    nnoremap * *<c-o>
+    noremap <leader>h :%s///g<left><left>
+" Plugin: YCM-Generator
+    noremap <leader>y :YcmGenerateConfig<CR>
 " Plugin: vim-multiple-cursors
-    g:multi_cursor_next_key='<C-j>'
-    g:multi_cursor_prev_key='<C-k>'
-    g:multi_cursor_skip_key='<C-x>'
+    g:multi_cursor_next_key='<C-J>'
+    g:multi_cursor_prev_key='<C-K>'
+    g:multi_cursor_skip_key='<C-X>'
     g:multi_cursor_quit_key='<Esc>'
 " Plugin: vim-easyclip/YankRing
-    <C-p>  " (P for previous) to replace the text last pasted
-    <C-n>  " (N for next) to replace the previous pasted
+    <C-P>  " (P for previous) to replace the text last pasted
+    <C-N>  " (N for next) to replace the previous pasted
 
 ==============================================================================
 Jumps                                                     *help_hotkeys-jumps*

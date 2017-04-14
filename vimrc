@@ -322,8 +322,8 @@
     " Hotkeys
         noremap <F1> :call NTToggle()<CR>
         noremap <F2> :TagbarToggle<CR>
-        noremap <F3> :SignifyToggle<CR>
-        noremap <F4> :UndotreeToggle<CR>
+        noremap <F3> :UndotreeToggle<CR>
+        noremap <F4> :ClangFormatAutoToggle<CR>
         noremap <F5> :SaveSession!<CR>
         noremap <F6> :NewSession<CR>
         noremap <F7> :OpenSession!<CR>
@@ -363,29 +363,25 @@
         noremap <C-W>- :resize -10<CR>
         noremap <C-W>= :vertical resize +10<CR>
         noremap <C-W>- :vertical resize -10<CR>
-    " Force save the file by sudo privieges
-        noremap <leader>w :w !sudo tee %<CR>
     " Go to middle of line in vim
         noremap gm :call cursor(0, len(getline('.'))/2)<CR>
+    " Diff file with current modify
+        noremap <leader>d :DiffSaved<CR>
+    " Force save the file by sudo privieges
+        noremap <leader>w :w !sudo tee %<CR>
     " Switch indent modes
         noremap <leader>1 :call ReadMode()<CR>
         noremap <leader>2 :call EditMode()<CR>
         noremap <leader>3 :call KernelMode()<CR>
-    " Diff file with current modify
-        noremap <leader>d :DiffSaved<CR>
     " Gen help docs
         noremap <leader>9 :helptags ~/.vim/doc<CR>
     " Rebind the vim help file
         inoremap <F1> <ESC> :call NTToggle()<CR>
         noremap <leader>0 :help<CR>
-    " Plugin: ctrlsf.vim
-        noremap <leader>5 :CtrlSF<CR>
-    " Plugin: YCM-Generator
-        noremap <leader>6 :YcmGenerateConfig<CR>
-    " Plugin: vim-autoformat
-        noremap <leader>7 :Autoformat<CR>
+    " Plugin: vim-signify
+        noremap <leader>4 :SignifyToggle<CR>
     " Plugin: gitv
-        noremap <leader>8 :Gitv<CR>
+        noremap <leader>5 :Gitv<CR>
     " Plugin: gtags.vim
         noremap <leader>g :Gtags<CR>
         noremap <leader>s :Gtags -s<CR>
@@ -395,9 +391,15 @@
         noremap <leader>q :cclose<CR>
     " Plugin: fzf
         noremap <leader>p :FZF<space>
+    " Plugin: vim-clang-format
+        noremap <leader>f :ClangFormat<CR>
+    " Plugin: vim-bookmarks
+        noremap <leader>b :BookmarkShowAll<CR>
     " Plugin: vim-visual-star-search
-        nnoremap # #<c-o>
+        nnoremap * *<c-o>
         noremap <leader>h :%s///g<left><left>
+    " Plugin: YCM-Generator
+        noremap <leader>y :YcmGenerateConfig<CR>
 
 " Use vim-plug to manage all other plugins
     call plug#begin('~/.vim/plugged')
@@ -406,8 +408,8 @@
         Plug 'jlanzarotta/bufexplorer'
         Plug 'xolox/vim-session'
             Plug 'xolox/vim-misc'
-        Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-            Plug 'junegunn/fzf.vim'
+        Plug 'junegunn/fzf.vim'
+            Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         "Plug 'ctrlpvim/ctrlp.vim'
         "   Plug 'FelikZ/ctrlp-py-matcher'
         "Plug 'fholgado/minibufexpl.vim'
@@ -420,8 +422,9 @@
         Plug 'matchit.zip'
         Plug 'a.vim', { 'on': 'A' }
         Plug 'MattesGroeger/vim-bookmarks'
-        Plug 'mileszs/ack.vim'
-            Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
+        Plug 'dkprice/vim-easygrep'
+        "Plug 'mileszs/ack.vim'
+        "Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
         "Plug 'kshenoy/vim-signature'
     " Auto code completion
         if exists("g:cpp_developer") && g:cpp_developer == 1
@@ -441,50 +444,48 @@
         "Plug 'justmao945/vim-clang'
         "Plug 'marijnh/tern_for_vim', { 'for': 'javascipt' }
     " Editing
-        Plug 'tomtom/tcomment_vim'
         Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-        Plug 'jayflo/vim-skip'
-        Plug 'tpope/vim-surround'
+        Plug 'tomtom/tcomment_vim'
         Plug 'tpope/vim-repeat'
+        Plug 'tpope/vim-surround'
         Plug 'tpope/vim-abolish'
-        Plug 'Chiel92/vim-autoformat', { 'on': 'Autoformat' }
-        Plug 'junegunn/vim-easy-align'
-        Plug 'svermeulen/vim-easyclip'
-        Plug 'dkprice/vim-easygrep'
+        Plug 'jayflo/vim-skip'
         Plug 'terryma/vim-multiple-cursors'
             Plug 'terryma/vim-expand-region'
-        Plug 'hynek/vim-python-pep8-indent', { 'for': ['python', 'meson'] }
-        Plug 'rhysd/vim-clang-format'
-        Plug 'bronson/vim-visual-star-search'
-        "Plug 'editorconfig/editorconfig-vim'
+        Plug 'svermeulen/vim-easyclip' " Only enable a default mapping if it hasn't already been mapped to something
         "Plug 'sjl/gundo.vim'
         "Plug 'YankRing.vim'
         "Plug 'godlygeek/tabular'
         "Plug 'tpope/vim-commentary'
+    " Formatting
+        Plug 'junegunn/vim-easy-align'
+        Plug 'rhysd/vim-clang-format'
+        Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
+        "Plug 'editorconfig/editorconfig-vim'
     " Syntaxes & colors
         Plug 'vim-airline/vim-airline'
         Plug 'chrisbra/vim-diff-enhanced'
         Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
         Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
         Plug 'fatih/vim-go', { 'for': 'go' }
+        Plug 'nsf/gocode', { 'for': 'go' }
         Plug 'keith/swift.vim', { 'for': 'swift' }
-        Plug 'mesonbuild/meson', { 'for': 'meson', 'rtp': 'syntax-highlighting/vim' }
         "Plug 'vim-airline/vim-airline-themes'
+        "Plug 'itchyny/lightline.vim'
         "Plug 'flazz/vim-colorschemes'
-        "Plug 'bbchung/clighter'
-        "Plug 'pangloss/vim-javascript'
-        "Plug 'tpope/vim-git'
+        "Plug 'bbchung/clighter8'
+        "Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     " Version control
         Plug 'mhinz/vim-signify'
-        Plug 'tpope/vim-fugitive'
-            Plug 'gregsexton/gitv', { 'on': 'Gitv' }
+        Plug 'gregsexton/gitv', { 'on': 'Gitv' }
+            Plug 'tpope/vim-fugitive'
         "Plug 'airblade/vim-gitgutter'
         "Plug 'bartman/git-wip', { 'rtp': 'vim/' }
     " Others
         Plug 'Conque-GDB', { 'on': ['ConqueGdb', 'ConqueGdbVSplit'] }
         Plug 'LargeFile'
-        Plug 'mattn/webapi-vim', { 'on': 'Gist' }
         Plug 'mattn/gist-vim', { 'on': 'Gist' }
+            Plug 'mattn/webapi-vim', { 'on': 'Gist' }
     call plug#end()
     filetype plugin indent on
 
@@ -575,6 +576,12 @@
         " Give my 'x' command back. Don't remap my 'm' key.
         let g:EasyClipUseCutDefaults = 0
         xmap x <Plug>MoveMotionXPlug
+    " vim-easygrep: Prefer rg > ag > ack
+        if executable('rg')
+            let g:EasyGrepCommand="rg"
+        elseif executable('ag')
+            let g:EasyGrepCommand="ag"
+        endif
     " vim-markdown
         autocmd BufNewFile,BufReadPost *.md set filetype=markdown
     " vim-multiple-cursors
