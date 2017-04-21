@@ -423,6 +423,7 @@
         Plug 'a.vim', { 'on': 'A' }
         Plug 'MattesGroeger/vim-bookmarks'
         Plug 'dkprice/vim-easygrep'
+        Plug 'fatih/vim-go', { 'for': 'go' }
         "Plug 'mileszs/ack.vim'
         "Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
         "Plug 'kshenoy/vim-signature'
@@ -440,6 +441,7 @@
         Plug 'Raimondi/delimitMate'
         Plug 'SirVer/ultisnips'
             Plug 'vincenthsu/vim-snippets', { 'branch': 'extension'}
+        Plug 'nsf/gocode', { 'for': 'go' }
         "    Plug 'honza/vim-snippets'
         "Plug 'justmao945/vim-clang'
         "Plug 'marijnh/tern_for_vim', { 'for': 'javascipt' }
@@ -467,9 +469,8 @@
         Plug 'chrisbra/vim-diff-enhanced'
         Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
         Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
-        Plug 'fatih/vim-go', { 'for': 'go' }
-        Plug 'nsf/gocode', { 'for': 'go' }
         Plug 'keith/swift.vim', { 'for': 'swift' }
+        Plug 'rust-lang/rust.vim', { 'for': 'rust' }
         "Plug 'vim-airline/vim-airline-themes'
         "Plug 'itchyny/lightline.vim'
         "Plug 'flazz/vim-colorschemes'
@@ -612,14 +613,6 @@
             "let g:ycm_collect_identifiers_from_tags_files = 1
             "let g:ycm_register_as_syntastic_checker = 0
             "let g:ycm_show_diagnostics_ui = 0
-            let g:ycm_filetype_whitelist = {
-                \ 'c': 1,
-                \ 'cpp': 1,
-                \ 'sh': 1,
-                \ 'java': 1,
-                \ 'python': 1,
-                \ 'ruby': 1,
-            \ }
         endif
 
 " Color Theme
