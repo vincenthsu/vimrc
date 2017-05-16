@@ -418,9 +418,9 @@
         "Plug 'jistr/vim-nerdtree-tabs'
     " Tracing code
         Plug 'majutsushi/tagbar'
-        Plug 'gtags.vim'
-        Plug 'matchit.zip'
-        Plug 'a.vim', { 'on': 'A' }
+        Plug 'vim-scripts/gtags.vim'
+        Plug 'vim-scripts/matchit.zip'
+        Plug 'vim-scripts/a.vim', { 'on': 'A' }
         Plug 'MattesGroeger/vim-bookmarks'
         Plug 'dkprice/vim-easygrep'
         Plug 'fatih/vim-go', { 'for': 'go' }
@@ -483,8 +483,8 @@
         "Plug 'airblade/vim-gitgutter'
         "Plug 'bartman/git-wip', { 'rtp': 'vim/' }
     " Others
-        Plug 'Conque-GDB', { 'on': ['ConqueGdb', 'ConqueGdbVSplit'] }
-        Plug 'LargeFile'
+        Plug 'vim-scripts/Conque-GDB', { 'on': ['ConqueGdb', 'ConqueGdbVSplit'] }
+        Plug 'vim-scripts/LargeFile'
         Plug 'mattn/gist-vim', { 'on': 'Gist' }
             Plug 'mattn/webapi-vim', { 'on': 'Gist' }
     call plug#end()
