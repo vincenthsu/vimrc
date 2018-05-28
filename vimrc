@@ -424,6 +424,7 @@
         Plug 'MattesGroeger/vim-bookmarks'
         Plug 'dkprice/vim-easygrep'
         Plug 'fatih/vim-go', { 'for': 'go' }
+        "Plug 'ludovicchabant/vim-gutentags',
         "Plug 'mileszs/ack.vim'
         "Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
         "Plug 'kshenoy/vim-signature'
@@ -586,9 +587,11 @@
     " vim-markdown
         autocmd BufNewFile,BufReadPost *.md set filetype=markdown
     " vim-multiple-cursors
-        let g:multi_cursor_next_key='<C-j>'
-        let g:multi_cursor_prev_key='<C-k>'
-        let g:multi_cursor_skip_key='<C-x>'
+        let g:multi_cursor_use_default_mapping = 0
+        let g:multi_cursor_next_key = '<C-j>'
+        let g:multi_cursor_prev_key = '<C-k>'
+        let g:multi_cursor_skip_key = '<C-x>'
+        let g:multi_cursor_quit_key = '<Esc>'
     " vim-session
         let g:session_directory = '~/.vim/tmp/sessions'
         let g:session_autoload = 'no'
