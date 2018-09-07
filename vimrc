@@ -448,7 +448,7 @@
         "Plug 'marijnh/tern_for_vim', { 'for': 'javascipt' }
     " Editing
         Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-        Plug 'tomtom/tcomment_vim'
+        Plug 'tpope/vim-commentary'
         Plug 'tpope/vim-repeat'
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-abolish'
@@ -459,7 +459,7 @@
         "Plug 'sjl/gundo.vim'
         "Plug 'YankRing.vim'
         "Plug 'godlygeek/tabular'
-        "Plug 'tpope/vim-commentary'
+        "Plug 'tomtom/tcomment_vim'
     " Formatting
         Plug 'junegunn/vim-easy-align'
         Plug 'rhysd/vim-clang-format'
@@ -498,9 +498,6 @@
         if executable('ag')
             let g:ackprg = 'ag --vimgrep'
         endif
-    " vim-bookmarks
-        let g:bookmark_auto_close = 1
-        let g:bookmark_auto_save_file = $HOME .'/.vim/tmp/bookmarks'
     " clighter
         "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
         "nmap <silent> <Leader>a :call clighter#Rename()<CR>
@@ -563,6 +560,11 @@
         let g:airline#extensions#tabline#show_tab_type = 0
         let g:airline#extensions#tabline#show_tab_nr = 1
         let g:airline#extensions#tabline#tab_nr_type = 1
+    " vim-bookmarks
+        let g:bookmark_auto_close = 1
+        let g:bookmark_auto_save_file = $HOME .'/.vim/tmp/bookmarks'
+    " vim-commentary
+        autocmd FileType cpp setlocal commentstring=//\ %s
     " vim-cpp-enhanced-highlight
         let c_no_curly_error=1 " Vim tend to a have issues with flagging braces as errors
         let g:cpp_class_scope_highlight = 1
