@@ -430,7 +430,7 @@
         "Plug 'kshenoy/vim-signature'
     " Auto code completion
         if exists("g:cpp_developer") && g:cpp_developer == 1
-            Plug 'Valloric/YouCompleteMe', { 'do': 'python ./install.py --clang-completer' }
+            Plug 'Valloric/YouCompleteMe', { 'do': 'python ./install.py --clang-completer --go-completer' }
                 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
         else
             Plug 'OmniCppComplete'
