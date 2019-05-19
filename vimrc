@@ -463,20 +463,14 @@
     " Formatting
         Plug 'junegunn/vim-easy-align'
         Plug 'rhysd/vim-clang-format'
-        Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
         "Plug 'editorconfig/editorconfig-vim'
     " Syntaxes & colors
         Plug 'vim-airline/vim-airline'
+        Plug 'sheerun/vim-polyglot'
         Plug 'chrisbra/vim-diff-enhanced'
-        Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
-        Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
-        Plug 'keith/swift.vim', { 'for': 'swift' }
-        Plug 'rust-lang/rust.vim', { 'for': 'rust' }
         "Plug 'vim-airline/vim-airline-themes'
         "Plug 'itchyny/lightline.vim'
         "Plug 'flazz/vim-colorschemes'
-        "Plug 'bbchung/clighter8'
-        "Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     " Version control
         Plug 'mhinz/vim-signify'
         Plug 'gregsexton/gitv', { 'on': 'Gitv' }
@@ -498,9 +492,6 @@
         if executable('ag')
             let g:ackprg = 'ag --vimgrep'
         endif
-    " clighter
-        "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-        "nmap <silent> <Leader>a :call clighter#Rename()<CR>
     " ConqueGdb
         let g:ConqueGdb_Leader = '<C-X>'
         let g:ConqueTerm_Color = 2
@@ -565,9 +556,12 @@
         let g:bookmark_auto_save_file = $HOME .'/.vim/tmp/bookmarks'
     " vim-commentary
         autocmd FileType cpp setlocal commentstring=//\ %s
-    " vim-cpp-enhanced-highlight
+    " vim-cpp-enhanced-highlight (vim-polyglot)
         let c_no_curly_error=1 " Vim tend to a have issues with flagging braces as errors
+        let g:cpp_class_decl_highlight = 1
         let g:cpp_class_scope_highlight = 1
+        let g:cpp_concepts_highlight = 1
+        "let g:cpp_member_variable_highlight = 1
     " vim-easy-align
         " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
         vmap <Enter> <Plug>(EasyAlign)
