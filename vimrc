@@ -430,7 +430,7 @@
         "Plug 'kshenoy/vim-signature'
     " Auto code completion
         if exists("g:cpp_developer") && g:cpp_developer == 1
-            Plug 'Valloric/YouCompleteMe', { 'do': 'python ./install.py --clang-completer --go-completer' }
+            Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clang-completer --go-completer' }
                 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
         else
             Plug 'OmniCppComplete'
@@ -468,6 +468,7 @@
         Plug 'vim-airline/vim-airline'
         Plug 'sheerun/vim-polyglot'
         Plug 'chrisbra/vim-diff-enhanced'
+        Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
         "Plug 'vim-airline/vim-airline-themes'
         "Plug 'itchyny/lightline.vim'
         "Plug 'flazz/vim-colorschemes'
@@ -556,7 +557,7 @@
         let g:bookmark_auto_save_file = $HOME .'/.vim/tmp/bookmarks'
     " vim-commentary
         autocmd FileType cpp setlocal commentstring=//\ %s
-    " vim-cpp-enhanced-highlight (vim-polyglot)
+    " vim-cpp-enhanced-highlight (by vim-polyglot)
         let c_no_curly_error=1 " Vim tend to a have issues with flagging braces as errors
         let g:cpp_class_decl_highlight = 1
         let g:cpp_class_scope_highlight = 1
@@ -580,8 +581,6 @@
         elseif executable('ag')
             let g:EasyGrepCommand="ag"
         endif
-    " vim-markdown
-        autocmd BufNewFile,BufReadPost *.md set filetype=markdown
     " vim-multiple-cursors
         let g:multi_cursor_use_default_mapping = 0
         let g:multi_cursor_next_key = '<C-j>'
