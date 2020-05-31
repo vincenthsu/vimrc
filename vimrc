@@ -600,8 +600,9 @@
     " YouCompleteMe
         if exists("g:cpp_developer") && g:cpp_developer == 1
             noremap <leader>j :YcmCompleter GoTo<CR>
-            let g:ycm_global_ycm_extra_conf =
-                \ '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+            let g:ycm_extra_conf_globlist = [
+                \ '~/.ycm_extra_conf.py',
+                \ '~/.vim/plugged/YouCompleteMe/ycmd/.ycm_extra_conf.py']
             let g:ycm_key_list_select_completion = ['<Down>']
             let g:ycm_key_list_previous_completion = ['<Up>']
             let g:ycm_autoclose_preview_window_after_completion = 1
