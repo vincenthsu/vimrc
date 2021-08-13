@@ -432,7 +432,7 @@
             Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
                 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
         else
-            Plug 'OmniCppComplete'
+            Plug 'vim-scripts/OmniCppComplete'
             Plug 'ervandew/supertab'
         endif
         if exists("g:web_developer") && g:web_developer == 1
