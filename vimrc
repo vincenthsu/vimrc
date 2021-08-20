@@ -378,6 +378,11 @@
     " Rebind the vim help file
         inoremap <F1> <ESC> :call NTToggle()<CR>
         noremap <leader>0 :help<CR>
+    " Remap search keys
+        nnoremap * *<c-o>
+        noremap <leader>h :%s///g<left><left>
+        vnoremap * y/<c-r>"<cr>
+        vnoremap # y?<c-r>"<cr>
     " Plugin: vim-signify
         noremap <leader>4 :SignifyToggle<CR>
     " Plugin: gitv
@@ -395,9 +400,6 @@
         noremap <leader>f :ClangFormat<CR>
     " Plugin: vim-bookmarks
         noremap <leader>b :BookmarkShowAll<CR>
-    " Plugin: vim-visual-star-search
-        nnoremap * *<c-o>
-        noremap <leader>h :%s///g<left><left>
     " Plugin: YCM-Generator
         noremap <leader>y :YcmGenerateConfig<CR>
 
