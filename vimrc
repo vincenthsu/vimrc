@@ -430,6 +430,7 @@
         "Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
         "Plug 'kshenoy/vim-signature'
     " Auto code completion
+        " Plug 'vim-denops/denops.vim'
         if exists("g:cpp_developer") && g:cpp_developer == 1
             Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
                 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
@@ -444,6 +445,7 @@
         Plug 'SirVer/ultisnips'
             Plug 'vincenthsu/vim-snippets', { 'branch': 'extension'}
         Plug 'nsf/gocode', { 'for': 'go' }
+        Plug 'github/copilot.vim'
         "    Plug 'honza/vim-snippets'
         "Plug 'justmao945/vim-clang'
         "Plug 'marijnh/tern_for_vim', { 'for': 'javascipt' }
