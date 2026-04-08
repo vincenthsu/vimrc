@@ -2,6 +2,7 @@
     "let g:powerline_fonts = 1
     "let g:cpp_developer = 1
     "let g:web_developer = 1
+    "let g:go_developer = 1
 
 " General
     set nocompatible " explicitly get out of vi-compatible mode
@@ -424,15 +425,17 @@
         Plug 'vim-scripts/a.vim', { 'on': 'A' }
         Plug 'MattesGroeger/vim-bookmarks'
         Plug 'dkprice/vim-easygrep'
-        Plug 'fatih/vim-go', { 'for': 'go' }
+        if exists("g:go_developer") && g:go_developer == 1
+            Plug 'fatih/vim-go', { 'for': 'go' }
+        endif
         "Plug 'ludovicchabant/vim-gutentags',
         "Plug 'mileszs/ack.vim'
         "Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
         "Plug 'kshenoy/vim-signature'
     " Auto code completion
-        " Plug 'vim-denops/denops.vim'
         if exists("g:cpp_developer") && g:cpp_developer == 1
-            Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
+            "Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
+            Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clangd-completer --rust-completer' }
                 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
         else
             Plug 'vim-scripts/OmniCppComplete'
@@ -441,12 +444,13 @@
         if exists("g:web_developer") && g:web_developer == 1
             Plug 'mattn/emmet-vim'
         endif
+        if exists("g:go_developer") && g:go_developer == 1
+            Plug 'nsf/gocode', { 'for': 'go' }
+        endif
         Plug 'Raimondi/delimitMate'
-        Plug 'SirVer/ultisnips'
-            Plug 'vincenthsu/vim-snippets', { 'branch': 'extension'}
-        Plug 'nsf/gocode', { 'for': 'go' }
-        Plug 'github/copilot.vim'
-        "    Plug 'honza/vim-snippets'
+        " Plug 'vincenthsu/vim-snippets', { 'branch': 'extension'} " Fork from 'honza/vim-snippets'
+        "Plug 'github/copilot.vim'
+        "Plug 'vim-denops/denops.vim'
         "Plug 'justmao945/vim-clang'
         "Plug 'marijnh/tern_for_vim', { 'for': 'javascipt' }
     " Editing
