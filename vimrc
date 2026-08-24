@@ -434,9 +434,13 @@
         "Plug 'kshenoy/vim-signature'
     " Auto code completion
         if exists("g:cpp_developer") && g:cpp_developer == 1
-            "Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
+            " Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
             Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --clangd-completer --rust-completer' }
                 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
+            " Plug 'prabirshrestha/vim-lsp'
+            " Plug 'mattn/vim-lsp-settings'
+            " Plug 'prabirshrestha/asyncomplete.vim'
+            " Plug 'prabirshrestha/asyncomplete-lsp.vim'
         else
             Plug 'vim-scripts/OmniCppComplete'
             Plug 'ervandew/supertab'
